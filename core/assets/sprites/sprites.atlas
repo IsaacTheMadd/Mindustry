@@ -2537,3 +2537,38 @@ weapons/vulcan-equip
   orig: 8, 8
   offset: 0, 0
   index: -1
+blocks/fevorium1
+  rotate: false
+  xy: 659, 272
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+blocks/fevorium2
+  rotate: false
+  xy: 669, 272
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+blocks/fevorium3
+  rotate: false
+  xy: 679, 272
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-fevorium
+  rotate: false
+  xy: 689, 272
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+blocks/fevoriumdrill
+  rotate: false
+  xy: 699, 272
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1

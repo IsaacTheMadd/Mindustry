@@ -74,6 +74,10 @@ public class WorldGenerator {
 					if(Noise.nnoise(x + 99999, y + 99999, 7, 1) > 0.259){
 						floor = Blocks.uranium;
 					}
+					
+					if(Noise.nnoise(x + 99999, y + 99999, 8, 1) > 0.239){
+						floor = Blocks.fevorium;
+					}
 				}
 				
 				if(color == Hue.rgb(Color.PURPLE)){

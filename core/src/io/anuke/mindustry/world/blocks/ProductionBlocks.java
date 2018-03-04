@@ -155,6 +155,14 @@ public class ProductionBlocks{
 		}
 	},
 	
+	fevoriumdrill = new Drill("fevoriumdrill"){
+		{
+			resource = Blocks.fevorium;
+			result = Item.fevorium;
+			time = 8;
+		}
+	},
+	
 	omnidrill = new Omnidrill("omnidrill"){
 		{
 			time = 4;

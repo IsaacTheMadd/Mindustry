@@ -29,10 +29,13 @@ public class WeaponBlocks{
 	
 	doubleturret = new Turret("doubleturret"){
 		{
-			range = 44;
+/*			range = 44;
 			reload = 13f;
+*/			range = 440;
+			reload = 1f;
 			bullet = BulletType.stone;
 			ammo = Item.stone;
+			ammoMultiplier = 14;
 			health = 55;
 			health = 45;
 		}

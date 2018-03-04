@@ -22,7 +22,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 	none = new BulletType(0f, 0){
 		public void draw(Bullet b){}
 	},
-	stone = new BulletType(1.5f, 2){
+	stone = new BulletType(20f, 22){
 		public void draw(Bullet b){
 			Draw.colorl(0.64f);
 			Draw.rect("blank", b.x, b.y, 2f, 2f);

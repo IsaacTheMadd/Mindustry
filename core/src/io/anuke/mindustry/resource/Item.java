@@ -16,6 +16,7 @@ public class Item{
 		titanium = new Item("titanium"),
 		dirium = new Item("dirium"),
 		uranium = new Item("uranium"),
+		fevorium = new Item("fevorium"),
 		sand = new Item("sand");
 		/*glass = new Item("glass"),
 		silicon = new Item("silicon");*/
