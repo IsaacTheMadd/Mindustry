@@ -98,7 +98,7 @@ public class BlocksFragment implements Fragment{
 							}
 						});
 						button.setName("sectionbutton" + sec.name());
-						add(button).growX().height(54).padLeft(-1).padTop(sec.ordinal() <= 2 ? -10 : -5);
+						add(button).growX().height(64).padLeft(-1).padTop(sec.ordinal() <= 2 ? -10 : -5);
 						button.getImageCell().size(40).padBottom(4).padTop(2);
 						group.add(button);
 

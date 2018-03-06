@@ -22,7 +22,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 	none = new BulletType(0f, 0){
 		public void draw(Bullet b){}
 	},
-	stone = new BulletType(20f, 22){
+	stone = new BulletType(1.5f, 2){
 		public void draw(Bullet b){
 			Draw.colorl(0.64f);
 			Draw.rect("blank", b.x, b.y, 2f, 2f);
@@ -440,6 +440,20 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			Lines.stroke(1f);
 			Lines.lineAngleCenter(b.x, b.y, b.angle(), b.fract()*4f);
 			Draw.reset();
+		}
+	},
+	railsniper = new BulletType(6.5f, 56){
+		public void draw(Bullet b){
+			Draw.color(Color.LIGHT_GRAY);
+			Lines.stroke(1.5f);
+			Lines.lineAngleCenter(b.x, b.y, b.angle(), 5f);
+			Draw.reset();
+		}
+		
+		public void update(Bullet b){
+			if(b.timer.get(0, 4)){
+				Effects.effect(Fx.railsmoke, b.x, b.y);
+			}
 		}
 	},
 	beamlaser = new BulletType(0.001f, 38) {

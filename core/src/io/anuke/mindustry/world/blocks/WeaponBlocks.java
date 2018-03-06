@@ -29,10 +29,8 @@ public class WeaponBlocks{
 	
 	doubleturret = new Turret("doubleturret"){
 		{
-/*			range = 44;
+			range = 44;
 			reload = 13f;
-*/			range = 440;
-			reload = 1f;
 			bullet = BulletType.stone;
 			ammo = Item.stone;
 			ammoMultiplier = 14;
@@ -206,6 +204,22 @@ public class WeaponBlocks{
 			shootCone = 9f;
 			shootEffect = Fx.titanshot;
 			shootShake = 3f;
+		}
+	},
+	
+	railturret = new Turret("railturret"){
+		{
+			shootsound = "bigshot";
+			range = 280f;
+			reload = 90f;
+			bullet = BulletType.railsniper;
+			ammo = Item.dirium;
+			health = 540;
+			ammoMultiplier = 4;
+			width = height = 2;
+			shootCone = 9f;
+			shootEffect = Fx.railshot;
+			shootShake = 2f;
 		}
 	};
 }

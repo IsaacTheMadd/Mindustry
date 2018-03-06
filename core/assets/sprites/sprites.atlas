@@ -2572,3 +2572,17 @@ blocks/fevoriumdrill
   orig: 8, 8
   offset: 0, 0
   index: -1
+blocks/railturret
+  rotate: false
+  xy: 659, 254
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+blocks/railturret-icon
+  rotate: false
+  xy: 677, 260
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1

@@ -101,8 +101,10 @@ public class BlockLoader {
             "plasmaturret", 90,
             "chainturret", 91,
             "titancannon", 92,
-            "playerspawn", 93,
-            "enemyspawn", 94
+            "fevoriumdrill", 93,
+            "railcannon", 94,
+            "playerspawn", 95,
+            "enemyspawn", 96
     );
     static final IntMap<Block> blockmap = new IntMap<>();
 
