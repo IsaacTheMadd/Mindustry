@@ -56,12 +56,12 @@ public class ShieldedWallBlock extends PowerBlock{
 		ShieldedWallEntity entity = tile.entity();
 		
 		if(entity.power > powerPerDamage){
-			renderer.addShield(() -> Draw.rect("blank", tile.worldx(), tile.worldy(), tilesize, tilesize));
+			renderer.addShield(() -> Draw.rect("blank", tile.drawx(), tile.drawy(), width * tilesize, height * tilesize));
 		}
 		
 		Draw.color(hitColor);
 		Draw.alpha(entity.hit / hitTime * 0.9f);
-		Draw.rect("blank", tile.worldx(), tile.worldy(), tilesize, tilesize);
+		Draw.rect("blank", tile.drawx(), tile.drawy(), width * tilesize, height * tilesize);
 		Draw.reset();
 		
 		entity.hit -= Timers.delta();

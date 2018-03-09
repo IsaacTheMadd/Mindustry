@@ -29,7 +29,7 @@ public class DefenseBlocks{
 		health = 190*wallHealthMultiplier;
 	}},
 	compositewall = new Wall("compositewall"){{
-		health = 270*wallHealthMultiplier;
+		health = 280*wallHealthMultiplier;
 	}},
 	steelwalllarge = new Wall("steelwall-large"){{
 		health = 110*4*wallHealthMultiplier;
@@ -43,9 +43,31 @@ public class DefenseBlocks{
 		health = 190*4*wallHealthMultiplier;
 		width = height = 2;
 	}},
+	compositewalllarge = new Wall("compositewall-large"){{
+		health = 280*4*wallHealthMultiplier;
+		width = height = 2;
+	}},
 	titaniumshieldwall = new ShieldedWallBlock("titaniumshieldwall"){{
 		health = 150*wallHealthMultiplier;
 	}},
+	titaniumshieldwalllarge = new ShieldedWallBlock("titaniumshieldwall-large"){{
+		health = 150*4*wallHealthMultiplier;
+		width = height = 2;
+		powerCapacity = powerCapacity*4;
+	}},
+	diriumshieldwall = new ShieldedWallBlock("duriumshieldwall"){{
+		health = 190*wallHealthMultiplier;
+		powerPerDamage = 0.04f;
+		powerCapacity = powerCapacity+3;
+	}},
+	diriumshieldwalllarge = new ShieldedWallBlock("duriumshieldwall-large"){{
+		health = 190*4*wallHealthMultiplier;
+		width = height = 2;
+		powerCapacity = powerCapacity+3*4;
+		powerPerDamage = 0.04f;
+	}},
+
+
 
 	repairturret = new RepairTurret("repairturret"){
 		{
@@ -68,6 +90,16 @@ public class DefenseBlocks{
 	shieldgenerator = new ShieldBlock("shieldgenerator"){
 		{
 			health = 100*wallHealthMultiplier;
+		}
+	},
+
+	shieldgeneratorlarge = new ShieldBlock("shieldgenerator-large"){
+		{
+			health = 100*4*wallHealthMultiplier;
+			width = height = 2;
+			shieldRadius = 40f*4;
+			maxRadius = 40f*4;
+			powerCapacity = 80f*4;
 		}
 	},
 	door = new Door("door"){{

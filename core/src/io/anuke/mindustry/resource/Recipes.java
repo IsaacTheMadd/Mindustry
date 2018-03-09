@@ -17,12 +17,17 @@ public class Recipes {
 			new Recipe(defense, DefenseBlocks.steelwall, stack(Item.steel, 12)),
 			new Recipe(defense, DefenseBlocks.titaniumwall, stack(Item.titanium, 12)),
 			new Recipe(defense, DefenseBlocks.diriumwall, stack(Item.dirium, 12)),
+			new Recipe(defense, DefenseBlocks.compositewall, stack(Item.titanium, 6), stack(Item.dirium, 6), stack(Item.fevorium, 6)),
 			new Recipe(defense, DefenseBlocks.steelwalllarge, stack(Item.steel, 12*4)),
 			new Recipe(defense, DefenseBlocks.titaniumwalllarge, stack(Item.titanium, 12*4)),
 			new Recipe(defense, DefenseBlocks.diriumwalllarge, stack(Item.dirium, 12*4)),
+			new Recipe(defense, DefenseBlocks.compositewalllarge, stack(Item.titanium, 6*4), stack(Item.dirium, 6*4), stack(Item.fevorium, 6*4)),
 			new Recipe(defense, DefenseBlocks.door, stack(Item.steel, 3), stack(Item.iron, 3*4)).setDesktop(),
 			new Recipe(defense, DefenseBlocks.largedoor, stack(Item.steel, 3*4), stack(Item.iron, 3*4*4)).setDesktop(),
 			new Recipe(defense, DefenseBlocks.titaniumshieldwall, stack(Item.titanium, 16)),
+			new Recipe(defense, DefenseBlocks.titaniumshieldwalllarge, stack(Item.titanium, 16*4)),
+			new Recipe(defense, DefenseBlocks.diriumshieldwall, stack(Item.dirium, 12), stack(Item.titanium, 4)),
+			new Recipe(defense, DefenseBlocks.diriumshieldwalllarge, stack(Item.dirium, 12*4), stack(Item.titanium, 4*4)),
 
 			new Recipe(distribution, DistributionBlocks.conveyor, stack(Item.stone, 1)),
 			new Recipe(distribution, DistributionBlocks.steelconveyor, stack(Item.steel, 1)),
@@ -78,6 +83,7 @@ public class Recipes {
 			new Recipe(power, DistributionBlocks.powerlaserrouter, stack(Item.steel, 5), stack(Item.iron, 5)),
 
 			new Recipe(power, DefenseBlocks.shieldgenerator, stack(Item.titanium, 30), stack(Item.dirium, 30)),
+			new Recipe(power, DefenseBlocks.shieldgeneratorlarge, stack(Item.titanium, 30*4), stack(Item.dirium, 30*4)),
 
 			new Recipe(distribution, DistributionBlocks.teleporter, stack(Item.steel, 30), stack(Item.dirium, 40)),
 

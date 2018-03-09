@@ -31,7 +31,7 @@ public class EnemyType {
 
     public final static Color[] tierColors = {
             Color.valueOf("ffe451"), Color.valueOf("f48e20"), Color.valueOf("ff6757"),
-            Color.valueOf("ff2d86"), Color.valueOf("cb2dff"), Color.valueOf("362020") };
+            Color.valueOf("ff2d86"), Color.valueOf("cb2dff"), Color.valueOf("362020"), Color.valueOf("4f0b00") };
     public final static int maxtier = tierColors.length;
     public final static float maxIdleLife = 60f*2f; //2 seconds idle = death
     public final static float hitDuration = 5f;
@@ -97,7 +97,7 @@ public class EnemyType {
             Draw.tscl(fontscale);
         }
 
-        Shaders.outline.lighten = 0f;
+        Shaders.outline.lighten = 1f;
     }
 
     public void drawOver(Enemy enemy){ }

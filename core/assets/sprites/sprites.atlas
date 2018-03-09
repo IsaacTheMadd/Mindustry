@@ -2586,3 +2586,66 @@ blocks/railturret-icon
   orig: 10, 10
   offset: 0, 0
   index: -1
+blocks/compositewall-large
+  rotate: false
+  xy: 751, 294
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+blocks/compositewall-large-icon
+  rotate: false
+  xy: 824, 326
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+blocks/shieldgenerator-large
+  rotate: false
+  xy: 776, 308
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+blocks/shieldgenerator-large-icon
+  rotate: false
+  xy: 814, 326
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+blocks/duriumshieldwall
+  rotate: false
+  xy: 719, 272
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+blocks/duriumshieldwall-large
+  rotate: false
+  xy: 794, 308
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+blocks/duriumshieldwall-large-icon
+  rotate: false
+  xy: 804, 326
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+blocks/titaniumshieldwall-large
+  rotate: false
+  xy: 776, 326
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+blocks/titaniumshieldwall-large-icon
+  rotate: false
+  xy: 794, 326
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
