@@ -210,8 +210,8 @@ public class WeaponBlocks{
 	railturret = new Turret("railturret"){
 		{
 			shootsound = "bigshot";
-			range = 280f;
-			reload = 90f;
+			range = 340f;
+			reload = 95f;
 			bullet = BulletType.railsniper;
 			ammo = Item.dirium;
 			health = 540;
@@ -220,6 +220,17 @@ public class WeaponBlocks{
 			shootCone = 9f;
 			shootEffect = Fx.railshot;
 			shootShake = 2f;
+		}
+	},
+	
+	plasmacannon = new PowerTurret("plasmacannon"){
+		{
+			shootsound = "tesla";
+			range = 225;
+			reload = 24f;
+			bullet = BulletType.pulseshot;
+			health = 920;
+			width = height = 3;
 		}
 	};
 }

@@ -476,6 +476,28 @@ public class Fx{
 		Draw.reset();
 	}),
 	
+	pulsesparks = new Effect(17, e -> {
+		Draw.color(beamLight, new Color(Hue.mix(beam, glowy, 0.4f)), e.ifract());
+		float size = 2f-e.ifract()*2f;
+		Draw.rect("circle", e.x, e.y, size, size);
+		Draw.reset();
+	}),
+
+    pulsehit = new Effect(8, e -> {
+        Draw.color(beamLight, new Color(Hue.mix(beam, beamLight, 0.3f)), e.ifract());
+        Lines.stroke(e.fract()*4f+0.5f);
+        Lines.circle(e.x, e.y, e.ifract()*8f);
+        Lines.spikes(e.x, e.y, e.ifract()*6f, 2f, 4, 45);
+        Draw.reset();
+    }),
+
+	flamefires = new Effect(5, e -> {
+		Draw.color(Color.YELLOW, Color.SCARLET, e.ifract());
+		float size = e.fract()*3f;
+		Draw.rect("circle", e.x, e.y, size, size);
+		Draw.reset();
+	}),
+	
 	railsmoke = new Effect(30, e -> {
 		Draw.color(Color.LIGHT_GRAY, Color.WHITE, e.ifract());
 		float size = e.fract()*4f;

@@ -66,6 +66,16 @@ public class Weapon extends Upgrade{
 			inaccuracy = 15f;
 			length = 3.5f;
 		}
+	},
+	flamethrower = new Weapon("flamethrower", 6, BulletType.flameplayer){
+		{
+			shootsound = "flame2";
+			effect = Fx.flamefires;
+			roundrobin = true;
+			shots = 2;
+			inaccuracy = 6f;
+			length = 4.5f;
+		}
 	};
 	/**weapon reload in frames*/
 	float reload;

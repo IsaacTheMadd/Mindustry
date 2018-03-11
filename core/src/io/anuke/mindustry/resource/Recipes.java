@@ -35,6 +35,7 @@ public class Recipes {
 			new Recipe(distribution, DistributionBlocks.router, stack(Item.stone, 2)),
 			new Recipe(distribution, DistributionBlocks.junction, stack(Item.iron, 2)),
 			new Recipe(distribution, DistributionBlocks.tunnel, stack(Item.iron, 2)),
+			new Recipe(distribution, DistributionBlocks.pulsetunnel, stack(Item.dirium, 2)),
 			new Recipe(distribution, DistributionBlocks.conduit, stack(Item.steel, 1)),
 			new Recipe(distribution, DistributionBlocks.pulseconduit, stack(Item.titanium, 1), stack(Item.steel, 1)),
 			new Recipe(distribution, DistributionBlocks.liquidrouter, stack(Item.steel, 2)),
@@ -54,6 +55,7 @@ public class Recipes {
 			new Recipe(weapon, WeaponBlocks.chainturret, stack(Item.steel, 50), stack(Item.titanium, 25), stack(Item.dirium, 40)),
 			new Recipe(weapon, WeaponBlocks.titanturret, stack(Item.steel, 70), stack(Item.titanium, 50), stack(Item.dirium, 55)),
 			new Recipe(weapon, WeaponBlocks.railturret, stack(Item.titanium, 20), stack(Item.fevorium, 50), stack(Item.dirium, 25)),
+			new Recipe(weapon, WeaponBlocks.plasmacannon, stack(Item.titanium, 58), stack(Item.fevorium, 70), stack(Item.dirium, 65)),
 
 			new Recipe(crafting, ProductionBlocks.smelter, stack(Item.stone, 40), stack(Item.iron, 40)),
 			new Recipe(crafting, ProductionBlocks.crucible, stack(Item.titanium, 50), stack(Item.steel, 50)),

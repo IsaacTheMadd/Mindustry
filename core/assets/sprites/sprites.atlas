@@ -235,6 +235,13 @@ blocks/conveyortunnel
   orig: 8, 8
   offset: 0, 0
   index: -1
+blocks/poweredtunnel
+  rotate: false
+  xy: 430, 75
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
 blocks/core
   rotate: false
   xy: 352, 105
@@ -2645,6 +2652,34 @@ blocks/titaniumshieldwall-large
 blocks/titaniumshieldwall-large-icon
   rotate: false
   xy: 794, 326
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+blocks/plasmacannon
+  rotate: false
+  xy: 699, 246
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+blocks/plasmacannon-icon
+  rotate: false
+  xy: 729, 271
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
+weapons/flamethrower
+  rotate: false
+  xy: 741, 272
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+weapons/flamethrower-equip
+  rotate: false
+  xy: 730, 261
   size: 8, 8
   orig: 8, 8
   offset: 0, 0

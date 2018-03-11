@@ -5,6 +5,7 @@ import io.anuke.mindustry.entities.effect.DamageArea;
 import io.anuke.mindustry.entities.effect.EMP;
 import io.anuke.mindustry.entities.enemies.Enemy;
 import io.anuke.mindustry.graphics.Fx;
+import io.anuke.ucore.graphics.Hue;
 import io.anuke.ucore.graphics.Draw;
 import io.anuke.ucore.core.Effects;
 import io.anuke.ucore.core.Timers;
@@ -319,6 +320,17 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			Draw.reset();
 		}
 	},
+	flameplayer = new BulletType(1f, 12){ //for players
+		{
+			lifetime = 72f;
+		}
+		public void draw(Bullet b){
+			Draw.color(new Color(Hue.mix(Color.valueOf("ffffc4"), Color.valueOf("efa66c"), 0.2f)), new Color(Hue.mix(Color.SCARLET, Color.valueOf("72deaf"), 0.1f)), b.time/lifetime);
+			float size = 6f-b.time/lifetime*5f;
+			Draw.rect("circle", b.x, b.y, size, size);
+			Draw.reset();
+		}
+	},
 	shot = new BulletType(2.7f, 5){
 		{
 			lifetime = 40;
@@ -484,6 +496,82 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			Lines.stroke(1.5f * f);
 			Draw.rect("circle", b.x, b.y, 3f*f, 3f*f);
 			Lines.lineAngle(b.x, b.y, b.angle(), length);
+		}
+	},
+	pulseshot = new BulletType(3.9f, 58) {
+
+		public void init(Bullet b) {
+			b.velocity.scl(Mathf.random(0.6f, 1f));
+		}
+
+		public void update(Bullet b){
+			if(b.timer.get(0, 7)){
+				Effects.effect(Fx.pulsesparks, b.x + Mathf.range(2), b.y + Mathf.range(2));
+			}
+		}
+
+		public void draw(Bullet b) {
+//			float f = b.fract()*1.5f;
+			float f = 1;
+			
+			Draw.color(beam);
+			Draw.rect("circle", b.x, b.y, 8f*f, 8f*f);
+			Lines.stroke(4.3f*f);
+			Lines.lineAngle(b.x, b.y, b.angle() + 180, 6.2f*f);
+			Lines.stroke(3.6f*f);
+			Lines.lineAngle(b.x, b.y, b.angle() + 180, 8f*f);
+			Lines.stroke(2.1f*f);
+			Lines.lineAngle(b.x, b.y, b.angle() + 180, 9f*f);
+			
+			Draw.color(beamLight);
+			Draw.rect("circle", b.x, b.y, 4.5f*f, 4.5f*f);
+			Lines.stroke(2.7f*f);
+			Lines.lineAngle(b.x, b.y, b.angle() + 180, 3.5f*f);
+			Lines.stroke(1.5f*f);
+			Lines.lineAngle(b.x, b.y, b.angle() + 180, 5.8f*f);
+			Draw.reset();
+		}
+
+		public void hit(Bullet b, float hitx, float hity) {
+			Effects.effect(pulsehit, b);
+			for(int i = 0; i < 6; i ++){
+				Bullet bullet = new Bullet(pulsesplit, b.owner, hitx, hity, b.angle() + Mathf.range(11f));
+				bullet.add();
+			}
+		}
+
+		public void despawned(Bullet b) {
+			hit(b, b.x, b.y);
+		}
+	},
+	pulsesplit = new BulletType(2f, 12) {
+		{
+			lifetime = 24f;
+		}
+
+		public void init(Bullet b) {
+			b.velocity.scl(Mathf.random(0.6f, 1f));
+		}
+
+		public void draw(Bullet b) {
+			float f = b.fract()*0.7f;
+			
+			Draw.color(beam);
+			Draw.rect("circle", b.x, b.y, 8f*f, 8f*f);
+			Lines.stroke(4.3f*f);
+			Lines.lineAngle(b.x, b.y, b.angle() + 180, 6.2f*f);
+			Lines.stroke(3.6f*f);
+			Lines.lineAngle(b.x, b.y, b.angle() + 180, 8f*f);
+			Lines.stroke(2.1f*f);
+			Lines.lineAngle(b.x, b.y, b.angle() + 180, 9f*f);
+			
+			Draw.color(beamLight);
+			Draw.rect("circle", b.x, b.y, 4.5f*f, 4.5f*f);
+			Lines.stroke(2.7f*f);
+			Lines.lineAngle(b.x, b.y, b.angle() + 180, 3.5f*f);
+			Lines.stroke(1.5f*f);
+			Lines.lineAngle(b.x, b.y, b.angle() + 180, 5.8f*f);
+			Draw.reset();
 		}
 	};
 	

@@ -41,8 +41,16 @@ public class DistributionBlocks{
 	junction = new Junction("junction"){{
 		
 	}},
+	
 	tunnel = new TunnelConveyor("conveyortunnel"){{
 	}},
+	
+	pulsetunnel = new TunnelConveyor("poweredtunnel"){{
+		maxdist = 4;
+		health = 75;
+		speed = 32f;
+	}},
+	
 	liquidjunction = new LiquidJunction("liquidjunction"){{
 
 	}},
