@@ -74,7 +74,7 @@ public class Weapon extends Upgrade{
 			roundrobin = true;
 			shots = 2;
 			inaccuracy = 6f;
-			length = 4.5f;
+			length = 6.5f;
 		}
 	};
 	/**weapon reload in frames*/

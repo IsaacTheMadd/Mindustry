@@ -320,7 +320,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			Draw.reset();
 		}
 	},
-	flameplayer = new BulletType(1f, 12){ //for players
+	flameplayer = new BulletType(2f, 12){ //for players
 		{
 			lifetime = 72f;
 		}
@@ -456,7 +456,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 	},
 	railsniper = new BulletType(6.5f, 56){
 		public void draw(Bullet b){
-			Draw.color(Color.LIGHT_GRAY);
+			Draw.color(Color.valueOf("8fdbb3"));
 			Lines.stroke(1.5f);
 			Lines.lineAngleCenter(b.x, b.y, b.angle(), 5f);
 			Draw.reset();

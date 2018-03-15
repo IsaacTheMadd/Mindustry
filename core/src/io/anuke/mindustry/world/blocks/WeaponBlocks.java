@@ -231,6 +231,7 @@ public class WeaponBlocks{
 			bullet = BulletType.pulseshot;
 			health = 920;
 			width = height = 3;
+			powerUsed = 0.8f;
 		}
 	};
 }

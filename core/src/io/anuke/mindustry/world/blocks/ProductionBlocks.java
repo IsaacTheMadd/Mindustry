@@ -213,5 +213,10 @@ public class ProductionBlocks{
 			width = height = 2;
 			health = 250;
 		}
+	},
+	assembler = new PowerCrafter("assembler"){
+		{
+			health = 250;
+		}
 	};
 }

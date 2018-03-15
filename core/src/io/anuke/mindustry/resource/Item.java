@@ -7,6 +7,7 @@ import io.anuke.ucore.util.Bundles;
 
 public class Item{
 	private static final Array<Item> items = new Array<>();
+	private static int lastid;
 
 	public static final Item
 		stone = new Item("stone"),
@@ -21,14 +22,14 @@ public class Item{
 		/*glass = new Item("glass"),
 		silicon = new Item("silicon");*/
 
-	public final int id;
+	public int id;
 	public final String name;
 	public TextureRegion region;
 	public float explosiveness = 0f;
 	public float flammability = 0f;
 
 	public Item(String name) {
-		this.id = items.size;
+		this.id = lastid ++;
 		this.name = name;
 
 		items.add(this);
@@ -54,4 +55,17 @@ public class Item{
 	public static Item getByID(int id){
 		return items.get(id);
 	}
+
+	public int getlastid() {
+		return lastid;
+	}
+
+	public void setlastid(int lastid) {
+		this.lastid = lastid;
+	}
+
+	public void setid(int id) {
+		this.id = id;
+	}
+	
 }

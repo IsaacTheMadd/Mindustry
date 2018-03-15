@@ -2684,3 +2684,24 @@ flamethrower-equip
   orig: 8, 8
   offset: 0, 0
   index: -1
+icon-ammo
+  rotate: false
+  xy: 751, 263
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-missile
+  rotate: false
+  xy: 761, 273
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+assembler
+  rotate: false
+  xy: 751, 273
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
