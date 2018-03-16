@@ -6,7 +6,7 @@ import io.anuke.ucore.graphics.Draw;
 import io.anuke.ucore.util.Bundles;
 
 public class Item{
-	private static final Array<Item> items = new Array<>();
+	private static Array<Item> items = new Array<>();
 	private static int lastid;
 
 	public static final Item
@@ -55,17 +55,4 @@ public class Item{
 	public static Item getByID(int id){
 		return items.get(id);
 	}
-
-	public int getlastid() {
-		return lastid;
-	}
-
-	public void setlastid(int lastid) {
-		this.lastid = lastid;
-	}
-
-	public void setid(int id) {
-		this.id = id;
-	}
-	
 }

@@ -218,5 +218,7 @@ public class ProductionBlocks{
 		{
 			health = 250;
 		}
+	},
+	spawner = new Debugspawner("spawner"){
 	};
 }

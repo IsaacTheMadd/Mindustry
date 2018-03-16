@@ -9,23 +9,14 @@ import io.anuke.ucore.util.Bundles;
 public class CraftedItem extends Item{
 	public static final CraftedItem
 
-		ammo = new CraftedItem("ammo"){
-	},
-		
-		missile = new CraftedItem("missile"){
-		
-	};
+		ammo = new CraftedItem("ammo"),
+		missile = new CraftedItem("missile");
 	
 	private String description;
-    private int tempid;
 	
 	private CraftedItem(String name) {
 		super(name);
         this.description = Bundles.getNotNull("item."+name+".description");
-        tempid = getlastid();
-        this.id = tempid++;
-        setlastid(tempid);
-		
 	}
 
 	public String getDescription() {

@@ -2705,3 +2705,10 @@ assembler
   orig: 8, 8
   offset: 0, 0
   index: -1
+spawner
+  rotate: false
+  xy: 222, 87
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
