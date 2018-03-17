@@ -454,7 +454,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			Draw.reset();
 		}
 	},
-	railsniper = new BulletType(6.5f, 56){
+	railsniper = new BulletType(5.8f, 56){
 		public void draw(Bullet b){
 			Draw.color(Color.valueOf("8fdbb3"));
 			Lines.stroke(1.5f);
@@ -499,6 +499,9 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		}
 	},
 	pulseshot = new BulletType(3.9f, 58) {
+		{
+			lifetime = 85f;
+		}
 
 		public void init(Bullet b) {
 			b.velocity.scl(Mathf.random(0.6f, 1f));
@@ -535,7 +538,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		public void hit(Bullet b, float hitx, float hity) {
 			Effects.effect(pulsehit, b);
 			for(int i = 0; i < 6; i ++){
-				Bullet bullet = new Bullet(pulsesplit, b.owner, hitx, hity, b.angle() + Mathf.range(11f));
+				Bullet bullet = new Bullet(pulsesplit, b.owner, hitx, hity, b.angle() + Mathf.range(28f));
 				bullet.add();
 			}
 		}
@@ -546,7 +549,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 	},
 	pulsesplit = new BulletType(2f, 12) {
 		{
-			lifetime = 24f;
+			lifetime = 34f;
 		}
 
 		public void init(Bullet b) {

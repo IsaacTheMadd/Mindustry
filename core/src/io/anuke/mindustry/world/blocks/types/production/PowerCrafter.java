@@ -7,12 +7,12 @@ import io.anuke.mindustry.entities.TileEntity;
 import io.anuke.mindustry.resource.Item;
 import io.anuke.mindustry.resource.ItemStack;
 import io.anuke.mindustry.resource.Weapon;
-import io.anuke.mindustry.resource.CraftedItem;
 import io.anuke.mindustry.resource.CrafterRecipes;
 import io.anuke.mindustry.world.Block;
 import io.anuke.mindustry.world.Tile;
 import io.anuke.mindustry.world.blocks.types.PowerAcceptor;
 import io.anuke.mindustry.world.blocks.types.LiquidBlock.LiquidEntity;
+import io.anuke.mindustry.world.blocks.types.defense.PowerTurret.PowerTurretEntity;
 import io.anuke.ucore.core.Effects;
 import io.anuke.ucore.core.Timers;
 import io.anuke.ucore.core.Effects.Effect;
@@ -51,15 +51,22 @@ public class PowerCrafter extends Block implements PowerAcceptor{
         super(name);
         solid = true;
         destructible = true;
+        
+		bars.add( new BlockBar(Color.YELLOW, true, tile -> tile.<PowerCrafterEntity>entity().power / powerCapacity));
     }
-/*
+
 	@Override
 	public void draw(Tile tile){
 		super.draw(tile);
 		
 		PowerCrafterEntity entity = tile.entity();
+		
+		TextureRegion region = entity.craftItem.region;
+		Tmp.tr1.setRegion(region, 4, 4, 1, 1);
+		
+		Draw.rect(Tmp.tr1, tile.worldx(), tile.worldy(), 4f, 4f);
 	}
-*/
+
 /*	@Override
 	public void init(){
 		PowerCrafterEntity entity = tile.entity();
@@ -78,10 +85,6 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 			tryDump(tile, -1, result);
 		}
 
-		if(entity.power >= powerUsed){
-			entity.power -= powerUsed;
-		}
-
 		//make sure it has all the items
 		for(ItemStack item : inputitems){
 			if(!entity.hasItem(item.item, item.amount)){
@@ -89,8 +92,12 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 			}
 		}
 
+		if(entity.power >= powerUsed){
+			entity.power -= powerUsed;
+		}
+
 		if(entity.getItem(result) >= capacity //output full
-				|| entity.power < powerUsed //not enough power
+				|| entity.power <= powerUsed //not enough power
 				|| !entity.timer.get(timerCraft, craftTime)){ //not yet time
 			return;
 		}
@@ -139,10 +146,12 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 		PowerCrafterEntity entity = tile.entity();
 
         Table content = new Table();
+        
+		ButtonGroup<ImageButton> group = new ButtonGroup<>();
 
         for(Item item : Item.getAllItems()){
-            if(!(item instanceof CraftedItem)) continue;
-            CraftedItem crafteditem = (CraftedItem)item;
+            if(!(item.crafted == true)) continue;
+            Item crafteditem = item;
         	        	
             ItemStack[] requirements = CrafterRecipes.get(crafteditem);
 
@@ -164,7 +173,7 @@ public class PowerCrafter extends Block implements PowerAcceptor{
                 for(ItemStack s : requirements){
 
                      reqtable.addImage(s.item.region).padRight(3).size(8*2);
-                     reqtable.add((capacity >= s.amount ? "" : "[RED]") +s.amount, 0.5f).left();
+                     reqtable.add((capacity <= s.amount ? "" : "") +s.amount, 0.5f).left();
                      reqtable.row();
                 }
 
@@ -182,16 +191,25 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 
             tip.setInstant(true);
 
-            ImageButton button = content.addImageButton("white", "toggle", 8*4, () -> {
+            ImageButton button = content.addImageButton("white", "toggle", 24, () -> {
                 entity.craftItem = crafteditem;
                 setConfigure(tile, (byte)crafteditem.id);
-                capacity = 0;
-            }).size(49f, 54f).padBottom(-5).get();
+                for(Item removeitem : Item.getAllItems()){
+                	int removeamount = entity.getItem(removeitem);                	
+                	entity.removeItem(removeitem,removeamount);
+                }
+            }).size(49f, 54f).padBottom(-5.1f).group(group).get();
 
-            button.getStyle().imageUp = new TextureRegionDrawable(Draw.region(crafteditem.name));
+            button.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(crafteditem.region));
             button.addListener(tip);
+            boolean checked = false;
+            if(entity.craftItem.id == item.id){
+            	checked = true;
+            }
+            button.setChecked(checked);
+    		
 
-    		if(++i % 3 == 0){
+    		if(++i % 4 == 3){
     				content.row();
     		}
 
@@ -208,7 +226,7 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 	public static class PowerCrafterEntity extends TileEntity{
 		public float power;
 		
-		public Item craftItem = CraftedItem.ammo;		
+		public Item craftItem = Item.ammo;		
 		
 		@Override
 		public void write(DataOutputStream stream) throws IOException{

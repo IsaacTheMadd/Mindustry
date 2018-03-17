@@ -6,8 +6,8 @@ import io.anuke.ucore.util.Mathf;
 
 public class CrafterRecipes {
     private static final ObjectMap<Item, ItemStack[]> recipes = Mathf.map(
-            CraftedItem.ammo, list(stack(Item.coal, 2), stack(Item.steel, 3)),
-            CraftedItem.missile, list(stack(Item.coal, 2), stack(Item.steel, 4))
+            Item.ammo, list(stack(Item.coal, 2), stack(Item.steel, 3)),
+            Item.missile, list(stack(Item.coal, 2), stack(Item.steel, 4))
     );
 
     private static final ItemStack[] empty = {};

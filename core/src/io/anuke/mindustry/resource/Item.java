@@ -18,7 +18,13 @@ public class Item{
 		dirium = new Item("dirium"),
 		uranium = new Item("uranium"),
 		fevorium = new Item("fevorium"),
-		sand = new Item("sand");
+		sand = new Item("sand"),
+		ammo = new Item("ammo"){
+			{crafted = true;}
+		},
+		missile = new Item("missile"){
+			{crafted = true;}
+		};
 		/*glass = new Item("glass"),
 		silicon = new Item("silicon");*/
 
@@ -28,13 +34,14 @@ public class Item{
 	public float explosiveness = 0f;
 	public float flammability = 0f;
 
+	public Boolean crafted = false;
+
 	public Item(String name) {
 		this.id = lastid ++;
 		this.name = name;
-
 		items.add(this);
 	}
-
+	
 	public void init(){
 		this.region = Draw.region("icon-" + name);
 	}
@@ -43,6 +50,10 @@ public class Item{
 		return Bundles.get("item." + this.name + ".name");
 	}
 
+	public String getDescription() {
+		return Bundles.get("item." + this.name + ".description");
+	}
+	
 	@Override
 	public String toString() {
 		return localizedName();
