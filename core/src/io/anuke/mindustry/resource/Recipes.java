@@ -5,6 +5,7 @@ import io.anuke.mindustry.Vars;
 import io.anuke.mindustry.world.Block;
 import io.anuke.mindustry.world.blocks.DefenseBlocks;
 import io.anuke.mindustry.world.blocks.DistributionBlocks;
+import io.anuke.mindustry.world.blocks.MovementBlocks;
 import io.anuke.mindustry.world.blocks.ProductionBlocks;
 import io.anuke.mindustry.world.blocks.WeaponBlocks;
 
@@ -90,6 +91,8 @@ public class Recipes {
 			new Recipe(power, DefenseBlocks.shieldgeneratorlarge, stack(Item.titanium, 30*4), stack(Item.dirium, 30*4)),
 
 			new Recipe(distribution, DistributionBlocks.teleporter, stack(Item.steel, 30), stack(Item.dirium, 40)),
+			new Recipe(distribution, MovementBlocks.bridge, stack(Item.steel, 1), stack(Item.dirium, 2)),
+
 
 			new Recipe(power, DefenseBlocks.repairturret, stack(Item.iron, 30)),
 			new Recipe(power, DefenseBlocks.megarepairturret, stack(Item.iron, 20), stack(Item.steel, 30)),
