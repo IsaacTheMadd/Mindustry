@@ -57,6 +57,7 @@ public class Recipes {
 			new Recipe(weapon, WeaponBlocks.titanturret, stack(Item.steel, 70), stack(Item.titanium, 50), stack(Item.dirium, 55)),
 			new Recipe(weapon, WeaponBlocks.railturret, stack(Item.titanium, 20), stack(Item.fevorium, 50), stack(Item.dirium, 25)),
 			new Recipe(weapon, WeaponBlocks.plasmacannon, stack(Item.titanium, 58), stack(Item.fevorium, 70), stack(Item.dirium, 65)),
+			new Recipe(weapon, WeaponBlocks.missileturret, stack(Item.titanium, 20), stack(Item.fevorium, 30), stack(Item.steel, 50)),
 
 			new Recipe(crafting, ProductionBlocks.smelter, stack(Item.stone, 40), stack(Item.iron, 40)),
 			new Recipe(crafting, ProductionBlocks.crucible, stack(Item.titanium, 50), stack(Item.steel, 50)),

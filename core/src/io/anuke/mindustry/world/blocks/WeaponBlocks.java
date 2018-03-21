@@ -233,5 +233,40 @@ public class WeaponBlocks{
 			width = height = 3;
 			powerUsed = 0.8f;
 		}
+	},
+	
+	missileturret = new Turret("missileturret"){
+		{
+			shootsound = "missile";
+			inaccuracy = 8f;
+			range = 220f;
+			reload = 42f;
+			bullet = BulletType.missile;
+			ammo = Item.missile;
+			health = 430;
+			width = height = 2;
+			shootCone = 9f;
+			ammoMultiplier = 1;
+			shots = 2;
+			shootEffect = Fx.chainshot;
+			bursts = 2;
+		}
+
+		@Override
+		protected void shoot(Tile tile){
+			TurretEntity entity = tile.entity();
+			
+			float len = 8;
+			float space = 3.7f;
+			
+			for(int i = -1; i < 1; i ++){
+				tr.trns(entity.rotation, len, Mathf.sign(i) * space);
+				bullet(tile, entity.rotation);
+				Effects.effect(shootEffect, tile.drawx() + tr.x,
+						tile.drawy() + tr.y, entity.rotation);
+			}
+			
+			Effects.shake(0.2f, 0.2f, tile.worldx(), tile.worldy());
+		}
 	};
 }

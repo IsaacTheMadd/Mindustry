@@ -28,14 +28,8 @@ public abstract class MissileBullet extends BulletType{
 	protected float Trackingspeed = 7f;
 	protected float Trackingradius = 55f;
 		
-	public MissileBullet(float speed, int damage, String name){
-		super(speed, damage, name);
-	}
-	
-	@Override
-	public void draw(Bullet b){
-		Draw.rect(b.name, b.x, b.y, b.angle());
-		Draw.reset();
+	public MissileBullet(float speed, int damage){
+		super(speed, damage);
 	}
 	
 	public void update(Bullet b){

@@ -36,11 +36,14 @@ public class Turret extends Block{
 	protected final int timerTarget = timers++;
 	protected final int timerReload = timers++;
 	protected final int timerSound = timers++;
+	protected final int timerBurst = timers++;
 	
 	protected float range = 50f;
 	protected float reload = 10f;
 	protected float inaccuracy = 0f;
 	protected int shots = 1;
+	protected int bursts = 1;
+	protected float burstDelay = 0.5f;
 	protected float shotDelayScale = 0;
 	protected String shootsound = "shoot";
 	protected BulletType bullet = BulletType.iron;
@@ -53,6 +56,9 @@ public class Turret extends Block{
 	protected float shootShake = 0f;
 	protected int soundReload = 0;
 	protected Translator tr = new Translator();
+	
+	private boolean burstloop;
+	private int burstiter = 0;
 
 	public Turret(String name) {
 		super(name);
@@ -150,11 +156,34 @@ public class Turret extends Block{
 				entity.rotation = Mathf.slerpDelta(entity.rotation, targetRot,
 						rotatespeed);
 
-				if(Angles.angleDist(entity.rotation, targetRot) < shootCone && entity.timer.get(timerReload, reload)){
-					if(shootsound != null && entity.timer.get(timerSound, soundReload)) Effects.sound(shootsound, entity);
-					shoot(tile);
-					consumeAmmo(tile);
-					entity.ammo --;
+				if(burstloop == false){
+					if(Angles.angleDist(entity.rotation, targetRot) < shootCone && entity.timer.get(timerReload, reload)){
+						if(shootsound != null && entity.timer.get(timerSound, soundReload)) Effects.sound(shootsound, entity);
+						if(bursts < 2){
+							shoot(tile);
+							consumeAmmo(tile);
+							entity.ammo --;
+						}
+						else{
+							burstloop = true;
+						}
+					}
+				}
+				
+				if(burstloop == true){
+					if(Angles.angleDist(entity.rotation, targetRot) < shootCone && entity.timer.get(timerBurst, burstDelay)){
+						if(shootsound != null && entity.timer.get(timerSound, soundReload)) Effects.sound(shootsound, entity);
+						if(burstiter < bursts){
+							shoot(tile);
+							consumeAmmo(tile);
+							entity.ammo --;
+							burstiter++;
+						}
+						else{
+							burstiter = 0;
+							burstloop = false;
+						}
+					}
 				}
 			}
 		}

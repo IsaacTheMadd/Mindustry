@@ -73,7 +73,7 @@ public class Weapon extends Upgrade{
 			effect = Fx.flamefires;
 			roundrobin = true;
 			shots = 2;
-			inaccuracy = 6.5f;
+			inaccuracy = 5.5f;
 			length = 6.5f;
 		}
 	};

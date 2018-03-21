@@ -98,7 +98,7 @@ public class Control extends Module{
 		Sounds.load("shoot.ogg", "place.ogg", "explosion.ogg", "enemyshoot.ogg",
 				"corexplode.ogg", "break.ogg", "spawn.ogg", "flame.ogg", "die.ogg",
 				"respawn.ogg", "purchase.ogg", "flame2.ogg", "bigshot.ogg", "laser.ogg", "lasershot.ogg",
-				"ping.ogg", "tesla.ogg", "waveend.ogg", "railgun.ogg", "blast.ogg", "bang2.ogg");
+				"ping.ogg", "tesla.ogg", "waveend.ogg", "railgun.ogg", "missile.ogg", "blast.ogg", "bang2.ogg");
 
 		Sounds.setFalloff(9000f);
 

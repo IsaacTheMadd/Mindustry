@@ -2719,3 +2719,24 @@ bridge
   orig: 8, 8
   offset: 0, 0
   index: -1
+missile
+  rotate: false
+  xy: 741, 262
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+missileturret
+  rotate: false
+  xy: 659, 236
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+missileturret-icon
+  rotate: false
+  xy: 677, 242
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1

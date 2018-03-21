@@ -45,7 +45,7 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 
 	protected int capacity = 180;
 	public float powerCapacity = 20f;
-	public float powerUsed = 0.5f;
+	public float powerUsed = 0.2f;
 
     public PowerCrafter(String name){
         super(name);
