@@ -135,8 +135,8 @@ public class EnemyType {
         }
 
         Tile tile = world.tileWorld(enemy.x, enemy.y);
-        if(tile != null && tile.floor().liquid && tile.block() == Blocks.air){
-            enemy.damage(enemy.health+1); //drown
+        if(tile != null && tile.solid()){
+            enemy.damage(enemy.health+1); //suffocate
         }
 
         if(Float.isNaN(enemy.angle)){
@@ -160,7 +160,8 @@ public class EnemyType {
             return;
         }
 
-        float speed = this.speed + 0.04f * enemy.tier;
+        Tile tile = world.tileWorld(enemy.x, enemy.y);
+        float speed = this.speed + 0.04f * tile.floor().slowspeed * enemy.tier;
         float range = this.range + enemy.tier * 5;
 
         Tile core = world.getCore();

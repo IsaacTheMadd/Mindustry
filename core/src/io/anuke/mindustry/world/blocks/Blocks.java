@@ -35,9 +35,9 @@ public class Blocks{
 	
 	water = new Floor("water"){{
 		variants = 0;
-		solid = true;
 		liquidDrop = Liquid.water;
 		liquid = true;
+		slowspeed = 0.7f;
 	}},
 	
 	lava = new Floor("lava"){
@@ -63,9 +63,9 @@ public class Blocks{
 	oil = new Floor("oil"){
 		{
 			variants = 0;
-			solid = true;
 			liquidDrop = Liquid.oil;
 			liquid = true;
+			slowspeed = 0.3f;
 		}
 		
 		@Override

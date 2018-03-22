@@ -161,7 +161,7 @@ public class Player extends SyncEntity{
 		Tile tile = world.tileWorld(x, y);
 
 		//if player is in solid block
-		if(tile != null && ((tile.floor().liquid && tile.block() == Blocks.air) || tile.solid())){
+		if(tile != null && (tile.solid())){
 			stucktime += Timers.delta();
 		}else{
 			stucktime = 0f;
@@ -176,7 +176,7 @@ public class Player extends SyncEntity{
 
 		dashing = Inputs.keyDown("dash");
 		
-		float speed = dashing ? (debug ? Player.dashSpeed * 5f : Player.dashSpeed) : Player.speed;
+		float speed = dashing ? (debug ? tile.floor().slowspeed * Player.dashSpeed * 5f : tile.floor().slowspeed * Player.dashSpeed) : tile.floor().slowspeed * Player.speed;
 		
 		if(health < maxhealth && timer.get(timerRegen, 20))
 			health ++;

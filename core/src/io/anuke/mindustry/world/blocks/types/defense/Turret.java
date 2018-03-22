@@ -58,7 +58,7 @@ public class Turret extends Block{
 	protected Translator tr = new Translator();
 	
 	private boolean burstloop;
-	private int burstiter = 0;
+	private int burstIter = 0;
 
 	public Turret(String name) {
 		super(name);
@@ -173,14 +173,14 @@ public class Turret extends Block{
 				if(burstloop == true){
 					if(Angles.angleDist(entity.rotation, targetRot) < shootCone && entity.timer.get(timerBurst, burstDelay)){
 						if(shootsound != null && entity.timer.get(timerSound, soundReload)) Effects.sound(shootsound, entity);
-						if(burstiter < bursts){
+						if(burstIter < bursts){
 							shoot(tile);
 							consumeAmmo(tile);
 							entity.ammo --;
-							burstiter++;
+							burstIter++;
 						}
 						else{
-							burstiter = 0;
+							burstIter = 0;
 							burstloop = false;
 						}
 					}

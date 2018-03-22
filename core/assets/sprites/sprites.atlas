@@ -2684,7 +2684,7 @@ flamethrower-equip
   orig: 8, 8
   offset: 0, 0
   index: -1
-icon-ammo
+icon-basicammo
   rotate: false
   xy: 751, 263
   size: 8, 8

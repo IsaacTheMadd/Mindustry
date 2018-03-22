@@ -19,7 +19,7 @@ public class Item{
 		uranium = new Item("uranium"),
 		fevorium = new Item("fevorium"),
 		sand = new Item("sand"),
-		ammo = new Item("ammo"){
+		basicammo = new Item("basicammo"){
 			{crafted = true;}
 		},
 		missile = new Item("missile"){

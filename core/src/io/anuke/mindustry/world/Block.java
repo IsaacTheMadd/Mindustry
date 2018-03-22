@@ -55,6 +55,8 @@ public class Block{
 	public boolean breakable;
 	/**whether this block can be drowned in*/
 	public boolean liquid;
+	/**speed multiplier for players and enemies*/
+	public float slowspeed = 1f;
 	/**time it takes to break*/
 	public float breaktime = 18;
 	/**tile entity health*/

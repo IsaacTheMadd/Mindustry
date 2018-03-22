@@ -11,8 +11,6 @@ import io.anuke.mindustry.resource.CrafterRecipes;
 import io.anuke.mindustry.world.Block;
 import io.anuke.mindustry.world.Tile;
 import io.anuke.mindustry.world.blocks.types.PowerAcceptor;
-import io.anuke.mindustry.world.blocks.types.LiquidBlock.LiquidEntity;
-import io.anuke.mindustry.world.blocks.types.defense.PowerTurret.PowerTurretEntity;
 import io.anuke.ucore.core.Effects;
 import io.anuke.ucore.core.Timers;
 import io.anuke.ucore.core.Effects.Effect;
@@ -60,7 +58,7 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 		super.draw(tile);
 		
 		PowerCrafterEntity entity = tile.entity();
-		
+
 		TextureRegion region = entity.craftItem.region;
 		Tmp.tr1.setRegion(region, 4, 4, 1, 1);
 		
@@ -226,7 +224,7 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 	public static class PowerCrafterEntity extends TileEntity{
 		public float power;
 		
-		public Item craftItem = Item.ammo;		
+		public Item craftItem = Item.basicammo;		
 		
 		@Override
 		public void write(DataOutputStream stream) throws IOException{
