@@ -13,7 +13,6 @@ import static io.anuke.mindustry.resource.Section.*;
 
 public class Recipes {
 	private static final Array<Recipe> list = Array.with(
-			new Recipe(defense, DefenseBlocks.stonewall, stack(Item.stone, 12)),
 			new Recipe(defense, DefenseBlocks.ironwall, stack(Item.iron, 12)),
 			new Recipe(defense, DefenseBlocks.steelwall, stack(Item.steel, 12)),
 			new Recipe(defense, DefenseBlocks.titaniumwall, stack(Item.titanium, 12)),
@@ -30,7 +29,7 @@ public class Recipes {
 			new Recipe(defense, DefenseBlocks.diriumshieldwall, stack(Item.dirium, 12), stack(Item.titanium, 4)),
 			new Recipe(defense, DefenseBlocks.diriumshieldwalllarge, stack(Item.dirium, 12*4), stack(Item.titanium, 4*4)),
 
-			new Recipe(distribution, DistributionBlocks.conveyor, stack(Item.stone, 1)),
+			new Recipe(distribution, DistributionBlocks.conveyor, stack(Item.iron, 1)),
 			new Recipe(distribution, DistributionBlocks.steelconveyor, stack(Item.steel, 1)),
 			new Recipe(distribution, DistributionBlocks.pulseconveyor, stack(Item.dirium, 1)),
 			new Recipe(distribution, DistributionBlocks.router, stack(Item.stone, 2)),
@@ -43,10 +42,10 @@ public class Recipes {
 			new Recipe(distribution, DistributionBlocks.liquidjunction, stack(Item.steel, 2)),
 			new Recipe(distribution, DistributionBlocks.sorter, stack(Item.steel, 2)),
 
-			new Recipe(weapon, WeaponBlocks.turret, stack(Item.stone, 4)),
-			new Recipe(weapon, WeaponBlocks.doubleturret, stack(Item.stone, 7)),
-			new Recipe(weapon, WeaponBlocks.machineturret, stack(Item.iron, 8), stack(Item.stone, 10)),
-			new Recipe(weapon, WeaponBlocks.shotgunturret, stack(Item.iron, 10), stack(Item.stone, 10)),
+			new Recipe(weapon, WeaponBlocks.turret, stack(Item.iron, 4)),
+			new Recipe(weapon, WeaponBlocks.doubleturret, stack(Item.iron, 7)),
+			new Recipe(weapon, WeaponBlocks.machineturret, stack(Item.iron, 14)),
+			new Recipe(weapon, WeaponBlocks.shotgunturret, stack(Item.iron, 16)),
 			new Recipe(weapon, WeaponBlocks.flameturret, stack(Item.iron, 12), stack(Item.steel, 9)),
 			new Recipe(weapon, WeaponBlocks.sniperturret, stack(Item.iron, 15), stack(Item.steel, 10)),
 			new Recipe(weapon, WeaponBlocks.laserturret, stack(Item.steel, 12), stack(Item.titanium, 12)),
@@ -59,7 +58,7 @@ public class Recipes {
 			new Recipe(weapon, WeaponBlocks.plasmacannon, stack(Item.titanium, 58), stack(Item.fevorium, 70), stack(Item.dirium, 65)),
 			new Recipe(weapon, WeaponBlocks.missileturret, stack(Item.titanium, 20), stack(Item.fevorium, 30), stack(Item.steel, 50)),
 
-			new Recipe(crafting, ProductionBlocks.smelter, stack(Item.stone, 40), stack(Item.iron, 40)),
+			new Recipe(crafting, ProductionBlocks.smelter, stack(Item.iron, 50)),
 			new Recipe(crafting, ProductionBlocks.crucible, stack(Item.titanium, 50), stack(Item.steel, 50)),
 			new Recipe(crafting, ProductionBlocks.coalpurifier, stack(Item.steel, 10), stack(Item.iron, 10)),
 			new Recipe(crafting, ProductionBlocks.titaniumpurifier, stack(Item.steel, 30), stack(Item.iron, 30)),
@@ -69,16 +68,16 @@ public class Recipes {
 			new Recipe(crafting, ProductionBlocks.weaponFactory, stack(Item.steel, 60), stack(Item.iron, 60)).setDesktop(),
 			new Recipe(crafting, ProductionBlocks.assembler, stack(Item.steel, 15), stack(Item.iron, 20)),
 
-			new Recipe(production, ProductionBlocks.stonedrill, stack(Item.stone, 12)),
-			new Recipe(production, ProductionBlocks.irondrill, stack(Item.stone, 25)),
-			new Recipe(production, ProductionBlocks.coaldrill, stack(Item.stone, 25), stack(Item.iron, 40)),
+			new Recipe(production, ProductionBlocks.stonedrill, stack(Item.iron, 32)),
+			new Recipe(production, ProductionBlocks.irondrill, stack(Item.iron, 25)),
+			new Recipe(production, ProductionBlocks.coaldrill, stack(Item.iron, 46)),
 			new Recipe(production, ProductionBlocks.titaniumdrill, stack(Item.iron, 50), stack(Item.steel, 50)),
 			new Recipe(production, ProductionBlocks.uraniumdrill, stack(Item.iron, 40), stack(Item.steel, 40)),
 			new Recipe(production, ProductionBlocks.fevoriumdrill, stack(Item.steel, 40), stack(Item.titanium, 40)),
 			new Recipe(production, ProductionBlocks.omnidrill, stack(Item.titanium, 40), stack(Item.dirium, 40), stack(Item.fevorium, 10)),
 			new Recipe(production, ProductionBlocks.spawner, stack(Item.iron, 2)),
 
-			new Recipe(power, ProductionBlocks.coalgenerator, stack(Item.iron, 30), stack(Item.stone, 20)),
+			new Recipe(power, ProductionBlocks.coalgenerator, stack(Item.iron, 40)),
 			new Recipe(power, ProductionBlocks.thermalgenerator, stack(Item.steel, 30), stack(Item.iron, 30)),
 			new Recipe(power, ProductionBlocks.combustiongenerator, stack(Item.iron, 30), stack(Item.stone, 20)),
 			new Recipe(power, ProductionBlocks.rtgenerator, stack(Item.titanium, 20), stack(Item.steel, 20)),
@@ -93,6 +92,7 @@ public class Recipes {
 
 			new Recipe(distribution, DistributionBlocks.teleporter, stack(Item.steel, 30), stack(Item.dirium, 40)),
 			new Recipe(distribution, MovementBlocks.bridge, stack(Item.steel, 1), stack(Item.dirium, 2)),
+			new Recipe(distribution, DistributionBlocks.coreunloader, stack(Item.iron, 1)),
 
 
 			new Recipe(power, DefenseBlocks.repairturret, stack(Item.iron, 30)),

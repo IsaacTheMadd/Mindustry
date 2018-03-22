@@ -67,5 +67,7 @@ public class DistributionBlocks{
 	teleporter = new Teleporter("teleporter"){{
 	}},
 	sorter = new Sorter("sorter"){{
+	}},
+	coreunloader = new CoreUnloader("coreunloader"){{
 	}};
 }

@@ -23,7 +23,7 @@ public class WeaponBlocks{
 			reload = 15f;
 			bullet = BulletType.stone;
 			health = 45;
-			ammo = Item.stone;
+			ammo = Item.basicammo;
 		}
 	},
 	
@@ -32,7 +32,7 @@ public class WeaponBlocks{
 			range = 44;
 			reload = 13f;
 			bullet = BulletType.stone;
-			ammo = Item.stone;
+			ammo = Item.basicammo;
 			ammoMultiplier = 14;
 			health = 55;
 			health = 45;

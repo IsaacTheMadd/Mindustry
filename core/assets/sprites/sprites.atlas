@@ -2740,3 +2740,10 @@ missileturret-icon
   orig: 10, 10
   offset: 0, 0
   index: -1
+coreunloader
+  rotate: false
+  xy: 340, 95
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1

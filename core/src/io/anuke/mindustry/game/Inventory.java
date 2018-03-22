@@ -23,7 +23,8 @@ public class Inventory {
         updated = true;
         Arrays.fill(items, 0);
 
-        addItem(Item.stone, 40);
+        addItem(Item.iron, 40);
+        addItem(Item.basicammo, 80);
 
         if(debug){
             Arrays.fill(items, 99999);
