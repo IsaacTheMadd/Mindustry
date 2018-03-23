@@ -24,6 +24,9 @@ import java.io.IOException;
 
 public class CoreUnloader extends Block{
 	protected final int timerDump = timers++;
+
+	protected int capacity = 1;
+	
 	
 	public CoreUnloader(String name) {
 		super(name);
@@ -36,6 +39,9 @@ public class CoreUnloader extends Block{
 		UnloaderEntity entity = tile.entity();
 		if(entity.timer.get(timerDump, 5) && entity.hasItem(entity.unloadItem)){
 			tryDump(tile, -1, entity.unloadItem);
+		}
+		if(entity.getItem(entity.unloadItem) >= capacity){
+			return;
 		}
 		if(state.inventory.hasItem(entity.unloadItem, 1)){
 			offloadNear(tile, entity.unloadItem);

@@ -12,6 +12,7 @@ import io.anuke.mindustry.net.Net;
 import io.anuke.mindustry.net.NetEvents;
 import io.anuke.mindustry.world.Tile;
 import io.anuke.mindustry.world.blocks.Blocks;
+import io.anuke.mindustry.world.blocks.types.movement.Bridge;
 import io.anuke.ucore.core.Effects;
 import io.anuke.ucore.core.Graphics;
 import io.anuke.ucore.core.Timers;
@@ -139,6 +140,17 @@ public class EnemyType {
             enemy.damage(enemy.health+1); //suffocate
         }
 
+		if(tile != null && (tile.floor().damageapp > 0 && !(tile.block() instanceof Bridge))){
+			enemy.floordamagetime += Timers.delta();
+		}else{
+			enemy.floordamagetime = 0f;
+		}
+
+		if(enemy.floordamagetime > tile.floor().damagetime){
+			enemy.damage(tile.floor().damageapp);
+			enemy.floordamagetime = 0f;
+		}
+		
         if(Float.isNaN(enemy.angle)){
             enemy.angle = 0;
         }
@@ -159,9 +171,9 @@ public class EnemyType {
             if(targetClient) updateTargeting(enemy, false);
             return;
         }
-
+        
         Tile tile = world.tileWorld(enemy.x, enemy.y);
-        float speed = this.speed + 0.04f * tile.floor().slowspeed * enemy.tier;
+        float speed = (tile != null && (tile.floor().slowspeed < 1 && !(tile.block() instanceof Bridge))) ? this.speed + 0.04f * tile.floor().slowspeed * enemy.tier : this.speed + 0.04f * enemy.tier;
         float range = this.range + enemy.tier * 5;
 
         Tile core = world.getCore();

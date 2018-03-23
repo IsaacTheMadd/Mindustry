@@ -19,6 +19,11 @@ public class Item{
 		uranium = new Item("uranium"),
 		fevorium = new Item("fevorium"),
 		sand = new Item("sand"),
+		/*dirt = new Item("dirt"),
+		biomass = new Item("biomass"),
+		saltpeter = new Item("saltpeter")
+		sulfur = new Item("sulfur")
+		blackpowder new Item("gunpowder")*/
 		basicammo = new Item("basicammo"){
 			{crafted = true;}
 		},

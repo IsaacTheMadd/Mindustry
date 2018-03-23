@@ -32,7 +32,7 @@ public class Recipes {
 			new Recipe(distribution, DistributionBlocks.conveyor, stack(Item.iron, 1)),
 			new Recipe(distribution, DistributionBlocks.steelconveyor, stack(Item.steel, 1)),
 			new Recipe(distribution, DistributionBlocks.pulseconveyor, stack(Item.dirium, 1)),
-			new Recipe(distribution, DistributionBlocks.router, stack(Item.stone, 2)),
+			new Recipe(distribution, DistributionBlocks.router, stack(Item.iron, 2)),
 			new Recipe(distribution, DistributionBlocks.junction, stack(Item.iron, 2)),
 			new Recipe(distribution, DistributionBlocks.tunnel, stack(Item.iron, 2)),
 			new Recipe(distribution, DistributionBlocks.pulsetunnel, stack(Item.dirium, 2)),
@@ -79,7 +79,7 @@ public class Recipes {
 
 			new Recipe(power, ProductionBlocks.coalgenerator, stack(Item.iron, 40)),
 			new Recipe(power, ProductionBlocks.thermalgenerator, stack(Item.steel, 30), stack(Item.iron, 30)),
-			new Recipe(power, ProductionBlocks.combustiongenerator, stack(Item.iron, 30), stack(Item.stone, 20)),
+			new Recipe(power, ProductionBlocks.combustiongenerator, stack(Item.iron, 40)),
 			new Recipe(power, ProductionBlocks.rtgenerator, stack(Item.titanium, 20), stack(Item.steel, 20)),
 			new Recipe(power, ProductionBlocks.nuclearReactor, stack(Item.titanium, 40), stack(Item.dirium, 40), stack(Item.steel, 50)),
 			new Recipe(power, DistributionBlocks.powerbooster, stack(Item.steel, 8), stack(Item.iron, 8)),

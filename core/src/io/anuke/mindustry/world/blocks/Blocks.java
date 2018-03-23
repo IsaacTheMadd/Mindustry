@@ -37,15 +37,16 @@ public class Blocks{
 		variants = 0;
 		liquidDrop = Liquid.water;
 		liquid = true;
-		slowspeed = 0.7f;
+		slowspeed = 0.6f;
 	}},
 	
 	lava = new Floor("lava"){
 		{
 			variants = 0;
-			solid = true;
 			liquidDrop = Liquid.lava;
 			liquid = true;
+			slowspeed = 0.4f;
+			damageapp = 12;
 		}
 		
 		@Override

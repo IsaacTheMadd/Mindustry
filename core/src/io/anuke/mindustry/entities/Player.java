@@ -11,6 +11,7 @@ import io.anuke.mindustry.resource.Upgrade;
 import io.anuke.mindustry.resource.Weapon;
 import io.anuke.mindustry.world.Tile;
 import io.anuke.mindustry.world.blocks.Blocks;
+import io.anuke.mindustry.world.blocks.types.movement.Bridge;
 import io.anuke.ucore.core.*;
 import io.anuke.ucore.entities.SolidEntity;
 import io.anuke.ucore.graphics.Draw;
@@ -43,6 +44,7 @@ public class Player extends SyncEntity{
 
 	public float targetAngle = 0f;
 	public float stucktime = 0f;
+	public float floordamagetime = 0f;
 	public boolean dashing = false;
 
 	public int clientid = -1;
@@ -172,11 +174,22 @@ public class Player extends SyncEntity{
 			stucktime = 0f;
 		}
 
+		if(tile != null && (tile.floor().damageapp > 0 && !(tile.block() instanceof Bridge))){
+			floordamagetime += Timers.delta();
+		}else{
+			floordamagetime = 0f;
+		}
+
+		if(floordamagetime > tile.floor().damagetime){
+			damage(tile.floor().damageapp);
+			floordamagetime = 0f;
+		}
+		
 		if(ui.chatfrag.chatOpen()) return;
 
 		dashing = Inputs.keyDown("dash");
 		
-		float speed = dashing ? (debug ? tile.floor().slowspeed * Player.dashSpeed * 5f : tile.floor().slowspeed * Player.dashSpeed) : tile.floor().slowspeed * Player.speed;
+		float speed = (tile != null && (tile.floor().slowspeed < 1 && !(tile.block() instanceof Bridge))) ? (dashing ? (debug ? tile.floor().slowspeed * Player.dashSpeed * 5f : tile.floor().slowspeed * Player.dashSpeed) : tile.floor().slowspeed * Player.speed) : (dashing ? (debug ? Player.dashSpeed * 5f : Player.dashSpeed) :  Player.speed);
 		
 		if(health < maxhealth && timer.get(timerRegen, 20))
 			health ++;

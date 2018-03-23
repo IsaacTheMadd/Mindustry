@@ -10,6 +10,7 @@ import io.anuke.mindustry.world.Layer;
 import io.anuke.mindustry.world.Tile;
 import io.anuke.mindustry.world.blocks.types.PowerAcceptor;
 import io.anuke.mindustry.world.blocks.types.PowerBlock;
+import io.anuke.mindustry.world.blocks.types.PowerBlock.PowerEntity;
 import io.anuke.ucore.core.Effects;
 import io.anuke.ucore.core.Settings;
 import io.anuke.ucore.core.Timers;
@@ -150,7 +151,9 @@ public class Generator extends PowerBlock{
 
 	@Override
 	public boolean acceptsPower(Tile tile){
-		return false;
+		PowerEntity entity = tile.entity();
+		
+		return entity.power + 0.001f <= powerCapacity;
 	}
 
 	protected void distributeLaserPower(Tile tile){
@@ -160,7 +163,7 @@ public class Generator extends PowerBlock{
 			int rot = (tile.getRotation() + i) - laserDirections / 2;
 			Tile target = laserTarget(tile, rot);
 
-			if(target == null || isInterfering(target, rot))
+			if(target == null/* || isInterfering(target, rot)*/)
 				continue;
 
 			PowerAcceptor p = (PowerAcceptor) target.block();
