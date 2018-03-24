@@ -31,6 +31,7 @@ public class Blocks{
 		solid = true;
 		liquidDrop = Liquid.water;
 		liquid = true;
+		slowspeed = 0.35f;
 	}},
 	
 	water = new Floor("water"){{
@@ -47,6 +48,7 @@ public class Blocks{
 			liquid = true;
 			slowspeed = 0.4f;
 			damageapp = 12;
+			movementEffect = Fx.lavamovementWaves;
 		}
 		
 		@Override
@@ -67,6 +69,7 @@ public class Blocks{
 			liquidDrop = Liquid.oil;
 			liquid = true;
 			slowspeed = 0.3f;
+			movementEffect = Fx.oilmovementWaves;
 		}
 		
 		@Override

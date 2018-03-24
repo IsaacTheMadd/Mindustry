@@ -32,7 +32,7 @@ public class EnemyType {
 
     public final static Color[] tierColors = {
             Color.valueOf("ffe451"), Color.valueOf("f48e20"), Color.valueOf("ff6757"),
-            Color.valueOf("ff2d86"), Color.valueOf("cb2dff"), Color.valueOf("362020"), Color.valueOf("4f0b00") };
+            Color.valueOf("ff2d86"), Color.valueOf("cb2dff"), Color.valueOf("362020"), Color.valueOf("4f0b5b") };
     public final static int maxtier = tierColors.length;
     public final static float maxIdleLife = 60f*2f; //2 seconds idle = death
     public final static float hitDuration = 5f;

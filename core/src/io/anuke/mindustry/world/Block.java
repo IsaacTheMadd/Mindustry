@@ -53,8 +53,10 @@ public class Block{
 	public boolean rotate;
 	/**whether you can break this with rightclick*/
 	public boolean breakable;
-	/**whether this block can be drowned in*/
+	/**whether this block has movement effects*/
 	public boolean liquid;
+	/**played when something walks over it.*/
+	public Effect movementEffect = Fx.movementWaves;
 	/**speed multiplier for players and enemies on top of it*/
 	public float slowspeed = 1f;
 	/**damage to apply to players and enemies on top of it*/

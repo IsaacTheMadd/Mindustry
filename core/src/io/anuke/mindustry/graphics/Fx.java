@@ -518,6 +518,33 @@ public class Fx{
 		Draw.rect("circle", e.x, e.y, size, size);
 		Draw.reset();
 	}),
+			
+	movementWaves = new Effect(63, e -> {
+		Draw.color(Color.valueOf("7190e3"));
+		Draw.alpha(e.fract());
+		Lines.lineAngle(e.x, e.y, e.rotation + 135, e.ifract()*9f);
+		Lines.lineAngle(e.x, e.y, e.rotation - 136, e.ifract()*9f);
+		Lines.stroke(e.ifract()*2f);
+		Draw.reset();
+	}),
+			
+	lavamovementWaves = new Effect(45, e -> {
+		Draw.color(Color.ORANGE);
+		Draw.alpha(e.fract());
+		Lines.lineAngle(e.x, e.y, e.rotation + 135, e.ifract()*7f);
+		Lines.lineAngle(e.x, e.y, e.rotation - 136, e.ifract()*7f);
+		Lines.stroke(e.ifract()*1.7f);
+		Draw.reset();
+	}),
+			
+	oilmovementWaves = new Effect(28, e -> {
+		Draw.color(Color.DARK_GRAY);
+		Draw.alpha(e.fract());
+		Lines.lineAngle(e.x, e.y, e.rotation + 135, e.ifract()*4f);
+		Lines.lineAngle(e.x, e.y, e.rotation - 136, e.ifract()*4f);
+		Lines.stroke(e.ifract()*1.3f);
+		Draw.reset();
+	}),
 	
 	spawn = new Effect(23, e -> {
 		Lines.stroke(2f);

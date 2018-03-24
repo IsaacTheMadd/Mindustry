@@ -60,9 +60,9 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 		PowerCrafterEntity entity = tile.entity();
 
 		TextureRegion region = entity.craftItem.region;
-		Tmp.tr1.setRegion(region, 4, 4, 1, 1);
+		Tmp.tr1.setRegion(region, 2, 2, 2, 2);
 		
-		Draw.rect(Tmp.tr1, tile.worldx(), tile.worldy(), 4f, 4f);
+		Draw.rect(Tmp.tr1, tile.worldx(), tile.worldy(), 2f, 2f);
 	}
 
 /*	@Override

@@ -32,6 +32,7 @@ public class Player extends SyncEntity{
 	static final int timerShootLeft = 1;
 	static final int timerShootRight = 2;
 	static final int timerRegen = 3;
+	static final int timerLiquid = 0;
 
 	public String name = "name";
 	public boolean isAndroid;
@@ -46,6 +47,7 @@ public class Player extends SyncEntity{
 	public float stucktime = 0f;
 	public float floordamagetime = 0f;
 	public boolean dashing = false;
+
 
 	public int clientid = -1;
 	public boolean isLocal = false;
@@ -180,6 +182,10 @@ public class Player extends SyncEntity{
 			floordamagetime = 0f;
 		}
 
+		if(tile.floor().liquid && timer.get(timerLiquid, 4) && movement.len() > 0 && !(tile.block() instanceof Bridge)){
+			Effects.effect(tile.floor().movementEffect, x + Angles.trnsx(angle + 180f, 3f), y + Angles.trnsy(angle + 180f, 3f), movement.angle());
+		}
+		
 		if(floordamagetime > tile.floor().damagetime){
 			damage(tile.floor().damageapp);
 			floordamagetime = 0f;
