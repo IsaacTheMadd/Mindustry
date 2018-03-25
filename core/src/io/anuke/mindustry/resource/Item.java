@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import io.anuke.ucore.graphics.Draw;
 import io.anuke.ucore.util.Bundles;
+import io.anuke.mindustry.resource.itemtypes.*;
 
 public class Item{
 	private static Array<Item> items = new Array<>();
@@ -28,6 +29,9 @@ public class Item{
 			{crafted = true;}
 		},
 		missile = new Item("missile"){
+			{crafted = true;}
+		},
+		barrel = new LiquidItem("barrel"){
 			{crafted = true;}
 		};
 		/*glass = new Item("glass"),

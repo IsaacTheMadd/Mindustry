@@ -2747,3 +2747,24 @@ coreunloader
   orig: 8, 8
   offset: 0, 0
   index: -1
+barrelloader
+  rotate: false
+  xy: 741, 243
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+barrelunloader
+  rotate: false
+  xy: 751, 243
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-barrel
+  rotate: false
+  xy: 772, 273
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1

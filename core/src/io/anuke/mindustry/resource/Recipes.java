@@ -67,6 +67,8 @@ public class Recipes {
 			new Recipe(crafting, ProductionBlocks.lavasmelter, stack(Item.steel, 30), stack(Item.titanium, 15)),
 			new Recipe(crafting, ProductionBlocks.weaponFactory, stack(Item.steel, 60), stack(Item.iron, 60)).setDesktop(),
 			new Recipe(crafting, ProductionBlocks.assembler, stack(Item.steel, 15), stack(Item.iron, 20)),
+			new Recipe(crafting, DistributionBlocks.barrelloader, stack(Item.steel, 8)),
+			new Recipe(crafting, DistributionBlocks.barrelunloader, stack(Item.steel, 8)),
 
 			new Recipe(production, ProductionBlocks.stonedrill, stack(Item.iron, 32)),
 			new Recipe(production, ProductionBlocks.irondrill, stack(Item.iron, 25)),
@@ -91,7 +93,7 @@ public class Recipes {
 			new Recipe(power, DefenseBlocks.shieldgeneratorlarge, stack(Item.titanium, 30*4), stack(Item.dirium, 30*4)),
 
 			new Recipe(distribution, DistributionBlocks.teleporter, stack(Item.steel, 30), stack(Item.dirium, 40)),
-			new Recipe(distribution, MovementBlocks.bridge, stack(Item.steel, 1), stack(Item.dirium, 2)),
+			new Recipe(distribution, MovementBlocks.bridge, stack(Item.steel, 1), stack(Item.dirium, 2)).setDesktop(),
 			new Recipe(distribution, DistributionBlocks.coreunloader, stack(Item.iron, 1)),
 
 

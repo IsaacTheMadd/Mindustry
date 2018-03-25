@@ -69,5 +69,9 @@ public class DistributionBlocks{
 	sorter = new Sorter("sorter"){{
 	}},
 	coreunloader = new CoreUnloader("coreunloader"){{
+	}},
+	barrelloader = new LiquidItemLoader("barrelloader"){{
+	}},
+	barrelunloader = new LiquidItemUnloader("barrelunloader"){{
 	}};
 }
