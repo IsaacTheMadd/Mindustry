@@ -20,9 +20,9 @@ allprojects {
     version = 'release'
 
     ext {
-        versionNumber = '3.4'
+        versionNumber = '0.1'
         versionType = 'release'
-        appName = 'Mindustry'
+        appName = 'Insandustry'
         gdxVersion = '1.9.8'
         aiVersion = '1.8.1'
         uCoreVersion = 'cdfa32d'

@@ -26,6 +26,7 @@ public class LiquidItemLoader extends LiquidBlock{
 	public int itemCapacity = 10;
 	public int fillTime = 80;
 	public Effect craftEffect = Fx.purify;
+	private Liquid liquid;
 
 	public LiquidItemLoader(String name) {
 		super(name);
@@ -63,11 +64,12 @@ public class LiquidItemLoader extends LiquidBlock{
 	@Override
 	public void update(Tile tile){
 		LiquidEntity entity = tile.entity();
+		liquid = entity.liquid;
 		
 		if(entity.timer.get(timerFill, fillTime) && entity.liquidAmount >= ((LiquidItem)input).getLiquidCapacity() &&
 				(entity.hasItem(input, inputAmount))){
 			if(input instanceof LiquidItem && entity.liquid != null)
-				((LiquidItem)input).setLiquid(((LiquidItem)input), entity.liquid);
+				((LiquidItem)input).setLiquid(((LiquidItem)input), liquid);
 				((LiquidItem)input).setLiquidAmount(((LiquidItem)input), ((LiquidItem)input).getLiquidCapacity());
 				entity.liquidAmount -= ((LiquidItem)input).getLiquidCapacity();
 			Effects.effect(craftEffect, tile.worldx(), tile.worldy());
@@ -77,10 +79,6 @@ public class LiquidItemLoader extends LiquidBlock{
 		}
 	}
 	
-	@Override
-	public boolean acceptLiquid(Tile tile, Tile source, Liquid liquid, float amount){
-		return super.acceptLiquid(tile, source, liquid, amount);
-	}
 	
 	@Override
 	public boolean acceptItem(Item item, Tile tile, Tile source){

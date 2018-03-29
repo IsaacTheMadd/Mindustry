@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import io.anuke.mindustry.entities.TileEntity;
+import io.anuke.mindustry.entities.ItemEntity;
 import io.anuke.mindustry.resource.Item;
 import io.anuke.mindustry.world.Tile;
 import io.anuke.mindustry.world.blocks.types.LiquidBlock.LiquidEntity;
@@ -23,38 +23,34 @@ public class LiquidItem extends Item{
 		return liquidCapacity;
 	}
 
-	public Liquid getLiquid(LiquidItem item) {
+	public Liquid getLiquid(Item item) {
 		LiquidItemEntity entity = item.entity();
 		return entity.liquid;
 	}
 
-	public <T extends Entity> T entity(){
-		return (T)entity;
-	}
-
-	public void setLiquid(LiquidItem item, Liquid liquid) {
+	public void setLiquid(Item item, Liquid liquid) {
 		LiquidItemEntity entity = item.entity();
 		entity.liquid = liquid;
 	}
 
-	public float getLiquidAmount(LiquidItem item) {
+	public float getLiquidAmount(Item item) {
 		LiquidItemEntity entity = item.entity();
 		return entity.liquidAmount;
 	}
 
-	public void setLiquidAmount(LiquidItem item, float liquidAmount ) {
+	public void setLiquidAmount(Item item, float liquidAmount ) {
 		LiquidItemEntity entity = item.entity();
 		entity.liquidAmount = liquidAmount;
 	}
 
-	public Entity getEntity(){
+	public ItemEntity getEntity(){
 		return new LiquidItemEntity();
 	}
 
-	public static class LiquidItemEntity extends Entity{
+	public static class LiquidItemEntity extends ItemEntity{
 		public Liquid liquid;
 		public float liquidAmount = 0;
-
+		
 		public void write(DataOutputStream stream) throws IOException{
 			stream.writeByte(liquid == null ? -1 : liquid.id);
 			stream.writeByte((byte)(liquidAmount));

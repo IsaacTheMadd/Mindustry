@@ -4,11 +4,16 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import io.anuke.ucore.graphics.Draw;
 import io.anuke.ucore.util.Bundles;
+import io.anuke.mindustry.entities.ItemEntity;
+import io.anuke.mindustry.entities.TileEntity;
 import io.anuke.mindustry.resource.itemtypes.*;
 
 public class Item{
 	private static Array<Item> items = new Array<>();
 	private static int lastid;
+	public ItemEntity entity;
+	/**Max of timers used.*/
+	public int timers = 0;
 
 	public static final Item
 		stone = new Item("stone"),
@@ -61,6 +66,10 @@ public class Item{
 
 	public String getDescription() {
 		return Bundles.get("item." + this.name + ".description");
+	}
+
+	public <T extends ItemEntity> T entity(){
+		return (T)entity;
 	}
 	
 	@Override

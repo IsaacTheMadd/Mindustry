@@ -6,6 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import io.anuke.mindustry.core.*;
 import io.anuke.mindustry.entities.Bullet;
+import io.anuke.mindustry.entities.ItemEntity;
 import io.anuke.mindustry.entities.Player;
 import io.anuke.mindustry.entities.TileEntity;
 import io.anuke.mindustry.entities.effect.Shield;
@@ -138,6 +139,7 @@ public class Vars{
 	public static final EntityGroup<Player> playerGroup = Entities.addGroup(Player.class).enableMapping();
 	public static final EntityGroup<Enemy> enemyGroup = Entities.addGroup(Enemy.class).enableMapping();
 	public static final EntityGroup<TileEntity> tileGroup = Entities.addGroup(TileEntity.class, false);
+	public static final EntityGroup<ItemEntity> itemGroup = Entities.addGroup(ItemEntity.class, false);
 	public static final EntityGroup<Bullet> bulletGroup = Entities.addGroup(Bullet.class);
 	public static final EntityGroup<Shield> shieldGroup = Entities.addGroup(Shield.class, false);
 	public static final EntityGroup<EffectEntity> effectGroup = Entities.addGroup(EffectEntity.class, false);
