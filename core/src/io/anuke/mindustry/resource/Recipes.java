@@ -67,8 +67,6 @@ public class Recipes {
 			new Recipe(crafting, ProductionBlocks.lavasmelter, stack(Item.steel, 30), stack(Item.titanium, 15)),
 			new Recipe(crafting, ProductionBlocks.weaponFactory, stack(Item.steel, 60), stack(Item.iron, 60)).setDesktop(),
 			new Recipe(crafting, ProductionBlocks.assembler, stack(Item.steel, 15), stack(Item.iron, 20)),
-			new Recipe(crafting, DistributionBlocks.barrelloader, stack(Item.steel, 8)),
-			new Recipe(crafting, DistributionBlocks.barrelunloader, stack(Item.steel, 8)),
 
 			new Recipe(production, ProductionBlocks.stonedrill, stack(Item.iron, 32)),
 			new Recipe(production, ProductionBlocks.irondrill, stack(Item.iron, 25)),
