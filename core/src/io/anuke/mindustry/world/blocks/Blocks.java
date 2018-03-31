@@ -109,15 +109,21 @@ public class Blocks{
 		drops = new ItemStack(Item.fevorium, 1);
 	}},
 	
-	dirt = new Floor("dirt"){},
+	dirt = new Floor("dirt"){{
+		drops = new ItemStack(Item.dirt, 1);
+	}},
 	
-	sand = new Floor("sand"){},
+	sand = new Floor("sand"){{
+		drops = new ItemStack(Item.sand, 1);
+	}},
 	
 	ice = new Floor("ice"){},
 	
 	snow = new Floor("snow"){},
 	
-	grass = new Floor("grass"){},
+	grass = new Floor("grass"){{
+		drops = new ItemStack(Item.dirt, 1);
+	}},
 	
 	sandblock = new StaticBlock("sandblock"){{
 		solid = true;

@@ -2747,23 +2747,100 @@ coreunloader
   orig: 8, 8
   offset: 0, 0
   index: -1
-barrelloader
-  rotate: false
-  xy: 741, 243
-  size: 8, 8
-  orig: 8, 8
-  offset: 0, 0
-  index: -1
-barrelunloader
-  rotate: false
-  xy: 751, 243
-  size: 8, 8
-  orig: 8, 8
-  offset: 0, 0
-  index: -1
 icon-barrel
   rotate: false
-  xy: 772, 273
+  xy: 771, 273
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-dirt
+  rotate: false
+  xy: 811, 273
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-biomass
+  rotate: false
+  xy: 821, 273
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-saltpeter
+  rotate: false
+  xy: 781, 273
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-silicon
+  rotate: false
+  xy: 831, 273
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-sulfur
+  rotate: false
+  xy: 791, 273
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-gunpowder
+  rotate: false
+  xy: 801, 273
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-tier2ammo
+  rotate: false
+  xy: 761, 263
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-railammo
+  rotate: false
+  xy: 791, 263
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-flakammo
+  rotate: false
+  xy: 781, 263
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-flamerammo
+  rotate: false
+  xy: 761, 253
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-chainammo
+  rotate: false
+  xy: 771, 263
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-titanammo
+  rotate: false
+  xy: 771, 253
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-diriumammo
+  rotate: false
+  xy: 751, 253
   size: 8, 8
   orig: 8, 8
   offset: 0, 0

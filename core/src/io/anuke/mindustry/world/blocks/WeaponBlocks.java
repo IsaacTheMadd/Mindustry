@@ -54,7 +54,7 @@ public class WeaponBlocks{
 			range = 65;
 			reload = 7f;
 			bullet = BulletType.iron;
-			ammo = Item.iron;
+			ammo = Item.tier2ammo;
 			health = 65;
 		}
 	},
@@ -64,7 +64,7 @@ public class WeaponBlocks{
 			range = 50;
 			reload = 30f;
 			bullet = BulletType.iron;
-			ammo = Item.iron;
+			ammo = Item.tier2ammo;
 			health = 70;
 			shots = 5;
 			inaccuracy = 15f;
@@ -77,7 +77,7 @@ public class WeaponBlocks{
 			range = 45f;
 			reload = 5f;
 			bullet = BulletType.flame;
-			ammo = Item.coal;
+			ammo = Item.flamerammo;
 			health = 90;
 			inaccuracy = 4f;
 		}
@@ -89,7 +89,7 @@ public class WeaponBlocks{
 			range = 120;
 			reload = 50f;
 			bullet = BulletType.sniper;
-			ammo = Item.steel;
+			ammo = Item.railammo;
 			health = 70;
 			shootEffect = Fx.railshot;
 		}
@@ -104,7 +104,7 @@ public class WeaponBlocks{
 			bullet = BulletType.flak;
 			shots = 3;
 			inaccuracy = 9f;
-			ammo = Item.coal;
+			ammo = Item.flakammo;
 			ammoMultiplier = 5;
 			health = 110;
 			shootEffect = Fx.mortarshot;
@@ -150,7 +150,7 @@ public class WeaponBlocks{
 			range = 60f;
 			reload = 3f;
 			bullet = BulletType.plasmaflame;
-			ammo = Item.coal;
+			ammo = Item.flamerammo;
 			health = 180;
 			ammoMultiplier = 40;
 		}
@@ -163,7 +163,7 @@ public class WeaponBlocks{
 			range = 80f;
 			reload = 5f;
 			bullet = BulletType.chain;
-			ammo = Item.uranium;
+			ammo = Item.chainammo;
 			health = 430;
 			width = height = 2;
 			shootCone = 9f;
@@ -196,7 +196,7 @@ public class WeaponBlocks{
 			range = 120f;
 			reload = 23f;
 			bullet = BulletType.titanshell;
-			ammo = Item.uranium;
+			ammo = Item.titanammo;
 			health = 800;
 			ammoMultiplier = 4;
 			width = height = 3;
@@ -213,7 +213,7 @@ public class WeaponBlocks{
 			range = 340f;
 			reload = 95f;
 			bullet = BulletType.railsniper;
-			ammo = Item.dirium;
+			ammo = Item.diriumammo;
 			health = 540;
 			ammoMultiplier = 4;
 			width = height = 2;

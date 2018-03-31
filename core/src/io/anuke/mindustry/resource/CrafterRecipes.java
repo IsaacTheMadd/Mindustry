@@ -6,8 +6,20 @@ import io.anuke.ucore.util.Mathf;
 
 public class CrafterRecipes {
     private static final ObjectMap<Item, ItemStack[]> recipes = Mathf.map(
+            Item.silicon, list(stack(Item.coal, 1), stack(Item.sand, 2)),
+            Item.biomass, list(stack(Item.dirt, 2)),
+            Item.saltpeter, list(stack(Item.sand, 1), stack(Item.dirt, 1)),
+            Item.sulfur, list(stack(Item.coal, 1), stack(Item.dirt, 3)),
+            Item.blackpowder, list(stack(Item.coal, 1), stack(Item.sulfur, 1), stack(Item.saltpeter, 3)),
             Item.basicammo, list(stack(Item.coal, 1), stack(Item.iron, 2)),
-            Item.missile, list(stack(Item.coal, 2), stack(Item.steel, 4))
+            Item.tier2ammo, list(stack(Item.blackpowder, 2), stack(Item.iron, 4)),
+            Item.railammo, list(stack(Item.steel, 4)),
+            Item.flamerammo, list(stack(Item.coal, 4), stack(Item.steel, 4)),
+            Item.flakammo, list(stack(Item.blackpowder, 2), stack(Item.steel, 2), stack(Item.coal, 4)),
+            Item.chainammo, list(stack(Item.blackpowder, 2), stack(Item.uranium, 2)),
+            Item.titanammo, list(stack(Item.blackpowder, 4), stack(Item.uranium, 6)),
+            Item.diriumammo, list(stack(Item.blackpowder, 2), stack(Item.dirium, 6)),
+            Item.missile, list(stack(Item.blackpowder, 2), stack(Item.steel, 4))
     );
 
     private static final ItemStack[] empty = {};

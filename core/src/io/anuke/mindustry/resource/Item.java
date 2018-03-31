@@ -19,19 +19,69 @@ public class Item{
 		uranium = new Item("uranium"),
 		fevorium = new Item("fevorium"),
 		sand = new Item("sand"),
-		/*dirt = new Item("dirt"),
-		biomass = new Item("biomass"),
-		saltpeter = new Item("saltpeter")
-		sulfur = new Item("sulfur")
-		blackpowder new Item("gunpowder")*/
+		dirt = new Item("dirt"),
+/*
+		glass = new Item("glass"){
+			{crafted = true;}
+		},
+*/
+		silicon = new Item("silicon"){
+			{crafted = true;}
+		},
+
+		biomass = new Item("biomass"){
+			{crafted = true;}
+		},
+
+		saltpeter = new Item("saltpeter"){
+			{crafted = true;}
+		},
+
+		sulfur = new Item("sulfur"){
+			{crafted = true;}
+		},
+
+		blackpowder = new Item("gunpowder"){
+			{crafted = true;}
+		},
+
 		basicammo = new Item("basicammo"){
 			{crafted = true;}
 		},
+
+		tier2ammo = new Item("tier2ammo"){
+			{crafted = true;}
+		},
+
+		railammo = new Item("railammo"){
+			{crafted = true;}
+		},
+
+		flakammo = new Item("flackammo"){
+			{crafted = true;}
+		},
+		
+		flamerammo = new Item("flamerammo"){
+			{crafted = true;}
+		},
+
+		chainammo = new Item("chainammo"){
+			{crafted = true;}
+		},
+
+		titanammo = new Item("titianammo"){
+			{crafted = true;}
+		},
+
+		diriumammo = new Item("diriumammo"){
+			{crafted = true;}
+		},
+
 		missile = new Item("missile"){
 			{crafted = true;}
-		};
-		/*glass = new Item("glass"),
-		silicon = new Item("silicon");*/
+		},
+
+		barrel = new Item("barrel");
 
 	public int id;
 	public final String name;

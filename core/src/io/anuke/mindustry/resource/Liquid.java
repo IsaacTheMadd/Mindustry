@@ -10,7 +10,7 @@ public class Liquid {
 
 	public static final Liquid
 		water = new Liquid("water", Color.ROYAL),
-		plasma = new Liquid("plasma", Color.CORAL),
+		plasma = new Liquid("plasma", Color.valueOf("aa4d7f")),
 		lava = new Liquid("lava", Color.valueOf("ed5334")),
 		oil = new Liquid("oil", Color.valueOf("292929")),
 		cryofluid = new Liquid("cryofluid", Color.SKY);
