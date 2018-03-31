@@ -57,7 +57,7 @@ public class Item{
 			{crafted = true;}
 		},
 
-		flakammo = new Item("flackammo"){
+		flakammo = new Item("flakammo"){
 			{crafted = true;}
 		},
 		
@@ -69,7 +69,7 @@ public class Item{
 			{crafted = true;}
 		},
 
-		titanammo = new Item("titianammo"){
+		titanammo = new Item("titanammo"){
 			{crafted = true;}
 		},
 
