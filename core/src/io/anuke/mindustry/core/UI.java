@@ -154,12 +154,12 @@ public class UI extends SceneModule{
 		language = new LanguageDialog();
 		settings = new SettingsMenuDialog();
 		paused = new PausedDialog();
+		changelog = new ChangelogDialog();
 		about = new AboutDialog();
 		host = new HostDialog();
 		bans = new BansDialog();
 		admins = new AdminsDialog();
 		traces = new TraceDialog();
-		changelog = new ChangelogDialog();
 		
 		build.begin(scene);
 
@@ -221,8 +221,8 @@ public class UI extends SceneModule{
 
 	public void showInfo(String info){
 		new Dialog("$text.info.title", "dialog"){{
-			content().margin(15).add(info);
-			buttons().addButton("$text.ok", this::hide).size(90, 50).pad(4).get().getLabelCell().width(400f).get().setWrap(true);
+			content().margin(15).add(info).width(600f).get().setWrap(true);
+			buttons().addButton("$text.ok", this::hide).size(90, 50).pad(4);
 		}}.show();
 	}
 

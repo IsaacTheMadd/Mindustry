@@ -35,7 +35,6 @@ public class WeaponBlocks{
 			ammo = Item.basicammo;
 			ammoMultiplier = 14;
 			health = 55;
-			health = 45;
 		}
 		
 		@Override

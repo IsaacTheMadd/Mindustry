@@ -44,7 +44,6 @@ public class Player extends SyncEntity{
 	public Mech mech = Mech.standard;
 
 	public float targetAngle = 0f;
-	public float stucktime = 0f;
 	public float floordamagetime = 0f;
 	public boolean dashing = false;
 
@@ -58,7 +57,7 @@ public class Player extends SyncEntity{
 	
 	public Player(){
 		hitbox.setSize(5);
-		hitboxTile.setSize(5f);
+		hitboxTile.setSize(4f);
 		
 		maxhealth = 200;
 		heal();
@@ -166,14 +165,7 @@ public class Player extends SyncEntity{
 
 		//if player is in solid block
 		if(tile != null && (tile.solid())){
-			stucktime += Timers.delta();
-		}else{
-			stucktime = 0f;
-		}
-
-		if(stucktime > 15f){
 			damage(health+1); //die instantly
-			stucktime = 0f;
 		}
 
 		if(tile != null && (tile.floor().damageapp > 0 && !(tile.block() instanceof Bridge))){
