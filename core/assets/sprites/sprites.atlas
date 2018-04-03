@@ -2775,13 +2775,6 @@ assembler
   orig: 8, 8
   offset: 0, 0
   index: -1
-spawner
-  rotate: false
-  xy: 222, 87
-  size: 8, 8
-  orig: 8, 8
-  offset: 0, 0
-  index: -1
 bridge
   rotate: false
   xy: 699, 282
@@ -2808,13 +2801,6 @@ missileturret-icon
   xy: 677, 242
   size: 10, 10
   orig: 10, 10
-  offset: 0, 0
-  index: -1
-coreunloader
-  rotate: false
-  xy: 340, 95
-  size: 8, 8
-  orig: 8, 8
   offset: 0, 0
   index: -1
 icon-barrel
@@ -2960,6 +2946,20 @@ barrelfiller
 barrelunloader
   rotate: false
   xy: 731, 243
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+spawner
+  rotate: false
+  xy: 761, 243
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+coreunloader
+  rotate: false
+  xy: 751, 243
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
