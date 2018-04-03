@@ -4,6 +4,7 @@ import io.anuke.mindustry.world.Block;
 import io.anuke.mindustry.world.blocks.types.distribution.*;
 
 public class DistributionBlocks{
+	private final static float barrelconstant = 5f;
 	
 	public static final Block
 	
@@ -69,5 +70,11 @@ public class DistributionBlocks{
 	sorter = new Sorter("sorter"){{
 	}},
 	coreunloader = new CoreUnloader("coreunloader"){{
+	}},
+	barrelfiller = new Barrelfiller("barrelfiller"){{
+		liquidAmount = barrelconstant;
+	}},
+	barrelunloader = new BarrelEmptier("barrelunloader"){{
+		liquidAmount = barrelconstant;
 	}};
 }

@@ -21,6 +21,7 @@ import java.io.IOException;
 
 public class Debugspawner extends Block{
 	protected final int timerDump = timers++;
+	protected int capacity= 30;
 	
 	public Debugspawner(String name) {
 		super(name);
@@ -36,7 +37,9 @@ public class Debugspawner extends Block{
 			tryDump(tile, -1, entity.spawnItem);
 		}
 		
-		offloadNear(tile, entity.spawnItem);
+		if(entity.getItem(entity.spawnItem) <= capacity){
+			offloadNear(tile, entity.spawnItem);
+		}
 	}
 
 	@Override
@@ -84,6 +87,10 @@ public class Debugspawner extends Block{
 			ImageButton button = cont.addImageButton("white", "toggle", 24, () -> {
 				entity.spawnItem = items.get(f);
 				setConfigure(tile, (byte)f);
+                for(Item removeitem : Item.getAllItems()){
+                	int removeamount = entity.getItem(removeitem);                	
+                	entity.removeItem(removeitem,removeamount);
+                }
 			}).size(38, 42).padBottom(-5.1f).group(group).get();
 			button.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(items.get(i).region));
 			button.setChecked(entity.spawnItem.id == f);

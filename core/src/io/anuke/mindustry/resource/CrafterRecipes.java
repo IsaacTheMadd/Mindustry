@@ -19,7 +19,8 @@ public class CrafterRecipes {
             Item.chainammo, list(stack(Item.blackpowder, 2), stack(Item.uranium, 2)),
             Item.titanammo, list(stack(Item.blackpowder, 4), stack(Item.uranium, 6)),
             Item.diriumammo, list(stack(Item.blackpowder, 2), stack(Item.dirium, 6)),
-            Item.missile, list(stack(Item.blackpowder, 2), stack(Item.steel, 4))
+            Item.missile, list(stack(Item.blackpowder, 2), stack(Item.steel, 4)),
+            Item.barrel, list( stack(Item.steel, 2))
     );
 
     private static final ItemStack[] empty = {};

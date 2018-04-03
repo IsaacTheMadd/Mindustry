@@ -2845,3 +2845,52 @@ icon-diriumammo
   orig: 8, 8
   offset: 0, 0
   index: -1
+icon-barrel-water
+  rotate: false
+  xy: 771, 283
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-barrel-lava
+  rotate: false
+  xy: 781, 283
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-barrel-oil
+  rotate: false
+  xy: 791, 283
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-barrel-cryofluid
+  rotate: false
+  xy: 801, 283
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-barrel-plasma
+  rotate: false
+  xy: 811, 283
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+barrelfiller
+  rotate: false
+  xy: 741, 243
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+barrelunloader
+  rotate: false
+  xy: 731, 243
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1

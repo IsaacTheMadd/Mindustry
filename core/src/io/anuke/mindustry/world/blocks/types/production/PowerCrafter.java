@@ -90,14 +90,14 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 			}
 		}
 
-		if(entity.power >= powerUsed){
-			entity.power -= powerUsed;
-		}
-
 		if(entity.getItem(result) >= capacity //output full
 				|| entity.power <= powerUsed //not enough power
 				|| !entity.timer.get(timerCraft, craftTime)){ //not yet time
 			return;
+		}
+
+		if(entity.power >= powerUsed){
+			entity.power -= powerUsed;
 		}
 
 		for(ItemStack item : inputitems){

@@ -81,7 +81,32 @@ public class Item{
 			{crafted = true;}
 		},
 
-		barrel = new Item("barrel");
+		barrel = new Item("barrel"){
+			{crafted = true;}
+		},
+
+		waterbarrel = new Item("barrel-water"){{
+			holdsliquid = true;
+			itemliquid = Liquid.water;
+		}},
+		lavabarrel = new Item("barrel-lava"){{
+			holdsliquid = true;
+			itemliquid = Liquid.lava;
+		}},
+		oilbarrel = new Item("barrel-oil"){{
+			holdsliquid = true;
+			itemliquid = Liquid.oil;
+			explosiveness = 1f;
+			flammability = 1f;
+		}},
+		cryobarrel = new Item("barrel-cryofluid"){{
+			holdsliquid = true;
+			itemliquid = Liquid.cryofluid;
+		}},
+		plasmabarrel = new Item("barrel-plasma"){{
+			holdsliquid = true;
+			itemliquid = Liquid.plasma;
+		}};
 
 	public int id;
 	public final String name;
@@ -90,6 +115,8 @@ public class Item{
 	public float flammability = 0f;
 
 	public Boolean crafted = false;
+	public Boolean holdsliquid = false;
+	public Liquid itemliquid;
 
 	public Item(String name) {
 		this.id = lastid ++;
