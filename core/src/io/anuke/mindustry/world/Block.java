@@ -15,6 +15,7 @@ import io.anuke.mindustry.resource.Item;
 import io.anuke.mindustry.resource.ItemStack;
 import io.anuke.mindustry.resource.Liquid;
 import io.anuke.ucore.core.Effects;
+import io.anuke.ucore.core.Timers;
 import io.anuke.ucore.core.Effects.Effect;
 import io.anuke.ucore.graphics.Draw;
 import io.anuke.ucore.scene.ui.layout.Table;
@@ -225,29 +226,77 @@ public class Block{
 	protected boolean tryDump(Tile tile, int direction, Item todump){
 		if(Net.client() && syncBlockState) return false;
 
-		int i = tile.getDump()%4;
+		if(isMultiblock() == false){
+			int i = tile.getDump()%4;
 		
-		for(int j = 0; j < 4; j ++){
-			Tile other = tile.getNearby(i);
+			for(int j = 0; j < 4; j ++){
+				Tile other = tile.getNearby(i);
 			
-			if(i == direction || direction == -1){
-				for(Item item : Item.getAllItems()){
+				if(i == direction || direction == -1){
+					for(Item item : Item.getAllItems()){
 					
-					if(todump != null && item != todump) continue;
+						if(todump != null && item != todump) continue;
 					
-					if(tile.entity.hasItem(item) && other != null && other.block().acceptItem(item, other, tile)){
-						other.block().handleItem(item, other, tile);
-						tile.entity.removeItem(item, 1);
-						tile.setDump((byte)((i+1)%4));
-						if(Net.server() && syncBlockState) NetEvents.handleTransfer(tile, (byte)i, item);
-						return true;
+						if(tile.entity.hasItem(item) && other != null && other.block().acceptItem(item, other, tile)){
+							other.block().handleItem(item, other, tile);
+							tile.entity.removeItem(item, 1);
+							tile.setDump((byte)((i+1)%4));
+							if(Net.server() && syncBlockState) NetEvents.handleTransfer(tile, (byte)i, item);
+							return true;
+						}
 					}
 				}
+				i++;
+				i %= 4;
 			}
-			i++;
-			i %= 4;
-		}
+		}else{
+			Array<Tile> nearby = tile.getNearbyTiles();
+			int i = tile.getDump()%4;
+			
+			for(int j = 0; j < 4; j ++){
+				
+				if(i == direction || direction == -1){
+				for(Item item : Item.getAllItems()){
+							
+					if(todump != null && item != todump) continue;
 
+					Tile other = null;
+					for(int itr = 0; itr < nearby.size; itr++){
+						Tile near = nearby.get(itr);
+																		
+						if(other == null || (other != null && !other.block().acceptItem(item, other, tile)) || Mathf.chance(1 / width)){
+							if(near.x > tile.x +((width-1)/2) && i == 0){
+								other = near;
+							}
+							if(near.x < tile.x -((width-1)/2) && i == 2){
+								other = near;
+							}
+						}
+						
+						if(other == null || (other != null && !other.block().acceptItem(item, other, tile)) || Mathf.chance(1 / height)){
+							if(near.y > tile.y +((height-1)/2) && i == 1){
+								other = near;
+							}
+							if(near.y < tile.y -((height-1)/2) && i == 3){
+								other = near;
+							}
+						}
+					}
+
+						if(tile.entity.hasItem(item) && other != null && other.block().acceptItem(item, other, tile)){
+							other.block().handleItem(item, other, tile);
+							tile.entity.removeItem(item, 1);
+							tile.setDump((byte)((i+1)%4));
+							if(Net.server() && syncBlockState) NetEvents.handleTransfer(tile, (byte)i, item);
+							return true;
+						}
+					}
+				}
+				i++;
+				i %= 4;
+			}
+		}
+		
 		return false;
 	}
 

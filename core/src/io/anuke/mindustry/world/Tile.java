@@ -257,6 +257,48 @@ public class Tile{
 		return temptiles;
 	}
 
+	/**If it's a mulitblock returns an array of all tiles directly next to any linked tiles if those tiles do not include itself or any linked tiles,
+	 * otherwise it returns an array of tiles directly next to it*/
+	public synchronized Array<Tile> getNearbyTiles(){
+		Block block = block();
+		tmpArray.clear();
+		if(!(block.width == 1 && block.height == 1)){
+			int offsetx = -(block.width-1)/2;
+			int offsety = -(block.height-1)/2;
+			for(int dx = 0; dx < block.width; dx ++){
+				for(int dy = 0; dy < block.height; dy ++){
+					Tile test = world.tile(x + dx + offsetx, y + dy + offsety);
+					Tile testxp = world.tile(x + dx + offsetx + 1, y + dy + offsety);
+					if(testxp.getLinked() != test.getLinked()){
+						tmpArray.add(testxp);
+					}
+					Tile testyp = world.tile(x + dx + offsetx, y + dy + offsety + 1);
+					if(testyp.getLinked() != test.getLinked()){
+						tmpArray.add(testyp);
+					}
+					Tile testxn = world.tile(x + dx + offsetx - 1, y + dy + offsety);
+					if(testxn.getLinked() != test.getLinked()){
+						tmpArray.add(testxn);
+					}
+					Tile testyn = world.tile(x + dx + offsetx, y + dy + offsety - 1);
+					if(testyn.getLinked() != test.getLinked()){
+						tmpArray.add(testyn);
+					}
+				}
+			}
+		}else{
+			Tile xp = world.tile(x + 1, y);
+			tmpArray.add(xp);
+			Tile yp = world.tile(x, y - 1);
+			tmpArray.add(yp);
+			Tile xn = world.tile(x - 1, y);
+			tmpArray.add(xn);
+			Tile yn = world.tile(x, y - 1);
+			tmpArray.add(yn);
+		}
+		return tmpArray;
+	}
+	
 	public void updateOcclusion(){
 		occluded = false;
 		for(int dx = -1; dx <= 1; dx ++){

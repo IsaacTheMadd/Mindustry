@@ -1068,13 +1068,6 @@ stonewall
   orig: 8, 8
   offset: 0, 0
   index: -1
-teleporter
-  rotate: false
-  xy: 281, 91
-  size: 8, 8
-  orig: 8, 8
-  offset: 0, 0
-  index: -1
 teleporter-top
   rotate: false
   xy: 291, 101
@@ -2609,7 +2602,7 @@ vulcan-equip
   index: -1
 poweredtunnel
   rotate: false
-  xy: 430, 75
+  xy: 709, 282
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -2960,6 +2953,20 @@ spawner
 coreunloader
   rotate: false
   xy: 751, 243
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+teleporter
+  rotate: false
+  xy: 725, 294
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+teleporter-icon
+  rotate: false
+  xy: 709, 292
   size: 8, 8
   orig: 8, 8
   offset: 0, 0

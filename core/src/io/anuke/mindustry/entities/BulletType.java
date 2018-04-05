@@ -499,6 +499,63 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			Lines.lineAngle(b.x, b.y, b.angle(), length);
 		}
 	},
+	clustermines = new BulletType(4.5f, 12){
+		{
+			lifetime = 60;
+			drag = 0.05f;
+		}
+
+		public void draw(Bullet b){
+			Lines.stroke(2.5f);
+			Draw.color(Color.ORANGE, Color.WHITE, 0.4f);
+			Lines.poly(b.x, b.y, 3, 1.6f, b.angle());
+			Lines.stroke(1.5f);
+			Draw.color(Color.WHITE, lightOrange, b.ifract()/2f);
+			Draw.alpha(b.ifract());
+			Lines.spikes(b.x, b.y, 1.5f, 2f, 6);
+			Draw.reset();
+		}
+
+		public void despawned(Bullet b){
+			hit(b);
+		}
+		
+		public void hit(Bullet b, float hitx, float hity){
+			Bullet bullet = new Bullet(mines, b.owner, hitx, hity, b.angle() + Mathf.range(28f));
+			bullet.add();
+
+			Effects.effect(Fx.clusterbomb, b);
+
+		}
+	},
+	mines = new BulletType(0.f, 35){
+		{
+			lifetime = 8000f;
+		}
+
+		public void draw(Bullet b){
+			Lines.stroke(2f);
+			Draw.color(lightOrange, Color.WHITE, 0.4f);
+			Lines.poly(b.x, b.y, 3, 1.6f, b.angle());
+			Lines.stroke(1f);
+			Draw.color(Color.WHITE, lightOrange, b.ifract()/2f);
+			Draw.alpha(b.ifract());
+			Lines.spikes(b.x, b.y, 1.5f, 2f, 6);
+			Draw.reset();
+		}
+		
+		public void despawned(Bullet b){
+		}
+		
+		public void hit(Bullet b, float hitx, float hity){
+			Effects.shake(2f, 2f, b);
+			
+			Effects.effect(Fx.shellsmoke, b);
+			Effects.effect(Fx.shockwaveSmall, b);
+			
+			DamageArea.damage(!(b.owner instanceof Enemy), b.x, b.y, 60f, (int)(damage * 3f/4f));
+		}		
+	},
 	pulseshot = new BulletType(3.9f, 58) {
 		{
 			lifetime = 85f;

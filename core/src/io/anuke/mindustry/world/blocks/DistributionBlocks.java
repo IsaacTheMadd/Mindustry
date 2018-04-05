@@ -66,6 +66,7 @@ public class DistributionBlocks{
 		laserDirections = 2;
 	}},
 	teleporter = new Teleporter("teleporter"){{
+		width = height= 3;
 	}},
 	sorter = new Sorter("sorter"){{
 	}},
