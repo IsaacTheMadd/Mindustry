@@ -240,7 +240,7 @@ public class Generator extends PowerBlock{
 
 			if(other != null && other.block() instanceof PowerAcceptor){
 				Tile linked = other.getLinked();
-				if(linked == null || linked instanceof PowerAcceptor){
+				if(linked == null || (linked.block() instanceof PowerAcceptor && tile != linked)){
 					return other;
 				}
 			}

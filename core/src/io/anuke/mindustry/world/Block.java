@@ -251,6 +251,40 @@ public class Block{
 			}
 		}else{
 			Array<Tile> nearby = tile.getNearbyTiles();
+
+			byte i = (byte) (tile.getDump()%nearby.size);
+		
+			for(int j = 0; j < nearby.size; j ++){
+				Tile other = nearby.get(i);
+				Tile in = tile;
+				for(int s = 0; s < 4; s ++){
+					Tile test = other.getNearby(s);
+					if(test != null && test.getLinked() == tile){
+						in = test;
+					}
+				}
+				if(i == direction || direction == -1){
+					for(Item item : Item.getAllItems()){
+					
+						if(todump != null && item != todump) continue;
+					
+						if(tile.entity.hasItem(item) && other != null && other.block().acceptItem(item, other, in)){
+							other.block().handleItem(item, other, in);
+							tile.entity.removeItem(item, 1);
+							tile.setDump((byte)((i+1)%nearby.size));
+							if(Net.server() && syncBlockState) NetEvents.handleTransfer(tile, (byte)i, item);
+							return true;
+						}
+					}
+				}
+				i++;
+				i = (byte)((i + 1) % nearby.size);
+				tile.setDump(i);
+			}
+			
+		}
+			/*{
+			Array<Tile> linked = tile.getLinkedTiles();
 			int i = tile.getDump()%4;
 			
 			for(int j = 0; j < 4; j ++){
@@ -260,31 +294,29 @@ public class Block{
 							
 					if(todump != null && item != todump) continue;
 
+					Tile source = null;
 					Tile other = null;
-					for(int itr = 0; itr < nearby.size; itr++){
-						Tile near = nearby.get(itr);
-																		
-						if(other == null || (other != null && !other.block().acceptItem(item, other, tile)) || Mathf.chance(1 / width)){
-							if(near.x > tile.x +((width-1)/2) && i == 0){
-								other = near;
-							}
-							if(near.x < tile.x -((width-1)/2) && i == 2){
-								other = near;
+					for(int itr = 0; itr < linked.size; itr++){
+						source = linked.get(itr);
+						int wh = 0;
+						
+						if(i == 0 || i == 2){
+							wh = width;
+						}
+						if(i == 1 || i == 3){
+							wh = height;
+						}
+						
+						if(other == null || (other != null && !other.block().acceptItem(item, other, source)) || Mathf.chance(1 / wh)){
+							if(source.getNearby(i).isLinked() == false || source.getNearby(i).getLinked() != source.getLinked()){
+								other = source.getNearby(i);
 							}
 						}
 						
-						if(other == null || (other != null && !other.block().acceptItem(item, other, tile)) || Mathf.chance(1 / height)){
-							if(near.y > tile.y +((height-1)/2) && i == 1){
-								other = near;
-							}
-							if(near.y < tile.y -((height-1)/2) && i == 3){
-								other = near;
-							}
-						}
 					}
 
-						if(tile.entity.hasItem(item) && other != null && other.block().acceptItem(item, other, tile)){
-							other.block().handleItem(item, other, tile);
+						if(tile.entity.hasItem(item) && other != null && other.block().acceptItem(item, other, source)){
+							other.block().handleItem(item, other, source);
 							tile.entity.removeItem(item, 1);
 							tile.setDump((byte)((i+1)%4));
 							if(Net.server() && syncBlockState) NetEvents.handleTransfer(tile, (byte)i, item);
@@ -295,7 +327,7 @@ public class Block{
 				i++;
 				i %= 4;
 			}
-		}
+		}*/
 		
 		return false;
 	}
