@@ -173,7 +173,7 @@ public class EnemyType {
         }
         
         Tile tile = world.tileWorld(enemy.x, enemy.y);
-        float speed = (tile != null && (tile.floor().slowspeed < 1 && !(tile.block() instanceof Bridge))) ? this.speed + 0.04f * tile.floor().slowspeed * enemy.tier : this.speed + 0.04f * enemy.tier;
+        float speed = (tile != null && (tile.floor().slowspeed < 1 && !(tile.block() instanceof Bridge))) ? this.speed + 0.04f * tile.floor().slowspeed * enemy.extraspeedmulti * enemy.tier : this.speed + 0.04f * enemy.extraspeedmulti * enemy.tier;
         float range = this.range + enemy.tier * 5;
 
         Tile core = world.getCore();

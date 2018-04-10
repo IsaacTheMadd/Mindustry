@@ -45,12 +45,13 @@ import static io.anuke.ucore.core.Core.camera;
 public class Renderer extends RendererModule{
 	private final static float shieldHitDuration = 18f;
 	
-	public Surface shadowSurface, shieldSurface, indicatorSurface;
+	public Surface shadowSurface, shieldSurface, inverseshieldSurface, indicatorSurface;
 	
 	private int targetscale = baseCameraScale;
 	private Texture background = new Texture("sprites/background.png");
 	private FloatArray shieldHits = new FloatArray();
 	private Array<Callable> shieldDraws = new Array<>();
+	private Array<Callable> inverseshieldDraws = new Array<>();
 	private Rectangle rect = new Rectangle(), rect2 = new Rectangle();
 	private BlockRenderer blocks = new BlockRenderer();
 
@@ -88,6 +89,7 @@ public class Renderer extends RendererModule{
 		
 		shadowSurface = Graphics.createSurface(scale);
 		shieldSurface = Graphics.createSurface(scale);
+		inverseshieldSurface = Graphics.createSurface(scale);
 		indicatorSurface = Graphics.createSurface(scale);
 		pixelSurface = Graphics.createSurface(scale);
 	}
@@ -182,6 +184,7 @@ public class Renderer extends RendererModule{
 		Graphics.surface(shieldSurface);
 		Graphics.surface();
 
+		
 		drawPadding();
 		
 		blocks.drawFloor();
@@ -205,6 +208,12 @@ public class Renderer extends RendererModule{
         Entities.draw(effectGroup);
 
 		drawShield();
+
+		//clears inverse shield surface
+		Graphics.surface(inverseshieldSurface);
+		Graphics.surface();
+		
+		drawInverseShield();
 
 		drawOverlay();
 
@@ -358,6 +367,44 @@ public class Renderer extends RendererModule{
 		shieldDraws.clear();
 	}
 
+	void drawInverseShield(){
+		if(inverseshieldGroup.size() == 0 && inverseshieldDraws.size == 0) return;
+		
+		Graphics.surface(renderer.inverseshieldSurface, false);
+		Draw.color(Color.GOLDENROD);
+		Entities.draw(inverseshieldGroup);
+		for(Callable c : inverseshieldDraws){
+			c.run();
+		}
+		Draw.reset();
+		Graphics.surface();
+
+		Texture texture = inverseshieldSurface.texture();
+		Shaders.inverseshield.color.set(Color.CORAL);
+
+		Tmp.tr2.setRegion(texture);
+		Shaders.inverseshield.region = Tmp.tr2;
+		
+		if(Shaders.shield.isFallback){
+			Draw.color(1f, 1f, 1f, 0.3f);
+			Shaders.outline.color = Color.CORAL;
+			Shaders.outline.region = Tmp.tr2;
+		}
+
+		Graphics.end();
+		Graphics.shader(Shaders.inverseshield.isFallback ? Shaders.outline : Shaders.inverseshield);
+		Graphics.setScreen();
+
+		Core.batch.draw(texture, 0, Gdx.graphics.getHeight(), Gdx.graphics.getWidth(), -Gdx.graphics.getHeight());
+
+		Graphics.shader();
+		Graphics.end();
+		Graphics.beginCam();
+		
+		Draw.color();
+		inverseshieldDraws.clear();
+	}
+
 	public BlockRenderer getBlocks() {
 		return blocks;
 	}
@@ -370,6 +417,10 @@ public class Renderer extends RendererModule{
 		shieldDraws.add(call);
 	}
 
+	public void addInverseShield(Callable call){
+		inverseshieldDraws.add(call);
+	}
+	
 	void drawOverlay(){
 
 		//draw tutorial placement point

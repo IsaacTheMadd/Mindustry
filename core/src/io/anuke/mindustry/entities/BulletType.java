@@ -3,6 +3,7 @@ package io.anuke.mindustry.entities;
 import com.badlogic.gdx.graphics.Color;
 import io.anuke.mindustry.entities.effect.DamageArea;
 import io.anuke.mindustry.entities.effect.EMP;
+import io.anuke.mindustry.entities.effect.InverseShield;
 import io.anuke.mindustry.entities.enemies.Enemy;
 import io.anuke.mindustry.entities.bullettypes.*;
 import io.anuke.mindustry.graphics.Fx;
@@ -659,7 +660,42 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			
 			DamageArea.damage(!(b.owner instanceof Enemy), b.x, b.y, 50f, (int)(damage * 2f/5f));
 		}		
+	},
+	shieldball = new BulletType(3.2f, 68){
+		{
+			lifetime = 80f;
+			hitsize = 6f;
+		}
+		
+		public void draw(Bullet b){
+			float rad = 6f + Mathf.sin(Timers.time(), 5f, 2f);
+			
+			Draw.color(Color.CORAL);
+			Lines.circle(b.x, b.y, 4f);
+			Draw.rect("circle", b.x, b.y, rad, rad);
+			Draw.reset();
+		}
+		
+		public void update(Bullet b){
+			if(b.timer.get(0, 2)){
+				Effects.effect(Fx.pulsesparks, b.x + Mathf.range(2), b.y + Mathf.range(2));
+			}
+		}
+		
+		public void despawned(Bullet b){
+			hit(b);
+		}
+		
+		public void hit(Bullet b, float hitx, float hity){
+			
+			InverseShield inverseshield = new InverseShield(hitx, hity, 60f, 34);
+			inverseshield.add();
+			
+			Effects.effect(Fx.smoke, b);
+			Effects.shake(3f, 3f, b);
+		}
 	};
+	
 	private String name;
 	
 	public BulletType(float speed, int damage){

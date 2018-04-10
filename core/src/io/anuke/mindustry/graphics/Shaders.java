@@ -12,6 +12,7 @@ import io.anuke.ucore.scene.ui.layout.Unit;
 public class Shaders{
 	public static final Outline outline = new Outline();
 	public static final Shield shield = new Shield();
+	public static final InverseShield inverseshield = new InverseShield();
 
 	private static final Vector2 vec = new Vector2();
 	
@@ -49,6 +50,29 @@ public class Shaders{
 				shader.setUniform3fv("u_hits[0]", hits.items, 0, Math.min(hits.size, MAX_HITS));
 				shader.setUniformi("u_hitamount", Math.min(hits.size, MAX_HITS)/3);
 			}
+			shader.setUniformf("u_dp", Unit.dp.scl(1f));
+			shader.setUniformf("u_color", color);
+			shader.setUniformf("u_time", Timers.time() / Unit.dp.scl(1f));
+			shader.setUniformf("u_scaling", scaling);
+			shader.setUniformf("u_offset", vec.set(Core.camera.position.x, Core.camera.position.y));
+			shader.setUniformf("u_texsize", vec.set(region.getTexture().getWidth() / scale,
+					region.getTexture().getHeight() / scale));
+		}
+		
+	}
+	
+	public static class InverseShield extends Shader{
+		public Color color = new Color();
+		
+		public InverseShield(){
+			super("inverseshield", "default");
+		}
+		
+		@Override
+		public void apply(){
+			float scale = Settings.getBool("pixelate") ? 1 : Core.cameraScale / Core.camera.zoom;
+			float scaling = Core.cameraScale / 4f / Core.camera.zoom;
+			
 			shader.setUniformf("u_dp", Unit.dp.scl(1f));
 			shader.setUniformf("u_color", color);
 			shader.setUniformf("u_time", Timers.time() / Unit.dp.scl(1f));

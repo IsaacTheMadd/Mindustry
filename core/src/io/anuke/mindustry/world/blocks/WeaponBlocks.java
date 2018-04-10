@@ -242,7 +242,7 @@ public class WeaponBlocks{
 			reload = 42f;
 			bullet = BulletType.missile;
 			ammo = Item.missile;
-			health = 430;
+			health = 630;
 			width = height = 2;
 			shootCone = 9f;
 			ammoMultiplier = 1;
@@ -266,6 +266,20 @@ public class WeaponBlocks{
 			}
 			
 			Effects.shake(0.2f, 0.2f, tile.worldx(), tile.worldy());
+		}
+	},
+	
+	shieldcannon = new PowerTurret("shieldcannon"){
+		{
+			shootsound = "tesla";
+			range = 225;
+			reload = 53f;
+			bursts = 3;
+			burstDelay = 12f;
+			bullet = BulletType.shieldball;
+			health = 1220;
+			width = height = 4;
+			shootEffect = Fx.titanshot;
 		}
 	};
 }

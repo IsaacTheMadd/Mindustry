@@ -24,6 +24,7 @@ public class Enemy extends SyncEntity {
 	public Timer timer = new Timer(5);
 	public float idletime = 0f;
 	public float floordamagetime = 0f;
+	public float extraspeedmulti = 1f;
 	public int lane;
 	public int node = -1;
 

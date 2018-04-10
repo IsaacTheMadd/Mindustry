@@ -32,7 +32,7 @@ public class Player extends SyncEntity{
 	static final int timerShootLeft = 1;
 	static final int timerShootRight = 2;
 	static final int timerRegen = 3;
-	static final int timerLiquid = 0;
+	static final int timerLiquid = 4;
 
 	public String name = "name";
 	public boolean isAndroid;
@@ -50,7 +50,7 @@ public class Player extends SyncEntity{
 
 	public int clientid = -1;
 	public boolean isLocal = false;
-	public Timer timer = new Timer(4);
+	public Timer timer = new Timer(5);
 
 	private Vector2 movement = new Vector2();
 	private Translator tr = new Translator();

@@ -102,6 +102,13 @@ block-3x3
   orig: 24, 24
   offset: 0, 0
   index: -1
+block-4x4
+  rotate: false
+  xy: 776, 344
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 block-middle
   rotate: false
   xy: 603, 278
@@ -2969,5 +2976,19 @@ teleporter-icon
   xy: 709, 292
   size: 8, 8
   orig: 8, 8
+  offset: 0, 0
+  index: -1
+shieldcannon
+  rotate: false
+  xy: 625, 220
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+shieldcannon-icon
+  rotate: false
+  xy: 659, 224
+  size: 10, 10
+  orig: 10, 10
   offset: 0, 0
   index: -1

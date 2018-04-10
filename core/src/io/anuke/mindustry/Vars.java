@@ -8,6 +8,7 @@ import io.anuke.mindustry.core.*;
 import io.anuke.mindustry.entities.Bullet;
 import io.anuke.mindustry.entities.Player;
 import io.anuke.mindustry.entities.TileEntity;
+import io.anuke.mindustry.entities.effect.InverseShield;
 import io.anuke.mindustry.entities.effect.Shield;
 import io.anuke.mindustry.entities.enemies.Enemy;
 import io.anuke.mindustry.io.Platform;
@@ -140,5 +141,6 @@ public class Vars{
 	public static final EntityGroup<TileEntity> tileGroup = Entities.addGroup(TileEntity.class, false);
 	public static final EntityGroup<Bullet> bulletGroup = Entities.addGroup(Bullet.class);
 	public static final EntityGroup<Shield> shieldGroup = Entities.addGroup(Shield.class, false);
+	public static final EntityGroup<InverseShield> inverseshieldGroup = Entities.addGroup(InverseShield.class, false);
 	public static final EntityGroup<EffectEntity> effectGroup = Entities.addGroup(EffectEntity.class, false);
 }
