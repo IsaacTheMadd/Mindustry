@@ -371,7 +371,7 @@ public class Renderer extends RendererModule{
 		if(inverseshieldGroup.size() == 0 && inverseshieldDraws.size == 0) return;
 		
 		Graphics.surface(renderer.inverseshieldSurface, false);
-		Draw.color(Color.GOLDENROD);
+		Draw.color(Color.FIREBRICK);
 		Entities.draw(inverseshieldGroup);
 		for(Callable c : inverseshieldDraws){
 			c.run();
@@ -385,9 +385,9 @@ public class Renderer extends RendererModule{
 		Tmp.tr2.setRegion(texture);
 		Shaders.inverseshield.region = Tmp.tr2;
 		
-		if(Shaders.shield.isFallback){
+		if(Shaders.inverseshield.isFallback){
 			Draw.color(1f, 1f, 1f, 0.3f);
-			Shaders.outline.color = Color.CORAL;
+			Shaders.outline.color = Color.GOLDENROD;
 			Shaders.outline.region = Tmp.tr2;
 		}
 

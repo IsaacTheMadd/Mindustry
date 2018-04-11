@@ -671,7 +671,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			float rad = 6f + Mathf.sin(Timers.time(), 5f, 2f);
 			
 			Draw.color(Color.CORAL);
-			Lines.circle(b.x, b.y, 4f);
+			Lines.circle(b.x, b.y, 6f);
 			Draw.rect("circle", b.x, b.y, rad, rad);
 			Draw.reset();
 		}
@@ -688,10 +688,10 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		
 		public void hit(Bullet b, float hitx, float hity){
 			
-			InverseShield inverseshield = new InverseShield(hitx, hity, 60f, 34);
+			InverseShield inverseshield = new InverseShield(hitx, hity, 50f, 14);
 			inverseshield.add();
-			
-			Effects.effect(Fx.smoke, b);
+
+			Effects.effect(Fx.empshockwave, b);
 			Effects.shake(3f, 3f, b);
 		}
 	};

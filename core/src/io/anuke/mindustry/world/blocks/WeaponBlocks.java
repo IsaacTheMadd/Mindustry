@@ -272,8 +272,8 @@ public class WeaponBlocks{
 	shieldcannon = new PowerTurret("shieldcannon"){
 		{
 			shootsound = "tesla";
-			range = 225;
-			reload = 53f;
+			range = 235;
+			reload = 63f;
 			bursts = 3;
 			burstDelay = 12f;
 			bullet = BulletType.shieldball;
