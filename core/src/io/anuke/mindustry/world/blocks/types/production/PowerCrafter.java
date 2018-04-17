@@ -11,6 +11,7 @@ import io.anuke.mindustry.resource.CrafterRecipes;
 import io.anuke.mindustry.world.Block;
 import io.anuke.mindustry.world.Tile;
 import io.anuke.mindustry.world.blocks.types.PowerAcceptor;
+import io.anuke.mindustry.world.blocks.types.production.Debugspawner.SpawnerEntity;
 import io.anuke.ucore.core.Effects;
 import io.anuke.ucore.core.Timers;
 import io.anuke.ucore.core.Effects.Effect;
@@ -44,6 +45,7 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 	protected int capacity = 180;
 	public float powerCapacity = 20f;
 	public float powerUsed = 0.2f;
+	private static Item lastCrafted = Item.basicammo;
 
     public PowerCrafter(String name){
         super(name);
@@ -64,15 +66,7 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 		
 		Draw.rect(Tmp.tr1, tile.worldx(), tile.worldy(), 2f, 2f);
 	}
-
-/*	@Override
-	public void init(){
-		PowerCrafterEntity entity = tile.entity();
-		for(ItemStack item : entity.inputitems){
-			bars.add(new BlockBar(Color.GREEN, true, tile -> (float)tile.entity.getItem(item.item)/capacity));
-		}
-	}
-*/	
+	
 	@Override
 	public void update(Tile tile){
 		PowerCrafterEntity entity = tile.entity();
@@ -124,6 +118,12 @@ public class PowerCrafter extends Block implements PowerAcceptor{
 		return (isInput && tile.entity.getItem(item) < capacity);
 	}
 
+	@Override
+	public void placed(Tile tile){
+		tile.<PowerCrafterEntity>entity().craftItem = lastCrafted;
+		setConfigure(tile, (byte)lastCrafted.id);
+	}
+	
 	@Override
 	public void configure(Tile tile, byte data) {
 		PowerCrafterEntity entity = tile.entity();
@@ -190,6 +190,7 @@ public class PowerCrafter extends Block implements PowerAcceptor{
             tip.setInstant(true);
 
             ImageButton button = content.addImageButton("white", "toggle", 24, () -> {
+            	lastCrafted = crafteditem;
                 entity.craftItem = crafteditem;
                 setConfigure(tile, (byte)crafteditem.id);
                 for(Item removeitem : Item.getAllItems()){

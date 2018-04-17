@@ -71,7 +71,7 @@ public class BlocksFragment implements Fragment{
 
 				new table("pane") {{
 					touchable(Touchable.enabled);
-					int rows = 4;
+					int rows = 5;
 					int maxcol = 0;
 					float size = 48;
 

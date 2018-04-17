@@ -25,7 +25,7 @@ import static io.anuke.mindustry.Vars.syncBlockState;
 
 public class Teleporter extends PowerBlock{
 	public static final Color[] colorArray = {Color.ROYAL, Color.ORANGE, Color.SCARLET, Color.FOREST,
-			Color.PURPLE, Color.GOLD, Color.PINK, Color.BLACK};
+			Color.PURPLE, Color.GOLD, Color.WHITE, Color.BLACK};
 	public static final int colors = colorArray.length;
 
 	private static ObjectSet<Tile>[] teleporters = new ObjectSet[colors];

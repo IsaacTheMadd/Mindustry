@@ -41,7 +41,7 @@ public class ColorMapper{
 		"161616", pair(Blocks.coal),
 		"6277bc", pair(Blocks.titanium),
 		"83bc58", pair(Blocks.uranium),
-		"87a727", pair(Blocks.fevorium)
+		"87a727", pair(Blocks.depleteduranium)
 	);
 	
 	public static BlockPair get(int color){

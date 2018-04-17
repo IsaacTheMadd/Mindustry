@@ -6,6 +6,7 @@ import io.anuke.mindustry.entities.TileEntity;
 import io.anuke.mindustry.resource.Item;
 import io.anuke.mindustry.world.Block;
 import io.anuke.mindustry.world.Tile;
+import io.anuke.mindustry.world.blocks.types.production.Debugspawner.SpawnerEntity;
 import io.anuke.ucore.graphics.Draw;
 import io.anuke.ucore.scene.style.TextureRegionDrawable;
 import io.anuke.ucore.scene.ui.ButtonGroup;
@@ -19,6 +20,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 public class Sorter extends Block{
+	private static Item lastSort = Item.iron;
 	
 	public Sorter(String name) {
 		super(name);
@@ -42,6 +44,12 @@ public class Sorter extends Block{
 	@Override
 	public boolean canReplace(Block other){
 		return other instanceof Conveyor || other instanceof Router;
+	}
+
+	@Override
+	public void placed(Tile tile){
+		tile.<SorterEntity>entity().sortItem = lastSort;
+		setConfigure(tile, (byte)lastSort.id);
 	}
 	
 	@Override
@@ -127,13 +135,14 @@ public class Sorter extends Block{
 		for(int i = 0; i < items.size; i ++){
 			final int f = i;
 			ImageButton button = cont.addImageButton("white", "toggle", 24, () -> {
+				lastSort = items.get(f);
 				entity.sortItem = items.get(f);
 				setConfigure(tile, (byte)f);
 			}).size(38, 42).padBottom(-5.1f).group(group).get();
 			button.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(items.get(i).region));
 			button.setChecked(entity.sortItem.id == f);
 
-			if(i%4 == 3){
+			if(i%6 == 5){
 				cont.row();
 			}
 		}

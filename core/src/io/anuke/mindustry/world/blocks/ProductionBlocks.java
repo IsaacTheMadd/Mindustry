@@ -34,7 +34,7 @@ public class ProductionBlocks{
 			health = 90;
 			inputs = new Item[]{Item.titanium, Item.steel};
 			fuel = Item.coal;
-			result = Item.dirium;
+			result = Item.warpsteel;
 			burnDuration = 40f;
 			craftTime = 20f;
 		}
@@ -116,56 +116,17 @@ public class ProductionBlocks{
 		}
 	},
 	
-	stonedrill = new Drill("stonedrill"){
-		{
-			resource = Blocks.stone;
-			result = Item.stone;
-			time = 4;
-		}
-	},
-	
-	irondrill = new Drill("irondrill"){
-		{
-			resource = Blocks.iron;
-			result = Item.iron;
-		}
-	},
-	
-	coaldrill = new Drill("coaldrill"){
-		{
-			resource = Blocks.coal;
-			result = Item.coal;
-			time = 6;
-		}
-	},
-	
-	uraniumdrill = new Drill("uraniumdrill"){
-		{
-			resource = Blocks.uranium;
-			result = Item.uranium;
-			time = 7;
-		}
-	},
-	
-	titaniumdrill = new Drill("titaniumdrill"){
-		{
-			resource = Blocks.titanium;
-			result = Item.titanium;
-			time = 7;
-		}
-	},
-	
-	fevoriumdrill = new Drill("fevoriumdrill"){
-		{
-			resource = Blocks.fevorium;
-			result = Item.fevorium;
-			time = 8;
-		}
-	},
-	
-	omnidrill = new Omnidrill("omnidrill"){
+	drill = new Drill("drill"){
 		{
 			time = 4;
+		}
+	},
+	
+	omnidrill = new Drill("omnidrill"){
+		{
+			maxlevel = 5;
+			scaling = 15;
+			time = 3;
 		}
 	},
 	coalgenerator = new ItemPowerGenerator("coalgenerator"){
@@ -196,8 +157,8 @@ public class ProductionBlocks{
 		{
 			generateItem = Item.uranium;
 			powerCapacity = 40f;
-			powerOutput = 0.03f;
-			itemDuration = 240f;
+			powerOutput = 0.01f;
+			itemDuration = 720f;
 		}
 	},
 	nuclearReactor = new NuclearReactor("nuclearreactor"){
@@ -217,6 +178,12 @@ public class ProductionBlocks{
 	assembler = new PowerCrafter("assembler"){
 		{
 			health = 250;
+		}
+	},
+	researchCenter = new ResearchCenter("researchcenter"){
+		{
+			width = height = 2;
+			health = 350;
 		}
 	},
 	spawner = new Debugspawner("spawner"){

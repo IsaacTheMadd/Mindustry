@@ -71,12 +71,13 @@ public class WorldGenerator {
 						floor = Blocks.titanium;
 					}
 					
-					if(Noise.nnoise(x + 99999, y + 99999, 7, 1) > 0.259){
-						floor = Blocks.uranium;
-					}
-					
-					if(Noise.nnoise(x + 4, y + 4, 8, 1) > 0.27){
-						floor = Blocks.fevorium;
+					if(Noise.nnoise(x + 4, y + 4, 9, 1) > 0.27){
+
+						if(Noise.nnoise(x + 4, y + 4, 9, 1) > 0.286){
+							floor = Blocks.uranium;
+						}else{
+							floor = Blocks.depleteduranium;
+						}
 					}
 				}
 				

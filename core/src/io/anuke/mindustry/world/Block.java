@@ -78,6 +78,8 @@ public class Block{
 	public int variants = 0;
 	/**stuff that drops when broken*/
 	public ItemStack drops = null;
+	/**multiblock width/height*/
+	public int harvestlevel = 0;
 	/**liquids that drop from this block, used for pumps*/
 	public Liquid liquidDrop = null;
 	/**multiblock width/height*/

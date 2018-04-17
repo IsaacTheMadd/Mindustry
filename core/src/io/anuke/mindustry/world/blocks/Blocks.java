@@ -86,27 +86,32 @@ public class Blocks{
 	}},
 	
 	blackstone = new Floor("blackstone"){{
-		drops = new ItemStack(Item.stone, 1);
+		drops = new ItemStack(Item.blackstone, 1);
 	}},
 	
 	iron = new Ore("iron"){{
+		harvestlevel = 2;
 		drops = new ItemStack(Item.iron, 1);
 	}},
 	
 	coal = new Ore("coal"){{
+		harvestlevel = 3;
 		drops = new ItemStack(Item.coal, 1);
 	}},
 	
 	titanium = new Ore("titanium"){{
+		harvestlevel = 4;
 		drops = new ItemStack(Item.titanium, 1);
 	}},
 	
 	uranium = new Ore("uranium"){{
+		harvestlevel = 5;
 		drops = new ItemStack(Item.uranium, 1);
 	}},
 	
-	fevorium= new Ore("fevorium"){{
-		drops = new ItemStack(Item.fevorium, 1);
+	depleteduranium= new Ore("depleteduranium"){{
+		harvestlevel = 5;
+		drops = new ItemStack(Item.depleteduranium, 1);
 	}},
 	
 	dirt = new Floor("dirt"){{
@@ -173,7 +178,7 @@ public class Blocks{
 	blackrock = new Rock("blackrock"){{
 		variants = 1;
 		varyShadow = true;
-		drops = new ItemStack(Item.stone, 3);
+		drops = new ItemStack(Item.blackstone, 3);
 	}},
 	
 	dirtblock = new StaticBlock("dirtblock"){{

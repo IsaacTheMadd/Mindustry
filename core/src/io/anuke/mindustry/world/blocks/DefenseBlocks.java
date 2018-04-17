@@ -25,7 +25,7 @@ public class DefenseBlocks{
 	titaniumwall = new Wall("titaniumwall"){{
 		health = 150*wallHealthMultiplier;
 	}},
-	diriumwall = new Wall("duriumwall"){{
+	warpsteelwall = new Wall("warpsteelwall"){{
 		health = 190*wallHealthMultiplier;
 	}},
 	compositewall = new Wall("compositewall"){{
@@ -39,7 +39,7 @@ public class DefenseBlocks{
 		health = 150*4*wallHealthMultiplier;
 		width = height = 2;
 	}},
-	diriumwalllarge = new Wall("duriumwall-large"){{
+	warpsteelwalllarge = new Wall("warpsteelwall-large"){{
 		health = 190*4*wallHealthMultiplier;
 		width = height = 2;
 	}},
@@ -55,12 +55,12 @@ public class DefenseBlocks{
 		width = height = 2;
 		powerCapacity = powerCapacity*4;
 	}},
-	diriumshieldwall = new ShieldedWallBlock("duriumshieldwall"){{
+	warpsteelshieldwall = new ShieldedWallBlock("warpsteelshieldwall"){{
 		health = 190*wallHealthMultiplier;
 		powerPerDamage = 0.04f;
 		powerCapacity = powerCapacity+3;
 	}},
-	diriumshieldwalllarge = new ShieldedWallBlock("duriumshieldwall-large"){{
+	warpsteelshieldwalllarge = new ShieldedWallBlock("warpsteelshieldwall-large"){{
 		health = 190*4*wallHealthMultiplier;
 		width = height = 2;
 		powerCapacity = powerCapacity+3*4;

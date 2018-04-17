@@ -151,13 +151,6 @@ coal3
   orig: 8, 8
   offset: 0, 0
   index: -1
-coaldrill
-  rotate: false
-  xy: 768, 438
-  size: 8, 8
-  orig: 8, 8
-  offset: 0, 0
-  index: -1
 coalgenerator
   rotate: false
   xy: 778, 439
@@ -340,21 +333,21 @@ doubleturret
   orig: 10, 10
   offset: 0, 0
   index: -1
-duriumwall
+warpsteelwall
   rotate: false
   xy: 643, 265
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
-duriumwall-large
+warpsteelwall-large
   rotate: false
   xy: 379, 177
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-duriumwall-large-icon
+warpsteelwall-large-icon
   rotate: false
   xy: 798, 433
   size: 8, 8
@@ -511,13 +504,6 @@ iron2
 iron3
   rotate: false
   xy: 908, 435
-  size: 8, 8
-  orig: 8, 8
-  offset: 0, 0
-  index: -1
-irondrill
-  rotate: false
-  xy: 912, 465
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -1047,7 +1033,7 @@ stoneblock3
   orig: 8, 8
   offset: 0, 0
   index: -1
-stonedrill
+drill
   rotate: false
   xy: 271, 101
   size: 8, 8
@@ -1124,13 +1110,6 @@ titanium3
   orig: 8, 8
   offset: 0, 0
   index: -1
-titaniumdrill
-  rotate: false
-  xy: 311, 91
-  size: 8, 8
-  orig: 8, 8
-  offset: 0, 0
-  index: -1
 titaniumpurifier
   rotate: false
   xy: 321, 101
@@ -1190,13 +1169,6 @@ uranium2
 uranium3
   rotate: false
   xy: 408, 167
-  size: 8, 8
-  orig: 8, 8
-  offset: 0, 0
-  index: -1
-uraniumdrill
-  rotate: false
-  xy: 418, 169
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -1516,7 +1488,7 @@ icon-coal
   orig: 8, 8
   offset: 0, 0
   index: -1
-icon-dirium
+icon-warpsteel
   rotate: false
   xy: 888, 445
   size: 8, 8
@@ -2614,37 +2586,30 @@ poweredtunnel
   orig: 8, 8
   offset: 0, 0
   index: -1
-fevorium1
+depleteduranium1
   rotate: false
   xy: 659, 272
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
-fevorium2
+depleteduranium2
   rotate: false
   xy: 669, 272
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
-fevorium3
+depleteduranium3
   rotate: false
   xy: 679, 272
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
-icon-fevorium
+icon-depleteduranium
   rotate: false
   xy: 689, 272
-  size: 8, 8
-  orig: 8, 8
-  offset: 0, 0
-  index: -1
-fevoriumdrill
-  rotate: false
-  xy: 699, 272
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -2691,21 +2656,21 @@ shieldgenerator-large-icon
   orig: 8, 8
   offset: 0, 0
   index: -1
-duriumshieldwall
+warpsteelshieldwall
   rotate: false
   xy: 719, 272
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
-duriumshieldwall-large
+warpsteelshieldwall-large
   rotate: false
   xy: 794, 308
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-duriumshieldwall-large-icon
+warpsteelshieldwall-large-icon
   rotate: false
   xy: 804, 326
   size: 8, 8
@@ -2894,7 +2859,7 @@ icon-titanammo
   orig: 8, 8
   offset: 0, 0
   index: -1
-icon-diriumammo
+icon-warpsteelammo
   rotate: false
   xy: 751, 253
   size: 8, 8
@@ -2990,5 +2955,40 @@ shieldcannon-icon
   xy: 659, 224
   size: 10, 10
   orig: 10, 10
+  offset: 0, 0
+  index: -1
+researchcenter
+  rotate: false
+  xy: 812, 308
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+researchcenter-icon
+  rotate: false
+  xy: 814, 336
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+turrethealthup
+  rotate: false
+  xy: 731, 233
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+turretfirespeedup
+  rotate: false
+  xy: 741, 233
+  size: 8, 8
+  orig: 8, 8
+  offset: 0, 0
+  index: -1
+icon-blackstone
+  rotate: false
+  xy: 840, 273
+  size: 8, 8
+  orig: 8, 8
   offset: 0, 0
   index: -1

@@ -11,13 +11,26 @@ public class Item{
 
 	public static final Item
 		stone = new Item("stone"),
+		blackstone = new Item("blackstone"),
 		iron = new Item("iron"),
 		coal = new Item("coal"),
 		steel = new Item("steel"),
 		titanium = new Item("titanium"),
-		dirium = new Item("dirium"),
+		warpsteel = new Item("warpsteel"),
 		uranium = new Item("uranium"),
-		fevorium = new Item("fevorium"),
+		depleteduranium = new Item("depleteduranium"),
+/*		copper = new Item("copper"),
+		gold = new Item("gold"),
+		lead = new Item("lead"),
+		aluminum = new Item("aluminum"),
+		silver = new Item("silver"),
+		tungsten = new Item("tungsten"),
+		wolfrite = new Item("wolfrite"),
+		staballoy = new Item("staballoy"),
+		brass = new Item("brass"),
+		zinc = new Item("zinc"),
+		nickel = new Item("nickel"),
+		plastic = new Item("plastic"),*/
 		sand = new Item("sand"),
 		dirt = new Item("dirt"),
 /*
@@ -32,7 +45,7 @@ public class Item{
 		biomass = new Item("biomass"){
 			{crafted = true;}
 		},
-
+		
 		saltpeter = new Item("saltpeter"){
 			{crafted = true;}
 		},
@@ -73,7 +86,7 @@ public class Item{
 			{crafted = true;}
 		},
 
-		diriumammo = new Item("diriumammo"){
+		warpsteelammo = new Item("warpsteelammo"){
 			{crafted = true;}
 		},
 

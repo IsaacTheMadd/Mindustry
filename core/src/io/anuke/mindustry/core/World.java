@@ -215,9 +215,9 @@ public class World extends Module{
 			set(x+2*d, y-4*flip, DistributionBlocks.conveyor, 1 + fr);
 			set(x+2*d, y-5*flip, DistributionBlocks.conveyor, 1 + fr);
 			
-			set(x+3*d, y-5*flip, ProductionBlocks.irondrill, 0 + fr);
-			set(x+3*d, y-4*flip, ProductionBlocks.irondrill, 0 + fr);
-			set(x+3*d, y-3*flip, ProductionBlocks.irondrill, 0 + fr);
+			set(x+3*d, y-5*flip, ProductionBlocks.drill, 0 + fr);
+			set(x+3*d, y-4*flip, ProductionBlocks.drill, 0 + fr);
+			set(x+3*d, y-3*flip, ProductionBlocks.drill, 0 + fr);
 		}
 	}
 	
@@ -225,7 +225,7 @@ public class World extends Module{
 		if(!Mathf.inBounds(x, y, tiles)){
 			return;
 		}
-		if(type == ProductionBlocks.irondrill){
+		if(type == ProductionBlocks.drill){
 			tiles[x][y].setFloor(Blocks.iron);
 		}
 		tiles[x][y].setBlock(type, rot);

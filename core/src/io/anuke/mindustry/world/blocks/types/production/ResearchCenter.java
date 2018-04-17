@@ -27,6 +27,11 @@ public class ResearchCenter extends Block{
     }
 
     @Override
+    public boolean isConfigurable(Tile tile){
+        return true;
+    }
+    
+    @Override
     public void buildTable(Tile tile, Table table) {
         int i = 0;
 
@@ -34,7 +39,7 @@ public class ResearchCenter extends Block{
 
         for(Research research : Research.getAllResearch()){
 
-            ItemStack[] requirements = Research.get(research);
+            ItemStack[] requirements = research.cost;
 
             Table tiptable = new Table();
 
@@ -53,12 +58,12 @@ public class ResearchCenter extends Block{
 
                 if(research.level <= research.maxlevel){
                     for(ItemStack s : requirements){
-
-                        int amount = Math.min(state.inventory.getAmount(s.item), s.amount);
+                    	int cost = s.amount + ((s.amount * research.level) / 4);
+                        int amount = Math.min(state.inventory.getAmount(s.item), cost);
                         reqtable.addImage(s.item.region).padRight(3).size(8*2);
                         reqtable.add(
-                                (amount >= s.amount ? "" : "[RED]")
-                                        + amount + " / " +s.amount, 0.5f).left();
+                                (amount >= cost ? "" : "[RED]")
+                                        + amount + " / " +cost, 0.5f).left();
                         reqtable.row();
                     }
                 }
@@ -82,11 +87,21 @@ public class ResearchCenter extends Block{
 
             ImageButton button = content.addImageButton("white", 8*4, () -> {
 
-            	state.inventory.removeItems(requirements);
-            	if(research.unlocking) research.unlocked = true;
-            	research.level++;
-            	run.listen();
-            	Effects.sound("purchase");
+                if(!Net.client()){
+                	ItemStack[] reqmultied = new ItemStack[requirements.length];
+                	for(int s = 0; s < requirements.length; s++){
+                		ItemStack stack = requirements[s];
+                		ItemStack multiedstack = new ItemStack(stack.item, stack.amount + ((stack.amount * research.level) / 4));
+                		reqmultied[s] = multiedstack;
+                	}
+                	state.inventory.removeItems(reqmultied);
+            		if(research.unlocking && !research.unlocked){
+            			research.unlocked = true;
+            		}
+            		research.level++;
+            		run.listen();
+            		Effects.sound("purchase");
+                }
                 
             }).size(49f, 54f).padBottom(-5).get();
 

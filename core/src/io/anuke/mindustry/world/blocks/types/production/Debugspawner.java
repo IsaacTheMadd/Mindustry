@@ -7,6 +7,7 @@ import io.anuke.mindustry.resource.Item;
 import io.anuke.mindustry.resource.ItemStack;
 import io.anuke.mindustry.world.Block;
 import io.anuke.mindustry.world.Tile;
+import io.anuke.mindustry.world.blocks.types.distribution.Teleporter.TeleporterEntity;
 import io.anuke.ucore.graphics.Draw;
 import io.anuke.ucore.scene.style.TextureRegionDrawable;
 import io.anuke.ucore.scene.ui.ButtonGroup;
@@ -22,6 +23,7 @@ import java.io.IOException;
 public class Debugspawner extends Block{
 	protected final int timerDump = timers++;
 	protected int capacity= 30;
+	private static Item lastSpawn = Item.iron;
 	
 	public Debugspawner(String name) {
 		super(name);
@@ -54,6 +56,11 @@ public class Debugspawner extends Block{
 		Draw.rect(Tmp.tr1, tile.worldx(), tile.worldy(), 4f, 4f);
 	}
 
+	@Override
+	public void placed(Tile tile){
+		tile.<SpawnerEntity>entity().spawnItem = lastSpawn;
+		setConfigure(tile, (byte)lastSpawn.id);
+	}
 	
 	@Override
 	public void configure(Tile tile, byte data) {
@@ -85,6 +92,7 @@ public class Debugspawner extends Block{
 		for(int i = 0; i < items.size; i ++){
 			final int f = i;
 			ImageButton button = cont.addImageButton("white", "toggle", 24, () -> {
+				lastSpawn = items.get(f);
 				entity.spawnItem = items.get(f);
 				setConfigure(tile, (byte)f);
                 for(Item removeitem : Item.getAllItems()){
@@ -95,7 +103,7 @@ public class Debugspawner extends Block{
 			button.getStyle().imageUp = new TextureRegionDrawable(new TextureRegion(items.get(i).region));
 			button.setChecked(entity.spawnItem.id == f);
 
-			if(i%4 == 3){
+			if(i%6 == 5){
 				cont.row();
 			}
 		}

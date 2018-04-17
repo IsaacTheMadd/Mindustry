@@ -18,7 +18,7 @@ public class CrafterRecipes {
             Item.flakammo, list(stack(Item.blackpowder, 2), stack(Item.steel, 2), stack(Item.coal, 4)),
             Item.chainammo, list(stack(Item.blackpowder, 2), stack(Item.uranium, 2)),
             Item.titanammo, list(stack(Item.blackpowder, 4), stack(Item.uranium, 6)),
-            Item.diriumammo, list(stack(Item.blackpowder, 2), stack(Item.dirium, 6)),
+            Item.warpsteelammo, list(stack(Item.blackpowder, 2), stack(Item.warpsteel, 6)),
             Item.missile, list(stack(Item.blackpowder, 2), stack(Item.steel, 4)),
             Item.barrel, list( stack(Item.steel, 2))
     );

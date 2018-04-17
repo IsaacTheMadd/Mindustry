@@ -241,7 +241,7 @@ public class Tutorial{
 				canForward = false;
 				blockPlaceX = 0;
 				blockPlaceY = -3;
-				targetBlock = ProductionBlocks.stonedrill;
+				targetBlock = ProductionBlocks.drill;
 			}
 			
 			void onSwitch(){
@@ -294,7 +294,7 @@ public class Tutorial{
 					world.tile(world.getCore().x + flip*2, world.getCore().y - 3).setBlock(DistributionBlocks.conveyor, 2 * flip);
 					world.tile(world.getCore().x + flip*2, world.getCore().y - 3).setBlock(DistributionBlocks.conveyor, 1);
 					world.tile(world.getCore().x + flip*2, world.getCore().y - 4).setFloor(Blocks.stone);
-					world.tile(world.getCore().x + flip*2, world.getCore().y - 4).setBlock(ProductionBlocks.stonedrill);
+					world.tile(world.getCore().x + flip*2, world.getCore().y - 4).setBlock(ProductionBlocks.drill);
 					
 				}
 			}
@@ -567,8 +567,8 @@ public class Tutorial{
 				world.tile(world.getCore().x, world.getCore().y - 6 + 2).setBlock(DefenseBlocks.stonewall, 0);
 				world.tile(world.getCore().x, world.getCore().y - 6 + 3).setBlock(DistributionBlocks.tunnel, 1);
 
-				world.tile(world.getCore().x+1, world.getCore().y - 8).setBlock(ProductionBlocks.irondrill);
-				world.tile(world.getCore().x-1, world.getCore().y - 8).setBlock(ProductionBlocks.coaldrill);
+				world.tile(world.getCore().x+1, world.getCore().y - 8).setBlock(ProductionBlocks.drill);
+				world.tile(world.getCore().x-1, world.getCore().y - 8).setBlock(ProductionBlocks.drill);
 				
 				world.tile(world.getCore().x+1, world.getCore().y - 7).setBlock(DistributionBlocks.conveyor, 2);
 				world.tile(world.getCore().x-1, world.getCore().y - 7).setBlock(DistributionBlocks.conveyor, 0);
