@@ -22,7 +22,7 @@ allprojects {
     ext {
         versionNumber = '0.1'
         versionType = 'release'
-        appName = 'Insandustry'
+        appName = 'Miliforge'
         gdxVersion = '1.9.8'
         aiVersion = '1.8.1'
         uCoreVersion = 'c5d47cc'

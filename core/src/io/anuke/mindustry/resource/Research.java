@@ -20,19 +20,22 @@ public class Research {
     public final String name;
     public final boolean unlocking;
     public static boolean unlocked = false;
-    public static final int maxlevel = 12;
-    public final String description;
+    public int maxLevel = 12;
     public final ItemStack[] cost;
     public int level = 0;
     
-    public Research(String name, boolean unlocking, int maxlevel, ItemStack... cost){
+    public Research(String name, boolean unlocking, int maxLevel, ItemStack... cost){
         this.id = lastid ++;
         this.name = name;
         this.unlocking = unlocking;
         this.cost = cost;
-        this.description = Bundles.getNotNull("research."+name+".description");
+        this.maxLevel = maxLevel;
 
         researches.add(this);
+    }
+
+    public String description() {
+        return Bundles.get("research." + this.name + ".description");
     }
 
     public String localized(){

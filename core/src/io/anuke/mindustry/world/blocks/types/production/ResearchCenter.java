@@ -46,7 +46,7 @@ public class ResearchCenter extends Block{
             Listenable run = ()->{
                 tiptable.clearChildren();
 
-                String description = research.description;
+                String description = research.description();
 
                 tiptable.background("pane");
                 tiptable.add("[orange]" + research.localized(), 0.5f).left().padBottom(2f);
@@ -56,9 +56,9 @@ public class ResearchCenter extends Block{
                 tiptable.row();
                 tiptable.add(reqtable).left();
 
-                if(research.level <= research.maxlevel){
+                if(state.researchInventory.getLevel(research) <= research.maxLevel){
                     for(ItemStack s : requirements){
-                    	int cost = s.amount + ((s.amount * research.level) / 4);
+                    	int cost = s.amount + ((s.amount * state.researchInventory.getLevel(research)) / 4);
                         int amount = Math.min(state.inventory.getAmount(s.item), cost);
                         reqtable.addImage(s.item.region).padRight(3).size(8*2);
                         reqtable.add(
@@ -73,7 +73,7 @@ public class ResearchCenter extends Block{
                 tiptable.row();
                 tiptable.add("[gray]" + description).left();
                 tiptable.row();
-                if(research.level >= research.maxlevel){
+                if(state.researchInventory.getLevel(research) >= research.maxLevel){
                     tiptable.add("$text.purchased").padTop(4).left();
                 }
                 tiptable.margin(8f);
@@ -91,21 +91,21 @@ public class ResearchCenter extends Block{
                 	ItemStack[] reqmultied = new ItemStack[requirements.length];
                 	for(int s = 0; s < requirements.length; s++){
                 		ItemStack stack = requirements[s];
-                		ItemStack multiedstack = new ItemStack(stack.item, stack.amount + ((stack.amount * research.level) / 4));
+                		ItemStack multiedstack = new ItemStack(stack.item, stack.amount + ((stack.amount * state.researchInventory.getLevel(research)) / 4));
                 		reqmultied[s] = multiedstack;
                 	}
                 	state.inventory.removeItems(reqmultied);
-            		if(research.unlocking && !research.unlocked){
-            			research.unlocked = true;
+            		if(research.unlocking && !state.researchInventory.getUnlocked(research)){
+                        state.researchInventory.addResearch(research, true);
             		}
-            		research.level++;
+                    state.researchInventory.addResearch(research, 1);
             		run.listen();
             		Effects.sound("purchase");
                 }
                 
             }).size(49f, 54f).padBottom(-5).get();
 
-            button.setDisabled(() -> research.level >= research.maxlevel || !state.inventory.hasItems(requirements));
+            button.setDisabled(() -> state.researchInventory.getLevel(research) >= research.maxLevel || !state.inventory.hasItems(requirements));
             button.getStyle().imageUp = new TextureRegionDrawable(Draw.region(research.name));
             button.addListener(tip);
 

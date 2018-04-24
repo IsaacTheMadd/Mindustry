@@ -93,7 +93,7 @@ public class MenuFragment implements Fragment{
 		new table(){{
 			visible(() -> state.is(State.menu));
 			abottom().aleft();
-			new label("Mindustry " + Version.code + " " + Version.type + " / " + Version.buildName);
+			new label(Version.name + " " + Version.code + " " + Version.type + " / " + Version.buildName);
 		}}.end();
 	}
 

@@ -58,6 +58,7 @@ public class Logic extends Module {
         state.lastUpdated = -1;
         state.gameOver = false;
         state.inventory.clearItems();
+        state.researchInventory.clearResearches();
 
         Timers.clear();
         Entities.clear();

@@ -15,9 +15,11 @@ import io.anuke.ucore.core.Effects;
 import io.anuke.ucore.util.Angles;
 import io.anuke.ucore.util.Mathf;
 
+import static io.anuke.mindustry.Vars.state;
+
 public class WeaponBlocks{
-	private static int healthmutli = Research.turrethealthup.level / 4;
-	private static float reloadmulti = Research.turretfirespeedup.level / (Research.turretfirespeedup.maxlevel + 1.5f);
+	private static int healthmutli = state.researchInventory.getLevel(Research.turrethealthup) / 4;
+	private static float reloadmulti = state.researchInventory.getLevel(Research.turretfirespeedup) / (Research.turretfirespeedup.maxLevel + 1.5f);
 	
 	
 	public static Block

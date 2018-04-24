@@ -351,6 +351,10 @@ public class Control extends Module{
 			state.inventory.setUpdated(false);
 		}
 
+		if(state.researchInventory.isUpdated() && (Timers.get("updateResearch", 8) || state.is(State.paused))){
+			state.researchInventory.setUpdated(false);
+		}
+
 		if(!state.is(State.menu)){
 			input.update();
 
