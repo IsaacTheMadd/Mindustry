@@ -30,7 +30,7 @@ public class ResearchInventory {
     public void fill(int level, boolean unlocked){
         updated = true;
         for(Research research : Research.getAllResearch()){
-            if(researches[research.id] != null) {
+            if(researches[research.id] != null){
                 if (getLevel(research) + level <= research.maxLevel) {
                     researches[research.id].setLevel(researches[research.id].getLevel() + level);
                 }else{
@@ -46,21 +46,37 @@ public class ResearchInventory {
     }
 
     public int getLevel(Research research){
-        return researches[research.id].getLevel();
+        if(researches[research.id] != null){
+            return researches[research.id].getLevel();
+        }else{
+            return 0;
+        }
     }
 
     public boolean getUnlocked(Research research){
-        return researches[research.id].getUnlocked();
+        if(researches[research.id] != null){
+            return researches[research.id].getUnlocked();
+        }else{
+            return false;
+        }
     }
 
     public void addResearch(Research research, int levels){
         updated = true;
-        researches[research.id].level += levels;
+        if(researches[research.id] != null){
+            researches[research.id].level += levels;
+        }else{
+            researches[research.id] = new researchData(levels,false);
+        }
     }
 
     public void addResearch(Research research, boolean unlocked){
         updated = true;
-        researches[research.id].unlocked = unlocked;
+        if(researches[research.id] != null){
+            researches[research.id].unlocked = unlocked;
+        }else{
+            researches[research.id] = new researchData(0,unlocked);
+        }
     }
 
     public boolean hasResearch(Research[] research, int[] levels){

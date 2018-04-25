@@ -18,8 +18,6 @@ import io.anuke.ucore.util.Mathf;
 import static io.anuke.mindustry.Vars.state;
 
 public class WeaponBlocks{
-	private static int healthmutli = state.researchInventory.getLevel(Research.turrethealthup) / 4;
-	private static float reloadmulti = state.researchInventory.getLevel(Research.turretfirespeedup) / (Research.turretfirespeedup.maxLevel + 1.5f);
 	
 	
 	public static Block
@@ -27,9 +25,9 @@ public class WeaponBlocks{
 	turret = new Turret("turret"){
 		{
 			range = 52;
-			reload = 15f - (15f * reloadmulti);
+			reload = 15f;
 			bullet = BulletType.stone;
-			health = 45 + (45 * healthmutli);
+			health = 45;
 			ammo = Item.basicammo;
 		}
 	},
@@ -37,11 +35,11 @@ public class WeaponBlocks{
 	doubleturret = new Turret("doubleturret"){
 		{
 			range = 44;
-			reload = 13f - (13f * reloadmulti);
+			reload = 13f;
 			bullet = BulletType.stone;
 			ammo = Item.basicammo;
 			ammoMultiplier = 14;
-			health = 55 + (55 * healthmutli);
+			health = 55;
 		}
 		
 		@Override
@@ -58,20 +56,20 @@ public class WeaponBlocks{
 	machineturret = new Turret("machineturret"){
 		{
 			range = 65;
-			reload = 7f - (7f * reloadmulti);
+			reload = 7f;
 			bullet = BulletType.iron;
 			ammo = Item.tier2ammo;
-			health = 65 + (65 * healthmutli);
+			health = 65;
 		}
 	},
 	
 	shotgunturret = new Turret("shotgunturret"){
 		{
 			range = 50;
-			reload = 30f - (30f * reloadmulti);
+			reload = 30f;
 			bullet = BulletType.iron;
 			ammo = Item.tier2ammo;
-			health = 70 + (70 * healthmutli);
+			health = 70;
 			shots = 5;
 			inaccuracy = 15f;
 			shotDelayScale = 0.7f;
@@ -81,10 +79,10 @@ public class WeaponBlocks{
 	flameturret = new Turret("flameturret"){
 		{
 			range = 45f;
-			reload = 5f - (5f * reloadmulti);
+			reload = 5f;
 			bullet = BulletType.flame;
 			ammo = Item.flamerammo;
-			health = 90 + (90 * healthmutli);
+			health = 90;
 			inaccuracy = 4f;
 		}
 	},
@@ -93,10 +91,10 @@ public class WeaponBlocks{
 		{
 			shootsound = "railgun";
 			range = 120;
-			reload = 50f - (50f * reloadmulti);
+			reload = 50f;
 			bullet = BulletType.sniper;
 			ammo = Item.railammo;
-			health = 70 + (70 * healthmutli);
+			health = 70;
 			shootEffect = Fx.railshot;
 		}
 	},
@@ -106,13 +104,13 @@ public class WeaponBlocks{
 			shootsound = "bigshot";
 			rotatespeed = 0.2f;
 			range = 120;
-			reload = 55f - (55f * reloadmulti);
+			reload = 55f;
 			bullet = BulletType.flak;
 			shots = 3;
 			inaccuracy = 9f;
 			ammo = Item.flakammo;
 			ammoMultiplier = 5;
-			health = 110 + (110 * healthmutli);
+			health = 110;
 			shootEffect = Fx.mortarshot;
 			shootShake = 2f;
 		}
@@ -123,9 +121,9 @@ public class WeaponBlocks{
 			shootsound = "laser";
 			beamColor = Color.SKY;
 			range = 60;
-			reload = 4f - (4f * reloadmulti);
+			reload = 4f;
 			damage = 10;
-			health = 110 + (110 * healthmutli);
+			health = 110;
 			powerUsed = 0.2f;
 		}
 	},
@@ -134,9 +132,9 @@ public class WeaponBlocks{
 		{
 			shootsound = "tesla";
 			range = 70;
-			reload = 15f - (15f * reloadmulti);
+			reload = 15f;
 			bullet = BulletType.shell;
-			health = 140 + (140 * healthmutli);
+			health = 140;
 		}
 		
 		@Override
@@ -154,10 +152,10 @@ public class WeaponBlocks{
 			shootsound = "flame2";
 			inaccuracy = 7f;
 			range = 60f;
-			reload = 3f - (3f * reloadmulti);
+			reload = 3f;
 			bullet = BulletType.plasmaflame;
 			ammo = Item.flamerammo;
-			health = 180 + (180 * healthmutli);
+			health = 180;
 			ammoMultiplier = 40;
 		}
 	},
@@ -167,16 +165,16 @@ public class WeaponBlocks{
 			shootsound = "bigshot";
 			inaccuracy = 8f;
 			range = 80f;
-			reload = 20f - (20f * reloadmulti);
+			reload = 30f;
 			bullet = BulletType.chain;
 			ammo = Item.chainammo;
-			health = 430 + (430 * healthmutli);
+			health = 430;
 			width = height = 2;
 			shootCone = 9f;
 			ammoMultiplier = 8;
 			shots = 2;
 			bursts = 20;
-			burstDelay = 5f - (5f * reloadmulti);
+			burstDelay = 5f;
 			shootEffect = Fx.chainshot;
 		}
 
@@ -202,10 +200,10 @@ public class WeaponBlocks{
 		{
 			shootsound = "blast";
 			range = 120f;
-			reload = 23f - (23f * reloadmulti);
+			reload = 23f;
 			bullet = BulletType.titanshell;
 			ammo = Item.titanammo;
-			health = 800 + (800 * healthmutli);
+			health = 800;
 			ammoMultiplier = 4;
 			width = height = 3;
 			rotatespeed = 0.07f;
@@ -219,10 +217,10 @@ public class WeaponBlocks{
 		{
 			shootsound = "bigshot";
 			range = 340f;
-			reload = 95f - (95f * reloadmulti);
+			reload = 95f;
 			bullet = BulletType.railsniper;
 			ammo = Item.warpsteelammo;
-			health = 540 + (540 * healthmutli);
+			health = 540;
 			ammoMultiplier = 4;
 			width = height = 2;
 			shootCone = 9f;
@@ -235,9 +233,9 @@ public class WeaponBlocks{
 		{
 			shootsound = "tesla";
 			range = 225;
-			reload = 24f - (24f * reloadmulti);
+			reload = 24f;
 			bullet = BulletType.pulseshot;
-			health = 920 + (920 * healthmutli);
+			health = 920;
 			width = height = 3;
 			powerUsed = 0.8f;
 		}
@@ -248,10 +246,10 @@ public class WeaponBlocks{
 			shootsound = "missile";
 			inaccuracy = 8f;
 			range = 220f;
-			reload = 42f - (42f * reloadmulti);
+			reload = 42f;
 			bullet = BulletType.missile;
 			ammo = Item.missile;
-			health = 630 + (630 * healthmutli);
+			health = 630;
 			width = height = 2;
 			shootCone = 9f;
 			ammoMultiplier = 1;
@@ -282,11 +280,11 @@ public class WeaponBlocks{
 		{
 			shootsound = "tesla";
 			range = 235;
-			reload = 63f - (63f * reloadmulti);
+			reload = 63f;
 			bursts = 3;
 			burstDelay = 12f;
 			bullet = BulletType.shieldball;
-			health = 1220 + (1220 * healthmutli);
+			health = 1220;
 			width = height = 4;
 			shootEffect = Fx.titanshot;
 			powerUsed = 1.2f;

@@ -8,6 +8,7 @@ import io.anuke.mindustry.entities.TileEntity;
 import io.anuke.mindustry.entities.enemies.Enemy;
 import io.anuke.mindustry.graphics.Fx;
 import io.anuke.mindustry.resource.Item;
+import io.anuke.mindustry.resource.Research;
 import io.anuke.mindustry.world.Block;
 import io.anuke.mindustry.world.BlockBar;
 import io.anuke.mindustry.world.Layer;
@@ -37,6 +38,9 @@ public class Turret extends Block{
 	protected final int timerReload = timers++;
 	protected final int timerSound = timers++;
 	protected final int timerBurst = timers++;
+
+	private static int healthmutli = state.researchInventory.getLevel(Research.turrethealthup);
+	private static float reloadmulti = state.researchInventory.getLevel(Research.turretfirespeedup);
 	
 	protected float range = 50f;
 	protected float reload = 10f;
@@ -59,6 +63,9 @@ public class Turret extends Block{
 	
 	private boolean burstloop;
 	private int burstIter = 0;
+	private float initburstDelay = 0f;
+	private int inithealth = 0;
+	private float initreload = 0f;
 
 	public Turret(String name) {
 		super(name);
@@ -68,7 +75,21 @@ public class Turret extends Block{
 
 		bars.add(new BlockBar(Color.GREEN, true, tile -> (float)tile.<TurretEntity>entity().ammo / maxammo));
 	}
-	
+
+	@Override
+	public void init(){
+		inithealth = health;
+		initreload = reload;
+		initburstDelay = burstDelay;
+
+		healthmutli = state.researchInventory.getLevel(Research.turrethealthup);
+		reloadmulti = state.researchInventory.getLevel(Research.turretfirespeedup);
+
+		health = inithealth + ((inithealth * healthmutli)/4);
+		reload = initreload - ((initreload * reloadmulti)/(Research.turretfirespeedup.maxLevel + 2));
+		burstDelay = initburstDelay - ((initburstDelay * reloadmulti)/(Research.turretfirespeedup.maxLevel + 2));
+	}
+
 	@Override
 	public void getStats(Array<String> list){
 		super.getStats(list);
@@ -78,7 +99,7 @@ public class Turret extends Block{
 		list.add("[turretinfo]Range: " + (int)range);
 		list.add("[turretinfo]Inaccuracy: " + (int)inaccuracy);
 		list.add("[turretinfo]Damage/Shot: " + bullet.damage);
-		list.add("[turretinfo]Shots/Second: " + Strings.toFixed(60f/reload, 1));
+		list.add("[turretinfo]Shots/Second: " + Strings.toFixed(bursts < 2 ? 60f/reload : 60f/((bursts * burstDelay + reload) / bursts), 1));
 		list.add("[turretinfo]Shots: " + shots);
 	}
 	
@@ -129,6 +150,13 @@ public class Turret extends Block{
 	@Override
 	public void update(Tile tile){
 		TurretEntity entity = tile.entity();
+		healthmutli = state.researchInventory.getLevel(Research.turrethealthup);
+		reloadmulti = state.researchInventory.getLevel(Research.turretfirespeedup);
+
+		health = inithealth + ((inithealth * healthmutli)/4);
+		reload = initreload - ((initreload * reloadmulti)/(Research.turretfirespeedup.maxLevel + 2));
+		burstDelay = initburstDelay - ((initburstDelay * reloadmulti)/(Research.turretfirespeedup.maxLevel + 2));
+
 		
 		if(ammo != null && entity.hasItem(ammo)){
 			entity.ammo += ammoMultiplier;
