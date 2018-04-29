@@ -12,24 +12,25 @@ public class Research {
     private static byte lastid;
     
 	public static final Research
-		turretfirespeedup = new Research("turretfirespeedup", false, 16, stack(Item.steel, 80), stack(Item.coal, 50)),
-		turrethealthup = new Research("turrethealthup", false, 16, stack(Item.steel, 20), stack(Item.titanium, 30))
+		turretfirespeedup = new Research("turretfirespeedup", false, 16, null, stack(Item.steel, 80), stack(Item.coal, 50)),
+		turrethealthup = new Research("turrethealthup", false, 16, null, stack(Item.steel, 20), stack(Item.titanium, 30))
 	;
 	
     public final byte id;
     public final String name;
     public final boolean unlocking;
-    public static boolean unlocked = false;
-    public int maxLevel = 12;
+    public int maxLevel;
     public final ItemStack[] cost;
     public int level = 0;
+    public Research prerequisite;
     
-    public Research(String name, boolean unlocking, int maxLevel, ItemStack... cost){
+    public Research(String name, boolean unlocking, int maxLevel, Research prerequisite, ItemStack... cost){
         this.id = lastid ++;
         this.name = name;
         this.unlocking = unlocking;
         this.cost = cost;
         this.maxLevel = maxLevel;
+        this.prerequisite = prerequisite;
 
         researches.add(this);
     }

@@ -102,7 +102,7 @@ public class Control extends Module{
 
 		Sounds.setFalloff(9000f);
 
-		Musics.load("1.ogg", "2.ogg", "3.ogg", "4.ogg");
+		Musics.load("1.ogg", "2.ogg", "3.ogg", "4.ogg", "5.ogg");
 
         DefaultKeybinds.load();
 

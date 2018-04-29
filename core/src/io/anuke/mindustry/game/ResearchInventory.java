@@ -31,8 +31,8 @@ public class ResearchInventory {
         updated = true;
         for(Research research : Research.getAllResearch()){
             if(researches[research.id] != null){
-                if (getLevel(research) + level <= research.maxLevel) {
-                    researches[research.id].setLevel(researches[research.id].getLevel() + level);
+                if (level <= research.maxLevel) {
+                    researches[research.id].setLevel(level);
                 }else{
                     researches[research.id].setLevel(research.maxLevel);
                 }
@@ -77,6 +77,20 @@ public class ResearchInventory {
         }else{
             researches[research.id] = new researchData(0,unlocked);
         }
+    }
+
+    public void addResearch(Research research, boolean unlocked, int levels){
+        updated = true;
+        if(researches[research.id] != null){
+            researches[research.id].unlocked = unlocked;
+            researches[research.id].level += levels;
+        }else{
+            researches[research.id] = new researchData(levels, unlocked);
+        }
+    }
+
+    public void addResearch(Research research, int levels, boolean unlocked){
+        addResearch(research, unlocked,  levels);
     }
 
     public boolean hasResearch(Research[] research, int[] levels){

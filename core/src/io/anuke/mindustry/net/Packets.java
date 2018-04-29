@@ -572,6 +572,25 @@ public class Packets {
         }
     }
 
+    public static class ResearchPacket implements Packet{
+        public int level;
+        public byte id;
+        public boolean unlocked;
+
+        @Override
+        public void write(ByteBuffer buffer) {
+            buffer.putInt(level);
+            buffer.put(id);
+            buffer.put(unlocked ? (byte)1 : 0);
+        }
+
+        @Override
+        public void read(ByteBuffer buffer) {
+            level = buffer.getInt();
+            id = buffer.get();
+            unlocked = buffer.get() == 1;
+        }
+    }
     public static class NetErrorPacket implements Packet{
         public String message;
 

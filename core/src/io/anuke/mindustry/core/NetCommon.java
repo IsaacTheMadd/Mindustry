@@ -6,6 +6,7 @@ import io.anuke.mindustry.net.Net.SendMode;
 import io.anuke.mindustry.net.Packets.*;
 import io.anuke.mindustry.resource.Upgrade;
 import io.anuke.mindustry.resource.Weapon;
+import io.anuke.mindustry.resource.Research;
 import io.anuke.mindustry.world.Tile;
 import io.anuke.ucore.modules.Module;
 
@@ -51,6 +52,11 @@ public class NetCommon extends Module {
 
             player.doRespawn();
         });
+
+        Net.handle(ResearchPacket.class, (packet) -> {
+            state.researchInventory.addResearch(Research.getByID(packet.id), packet.level, packet.unlocked);
+        });
+
     }
 
     public void sendMessage(String message){

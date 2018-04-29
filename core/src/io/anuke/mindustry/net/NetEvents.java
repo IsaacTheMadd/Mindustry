@@ -8,6 +8,7 @@ import io.anuke.mindustry.entities.enemies.Enemy;
 import io.anuke.mindustry.net.Net.SendMode;
 import io.anuke.mindustry.net.Packets.*;
 import io.anuke.mindustry.resource.Item;
+import io.anuke.mindustry.resource.Research;
 import io.anuke.mindustry.resource.Weapon;
 import io.anuke.mindustry.world.Block;
 import io.anuke.mindustry.world.Tile;
@@ -152,6 +153,15 @@ public class NetEvents {
         ItemOffloadPacket packet = new ItemOffloadPacket();
         packet.position = tile.packedPosition();
         packet.itemid = (byte)item.id;
+        Net.send(packet, SendMode.udp);
+    }
+
+    public static void handleResearch(Research research, int level, boolean unlocked){
+        ResearchPacket packet = new ResearchPacket();
+        packet.id = research.id;
+        packet.unlocked = unlocked;
+        packet.level = level;
+        state.researchInventory.addResearch(research, unlocked, level);
         Net.send(packet, SendMode.udp);
     }
 

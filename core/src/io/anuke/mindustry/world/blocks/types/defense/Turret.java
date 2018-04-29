@@ -44,6 +44,7 @@ public class Turret extends Block{
 	
 	protected float range = 50f;
 	protected float reload = 10f;
+	protected float recoil = 0.8f;
 	protected float inaccuracy = 0f;
 	protected int shots = 1;
 	protected int bursts = 1;
@@ -60,6 +61,8 @@ public class Turret extends Block{
 	protected float shootShake = 0f;
 	protected int soundReload = 0;
 	protected Translator tr = new Translator();
+
+	protected Translator tr2 = new Translator();
 	
 	private boolean burstloop;
 	private int burstIter = 0;
@@ -81,7 +84,10 @@ public class Turret extends Block{
 		inithealth = health;
 		initreload = reload;
 		initburstDelay = burstDelay;
+	}
 
+	@Override
+	public void placed(Tile tile){
 		healthmutli = state.researchInventory.getLevel(Research.turrethealthup);
 		reloadmulti = state.researchInventory.getLevel(Research.turretfirespeedup);
 
@@ -121,7 +127,9 @@ public class Turret extends Block{
 	public void drawLayer(Tile tile){
 		TurretEntity entity = tile.entity();
 
-		Draw.rect(name(), tile.drawx(), tile.drawy(), entity.rotation - 90);
+		tr2.trns(entity.rotation, entity.recoil);
+
+		Draw.rect(name(), tile.drawx() - tr2.x, tile.drawy() - tr2.y, entity.rotation - 90);
 		
 		if(debug && drawDebug){
 			drawTargeting(tile);
@@ -157,7 +165,9 @@ public class Turret extends Block{
 		reload = initreload - ((initreload * reloadmulti)/(Research.turretfirespeedup.maxLevel + 2));
 		burstDelay = initburstDelay - ((initburstDelay * reloadmulti)/(Research.turretfirespeedup.maxLevel + 2));
 
-		
+		entity.recoil = Mathf.lerp(entity.recoil, 0f, 0.5f/reload);
+
+
 		if(ammo != null && entity.hasItem(ammo)){
 			entity.ammo += ammoMultiplier;
 			entity.removeItem(ammo, 1);
@@ -287,7 +297,11 @@ public class Turret extends Block{
 			Effects.effect(shootEffect, tile.drawx() + tr.x,
 				tile.drawy() + tr.y, entity.rotation);
 		}
-		
+
+		if(recoil > 0f){
+			entity.recoil = recoil;
+		}
+
 		if(shootShake > 0){
 			Effects.shake(shootShake, shootShake, tile.entity);
 		}
@@ -301,6 +315,7 @@ public class Turret extends Block{
 		public TileEntity blockTarget;
 		public int ammo;
 		public float rotation = 90;
+		public float recoil = 0f;
 		public Enemy target;
 		
 		@Override

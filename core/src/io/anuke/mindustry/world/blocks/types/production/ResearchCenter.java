@@ -1,11 +1,9 @@
 package io.anuke.mindustry.world.blocks.types.production;
 
-import io.anuke.mindustry.Vars;
 import io.anuke.mindustry.net.Net;
 import io.anuke.mindustry.net.NetEvents;
 import io.anuke.mindustry.resource.ItemStack;
 import io.anuke.mindustry.resource.Research;
-import io.anuke.mindustry.resource.Weapon;
 import io.anuke.mindustry.world.Block;
 import io.anuke.mindustry.world.Tile;
 import io.anuke.ucore.core.Effects;
@@ -87,25 +85,28 @@ public class ResearchCenter extends Block{
 
             ImageButton button = content.addImageButton("white", 8*4, () -> {
 
-                if(!Net.client()){
-                	ItemStack[] reqmultied = new ItemStack[requirements.length];
-                	for(int s = 0; s < requirements.length; s++){
-                		ItemStack stack = requirements[s];
-                		ItemStack multiedstack = new ItemStack(stack.item, stack.amount + ((stack.amount * state.researchInventory.getLevel(research)) / 4));
-                		reqmultied[s] = multiedstack;
-                	}
-                	state.inventory.removeItems(reqmultied);
-            		if(research.unlocking && !state.researchInventory.getUnlocked(research)){
-                        state.researchInventory.addResearch(research, true);
-            		}
-                    state.researchInventory.addResearch(research, 1);
-            		run.listen();
-            		Effects.sound("purchase");
+                ItemStack[] reqmultied = new ItemStack[requirements.length];
+                for(int s = 0; s < requirements.length; s++){
+                    ItemStack stack = requirements[s];
+                    ItemStack multiedstack = new ItemStack(stack.item, stack.amount + ((stack.amount * state.researchInventory.getLevel(research)) / 4));
+                    reqmultied[s] = multiedstack;
+                }
+                state.inventory.removeItems(reqmultied);
+                boolean researched = false;
+                if(research.unlocking){
+                    researched = true;
+                }
+                if(Net.client()){
+                    NetEvents.handleResearch(research, 1, researched);
+                }else{
+                    state.researchInventory.addResearch(research, 1, researched);
+                    run.listen();
+                    Effects.sound("purchase");
                 }
                 
             }).size(49f, 54f).padBottom(-5).get();
 
-            button.setDisabled(() -> state.researchInventory.getLevel(research) >= research.maxLevel || !state.inventory.hasItems(requirements));
+            button.setDisabled(() -> state.researchInventory.getLevel(research) >= research.maxLevel || !state.inventory.hasItems(requirements) || (research.prerequisite != null && !state.researchInventory.getUnlocked(research.prerequisite)));
             button.getStyle().imageUp = new TextureRegionDrawable(Draw.region(research.name));
             button.addListener(tip);
 

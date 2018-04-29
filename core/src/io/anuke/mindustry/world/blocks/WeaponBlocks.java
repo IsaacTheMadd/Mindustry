@@ -26,6 +26,7 @@ public class WeaponBlocks{
 		{
 			range = 52;
 			reload = 15f;
+			recoil = 0.4f;
 			bullet = BulletType.stone;
 			health = 45;
 			ammo = Item.basicammo;
@@ -36,10 +37,11 @@ public class WeaponBlocks{
 		{
 			range = 44;
 			reload = 13f;
+			recoil = 0.4f;
 			bullet = BulletType.stone;
+			health = 55;
 			ammo = Item.basicammo;
 			ammoMultiplier = 14;
-			health = 55;
 		}
 		
 		@Override
@@ -50,6 +52,10 @@ public class WeaponBlocks{
 				tr.trns(entity.rotation, 4, -2 * i);
 				bullet(tile, entity.rotation);
 			}
+
+			if(recoil > 0){
+				entity.recoil = recoil;
+			}
 		}
 	},
 	
@@ -57,6 +63,7 @@ public class WeaponBlocks{
 		{
 			range = 65;
 			reload = 7f;
+			recoil = 0.4f;
 			bullet = BulletType.iron;
 			ammo = Item.tier2ammo;
 			health = 65;
@@ -67,6 +74,7 @@ public class WeaponBlocks{
 		{
 			range = 50;
 			reload = 30f;
+			recoil = 0.4f;
 			bullet = BulletType.iron;
 			ammo = Item.tier2ammo;
 			health = 70;
@@ -80,6 +88,7 @@ public class WeaponBlocks{
 		{
 			range = 45f;
 			reload = 5f;
+			recoil = 0.1f;
 			bullet = BulletType.flame;
 			ammo = Item.flamerammo;
 			health = 90;
@@ -92,6 +101,7 @@ public class WeaponBlocks{
 			shootsound = "railgun";
 			range = 120;
 			reload = 50f;
+			recoil = 0.8f;
 			bullet = BulletType.sniper;
 			ammo = Item.railammo;
 			health = 70;
@@ -105,6 +115,7 @@ public class WeaponBlocks{
 			rotatespeed = 0.2f;
 			range = 120;
 			reload = 55f;
+			recoil = 0.6f;
 			bullet = BulletType.flak;
 			shots = 3;
 			inaccuracy = 9f;
@@ -122,6 +133,7 @@ public class WeaponBlocks{
 			beamColor = Color.SKY;
 			range = 60;
 			reload = 4f;
+			recoil = 0f;
 			damage = 10;
 			health = 110;
 			powerUsed = 0.2f;
@@ -133,6 +145,7 @@ public class WeaponBlocks{
 			shootsound = "tesla";
 			range = 70;
 			reload = 15f;
+			recoil = 0f;
 			bullet = BulletType.shell;
 			health = 140;
 		}
@@ -153,6 +166,7 @@ public class WeaponBlocks{
 			inaccuracy = 7f;
 			range = 60f;
 			reload = 3f;
+			recoil = 0.1f;
 			bullet = BulletType.plasmaflame;
 			ammo = Item.flamerammo;
 			health = 180;
@@ -166,6 +180,7 @@ public class WeaponBlocks{
 			inaccuracy = 8f;
 			range = 80f;
 			reload = 30f;
+			recoil = 1.4f;
 			bullet = BulletType.chain;
 			ammo = Item.chainammo;
 			health = 430;
@@ -191,7 +206,11 @@ public class WeaponBlocks{
 				Effects.effect(shootEffect, tile.drawx() + tr.x,
 						tile.drawy() + tr.y, entity.rotation);
 			}
-			
+
+			if(recoil > 0){
+				entity.recoil = recoil;
+			}
+
 			Effects.shake(1f, 1f, tile.worldx(), tile.worldy());
 		}
 	},
@@ -201,6 +220,7 @@ public class WeaponBlocks{
 			shootsound = "blast";
 			range = 120f;
 			reload = 23f;
+			recoil = 2.5f;
 			bullet = BulletType.titanshell;
 			ammo = Item.titanammo;
 			health = 800;
@@ -218,6 +238,7 @@ public class WeaponBlocks{
 			shootsound = "bigshot";
 			range = 340f;
 			reload = 95f;
+			recoil = 1.4f;
 			bullet = BulletType.railsniper;
 			ammo = Item.warpsteelammo;
 			health = 540;
@@ -234,6 +255,7 @@ public class WeaponBlocks{
 			shootsound = "tesla";
 			range = 225;
 			reload = 24f;
+			recoil = 0.1f;
 			bullet = BulletType.pulseshot;
 			health = 920;
 			width = height = 3;
@@ -247,6 +269,7 @@ public class WeaponBlocks{
 			inaccuracy = 8f;
 			range = 220f;
 			reload = 42f;
+			recoil = 0.2f;
 			bullet = BulletType.missile;
 			ammo = Item.missile;
 			health = 630;
@@ -271,7 +294,11 @@ public class WeaponBlocks{
 				Effects.effect(shootEffect, tile.drawx() + tr.x,
 						tile.drawy() + tr.y, entity.rotation);
 			}
-			
+
+			if(recoil > 0){
+				entity.recoil = recoil;
+			}
+
 			Effects.shake(0.2f, 0.2f, tile.worldx(), tile.worldy());
 		}
 	},
@@ -281,6 +308,7 @@ public class WeaponBlocks{
 			shootsound = "tesla";
 			range = 235;
 			reload = 63f;
+			recoil = 0f;
 			bursts = 3;
 			burstDelay = 12f;
 			bullet = BulletType.shieldball;
