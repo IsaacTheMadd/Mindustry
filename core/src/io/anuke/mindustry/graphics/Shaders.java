@@ -16,10 +16,6 @@ public class Shaders{
 
 	private static final Vector2 vec = new Vector2();
 
-	protected static float scale = Settings.getBool("pixelate") ? 1 : Core.cameraScale / Core.camera.zoom;
-	protected static float scaling = Core.cameraScale / 4f / Core.camera.zoom;
-
-
 	public static class Outline extends Shader{
 		public Color color = new Color();
 		public float lighten = 0f;
@@ -48,8 +44,8 @@ public class Shaders{
 		
 		@Override
 		public void apply(){
-			float scale = Shaders.scale;
-			float scaling = Shaders.scaling;
+			float scale = Settings.getBool("pixelate") ? 1 : Core.cameraScale / Core.camera.zoom;
+			float scaling = Core.cameraScale / 4f / Core.camera.zoom;
 			if(hits.size > 0){
 				shader.setUniform3fv("u_hits[0]", hits.items, 0, Math.min(hits.size, MAX_HITS));
 				shader.setUniformi("u_hitamount", Math.min(hits.size, MAX_HITS)/3);
@@ -74,8 +70,8 @@ public class Shaders{
 		
 		@Override
 		public void apply(){
-			float scale = Shaders.scale;
-			float scaling = Shaders.scaling;
+			float scale = Settings.getBool("pixelate") ? 1 : Core.cameraScale / Core.camera.zoom;
+			float scaling = Core.cameraScale / 4f / Core.camera.zoom;
 			
 			shader.setUniformf("u_dp", Unit.dp.scl(1f));
 			shader.setUniformf("u_color", color);

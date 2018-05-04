@@ -10,6 +10,7 @@ import io.anuke.mindustry.game.GameMode;
 import io.anuke.mindustry.io.SaveFileVersion;
 import io.anuke.mindustry.io.SaveMeta;
 import io.anuke.mindustry.resource.Item;
+import io.anuke.mindustry.resource.Research;
 import io.anuke.mindustry.resource.Upgrade;
 import io.anuke.mindustry.resource.Weapon;
 import io.anuke.mindustry.world.Block;
@@ -115,6 +116,19 @@ public class Save15 extends SaveFileVersion {
         }
 
         if(!headless) ui.hudfrag.updateItems();
+
+        //research
+
+        int totalResearches = stream.readByte();
+
+        state.researchInventory.fill(0, false);
+
+        for(int i = 0; i < totalResearches; i ++){
+            Research research = Research.getByID(stream.readByte());
+            int levels = stream.readInt();
+            boolean unlocked = stream.readBoolean();
+            state.researchInventory.addResearch(research, levels, unlocked);
+        }
 
         //enemies
 
@@ -276,6 +290,27 @@ public class Save15 extends SaveFileVersion {
             if(state.inventory.getItems()[i] > 0){
                 stream.writeByte(i); //item ID
                 stream.writeInt(state.inventory.getItems()[i]); //item amount
+            }
+        }
+
+        //--RESEARCH--
+
+        int r = state.researchInventory.getLength();
+        int researchsize = 0;
+
+        for(int i = 0; i < r; i ++){
+            if(state.researchInventory.getResearchLevels()[i] > 0){
+                researchsize ++;
+            }
+        }
+
+        stream.writeByte(researchsize);
+
+        for(int i = 0; i < r; i ++){
+            if(state.researchInventory.getResearchLevels()[i] > 0){
+                stream.writeByte(i); //research ID
+                stream.writeBoolean(state.researchInventory.getResearchUnlocks()[i]); //research unlocked
+                stream.writeInt(state.researchInventory.getResearchLevels()[i]); //research amount
             }
         }
 

@@ -669,10 +669,20 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		
 		public void draw(Bullet b){
 			float rad = 6f + Mathf.sin(Timers.time(), 5f, 2f);
-			
+
 			Draw.color(Color.CORAL);
 			Lines.circle(b.x, b.y, 6f);
 			Draw.rect("circle", b.x, b.y, rad, rad);
+			Draw.reset();
+
+			Draw.color(Color.GOLDENROD);
+			Draw.alpha(0.7f);
+			Lines.stroke(1.3f);
+			Lines.lineAngle(b.x, b.y, 3f, b.angle() + Mathf.lerp(Mathf.random(361f), Mathf.random(361f), Timers.delta() * 0.02f),7f);
+			Lines.lineAngle(b.x, b.y, 3f, b.angle() + Mathf.lerp(Mathf.random(361f), Mathf.random(361f), Timers.delta() * 0.02f),7f);
+			Lines.lineAngle(b.x, b.y, 3f, b.angle() + Mathf.lerp(Mathf.random(361f), Mathf.random(361f), Timers.delta() * 0.02f),7f);
+			Lines.lineAngle(b.x, b.y, 3f, b.angle() + Mathf.lerp(Mathf.random(361f), Mathf.random(361f), Timers.delta() * 0.02f),7f);
+			Lines.lineAngle(b.x, b.y, 3f, b.angle() + Mathf.lerp(Mathf.random(361f), Mathf.random(361f), Timers.delta() * 0.02f),7f);
 			Draw.reset();
 		}
 		
@@ -691,7 +701,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			InverseShield inverseshield = new InverseShield(hitx, hity, 50f, 14);
 			inverseshield.add();
 
-			Effects.effect(Fx.empshockwave, b);
+			Effects.effect(Fx.blastsmoke, b);
 			Effects.shake(3f, 3f, b);
 		}
 	};

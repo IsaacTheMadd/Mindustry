@@ -53,6 +53,10 @@ public class ResearchInventory {
         }
     }
 
+    public int getLength(){
+        return researches.length;
+    }
+
     public boolean getUnlocked(Research research){
         if(researches[research.id] != null){
             return researches[research.id].getUnlocked();
@@ -119,8 +123,9 @@ public class ResearchInventory {
     public int[] getResearchLevels(){
         updated = true;
         int[] tmp = new int[researches.length];
+        Arrays.fill(tmp, 0);
 
-        for(int i = 0; i <= researches.length; i++){
+        for(int i = 0; i < researches.length; i++){
             tmp[i] = researches[i].level;
         }
 
@@ -130,8 +135,9 @@ public class ResearchInventory {
     public boolean[] getResearchUnlocks(){
         updated = true;
         boolean[] tmp = new boolean[researches.length];
+        Arrays.fill(tmp, false);
 
-        for(int i = 0; i <= researches.length; i++){
+        for(int i = 0; i < researches.length; i++){
             tmp[i] = researches[i].unlocked;
         }
 
