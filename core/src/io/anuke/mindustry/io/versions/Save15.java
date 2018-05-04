@@ -121,8 +121,6 @@ public class Save15 extends SaveFileVersion {
 
         int totalResearches = stream.readByte();
 
-        state.researchInventory.fill(0, false);
-
         for(int i = 0; i < totalResearches; i ++){
             Research research = Research.getByID(stream.readByte());
             int levels = stream.readInt();
@@ -309,8 +307,8 @@ public class Save15 extends SaveFileVersion {
         for(int i = 0; i < r; i ++){
             if(state.researchInventory.getResearchLevels()[i] > 0){
                 stream.writeByte(i); //research ID
-                stream.writeBoolean(state.researchInventory.getResearchUnlocks()[i]); //research unlocked
                 stream.writeInt(state.researchInventory.getResearchLevels()[i]); //research amount
+                stream.writeBoolean(state.researchInventory.getResearchUnlocks()[i]); //research unlocked
             }
         }
 
