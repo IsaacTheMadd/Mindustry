@@ -73,6 +73,8 @@ public class NetServer extends Module{
                 return;
             }
 
+            Log.info("Recieved connect packet for player '{0}' / UUID {1} / IP {2}", packet.name, uuid, trace.ip);
+
             String ip = Net.getConnection(id).address;
 
             admins.updatePlayerJoined(uuid, ip, packet.name);
@@ -85,8 +87,6 @@ public class NetServer extends Module{
             if(packet.version == -1){
                 trace.modclient = true;
             }
-
-            Log.info("Sending data to player '{0}' / {1}", packet.name, id);
 
             Player player = new Player();
             player.isAdmin = admins.isAdmin(uuid, ip);
@@ -172,17 +172,16 @@ public class NetServer extends Module{
             TraceInfo info = admins.getTrace(Net.getConnection(id).address);
             Weapon weapon = (Weapon)Upgrade.getByID(packet.weaponid);
 
-            float wtrc = 60;
+            float wtrc = 80;
 
-            if(TimeUtils.millis() < info.lastFastShot + (int)(wtrc/60f*1000)){
-                info.fastShots ++;
+            if(!Timers.get("fastshoot-" + id + "-" + weapon.id, wtrc)){
+                info.fastShots.getAndIncrement(weapon.id, 0, 1);
 
-                if(info.fastShots - 6 > (int)(wtrc / (weapon.getReload() / 2f))){
+                if(info.fastShots.get(weapon.id, 0) > (int)(wtrc / (weapon.getReload() / 2f)) + 6){
                     kick(id, KickReason.kick);
                 }
             }else{
-                info.fastShots = 0;
-                info.lastFastShot = TimeUtils.millis();
+                info.fastShots.put(weapon.id, 0);
             }
 
             packet.playerid = connections.get(id).id;
@@ -266,8 +265,6 @@ public class NetServer extends Module{
 
         Net.handleServer(WeaponSwitchPacket.class, (id, packet) -> {
             TraceInfo info = admins.getTrace(Net.getConnection(id).address);
-            info.fastShots = 0;
-            info.lastFastShot = TimeUtils.millis();
 
             packet.playerid = connections.get(id).id;
             Net.sendExcept(id, packet, SendMode.tcp);

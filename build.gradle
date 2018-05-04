@@ -25,7 +25,7 @@ allprojects {
         appName = 'Miliforge'
         gdxVersion = '1.9.8'
         aiVersion = '1.8.1'
-        uCoreVersion = 'c5d47cc'
+        uCoreVersion = 'a6f9111'
 
         getVersionString = {
             String buildVersion = getBuildVersion()
@@ -107,7 +107,7 @@ project(":core") {
     apply plugin: "java"
 
     dependencies {
-        boolean comp = System.properties["release"] == null || System.properties["release"].equals("false")
+        boolean comp = false
 
         if(!comp){
             println("NOTICE: Compiling release build.")

@@ -39,7 +39,7 @@ public class WeaponBlocks{
 			reload = 13f;
 			recoil = 0.4f;
 			bullet = BulletType.stone;
-			health = 55;
+			health = 50;
 			ammo = Item.basicammo;
 			ammoMultiplier = 14;
 		}
