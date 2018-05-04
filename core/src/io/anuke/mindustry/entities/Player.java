@@ -42,7 +42,6 @@ public class Player extends SyncEntity{
 	public Mech mech = Mech.standard;
 
 	public float targetAngle = 0f;
-	public float stucktime = 0f;
 	public boolean dashing = false;
 
 	public int clientid = -1;
@@ -54,14 +53,14 @@ public class Player extends SyncEntity{
 	
 	public Player(){
 		hitbox.setSize(5);
-		hitboxTile.setSize(5f);
+		hitboxTile.setSize(4f);
 		
 		maxhealth = 200;
 		heal();
 	}
 
 	@Override
-	public void damage(int amount){
+	public void damage(float amount){
 		if(debug || isAndroid) return;
 
 		health -= amount;
@@ -161,15 +160,8 @@ public class Player extends SyncEntity{
 		Tile tile = world.tileWorld(x, y);
 
 		//if player is in solid block
-		if(tile != null && ((tile.floor().liquid && tile.block() == Blocks.air) || tile.solid())){
-			stucktime += Timers.delta();
-		}else{
-			stucktime = 0f;
-		}
-
-		if(stucktime > 15f){
-			damage(health+1); //die instantly
-			stucktime = 0f;
+		if(tile != null && ((tile.floor().liquid && tile.block() == Blocks.air) || tile.solid())) {
+			damage(health + 1); //die instantly
 		}
 
 		if(ui.chatfrag.chatOpen()) return;

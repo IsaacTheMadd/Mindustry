@@ -169,8 +169,8 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		}
 
 		public void draw(Bullet b) {
-			Draw.color(Color.LIGHT_GRAY, Color.GRAY, b.ifract());
-			Lines.stroke(2f - b.ifract());
+			Draw.color(Color.LIGHT_GRAY, Color.GRAY, b.fin());
+			Lines.stroke(2f - b.fin());
 			Lines.lineAngleCenter(b.x, b.y, b.angle(), 2f);
 			Draw.reset();
 		}
@@ -337,7 +337,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		}
 
 		public void draw(Bullet b){
-			Draw.color(Color.WHITE, lightOrange, b.fract()/2f + 0.25f);
+			Draw.color(Color.WHITE, lightOrange, b.fout()/2f + 0.25f);
 			Lines.stroke(1.5f);
 			Lines.lineAngle(b.x, b.y, b.angle(), 3f);
 			Draw.reset();
@@ -349,7 +349,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		}
 
 		public void draw(Bullet b) {
-			float size = 3f - b.ifract()*1f;
+			float size = 3f - b.fin()*1f;
 
 			Draw.color(Color.PURPLE, Color.WHITE, 0.8f);
 			Lines.stroke(1f);
@@ -368,8 +368,8 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			Draw.color(lightOrange, Color.WHITE, 0.4f);
 			Lines.poly(b.x, b.y, 3, 1.6f, b.angle());
 			Lines.stroke(1f);
-			Draw.color(Color.WHITE, lightOrange, b.ifract()/2f);
-			Draw.alpha(b.ifract());
+			Draw.color(Color.WHITE, lightOrange, b.fin()/2f);
+			Draw.alpha(b.fin());
 			Lines.spikes(b.x, b.y, 1.5f, 2f, 6);
 			Draw.reset();
 		}
@@ -420,9 +420,9 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		}
 
 		public void draw(Bullet b) {
-			Draw.color(Color.WHITE, Color.ORANGE, b.ifract());
+			Draw.color(Color.WHITE, Color.ORANGE, b.fin());
 			Lines.stroke(2f);
-			Lines.lineAngleCenter(b.x, b.y, b.angle(), b.fract()*5f);
+			Lines.lineAngleCenter(b.x, b.y, b.angle(), b.fout()*5f);
 			Draw.reset();
 		}
 
@@ -448,9 +448,9 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		}
 
 		public void draw(Bullet b) {
-			Draw.color(Color.WHITE, Color.ORANGE, b.ifract());
+			Draw.color(Color.WHITE, Color.ORANGE, b.fin());
 			Lines.stroke(1f);
-			Lines.lineAngleCenter(b.x, b.y, b.angle(), b.fract()*4f);
+			Lines.lineAngleCenter(b.x, b.y, b.angle(), b.fout()*4f);
 			Draw.reset();
 		}
 	},
@@ -480,7 +480,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		}
 
 		public void draw(Bullet b) {
-			float f = b.fract()*1.5f;
+			float f = b.fout()*1.5f;
 
 			Draw.color(beam);
 			Draw.rect("circle", b.x, b.y, 6f*f, 6f*f);

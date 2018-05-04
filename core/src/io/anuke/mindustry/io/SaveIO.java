@@ -12,9 +12,7 @@ import io.anuke.ucore.core.Settings;
 
 import java.io.*;
 
-import static io.anuke.mindustry.Vars.gwt;
-import static io.anuke.mindustry.Vars.logic;
-import static io.anuke.mindustry.Vars.saveDirectory;
+import static io.anuke.mindustry.Vars.*;
 
 public class SaveIO{
 	public static final IntMap<SaveFileVersion> versions = new IntMap<>();
@@ -132,7 +130,15 @@ public class SaveIO{
 	}
 
 	public static void load(FileHandle file){
-		load(file.read());
+		try {
+			load(file.read());
+		}catch (RuntimeException e){
+			e.printStackTrace();
+			FileHandle backup = file.sibling(file.name() + "-backup." + file.extension());
+			if(backup.exists()){
+				load(backup.read());
+			}
+		}
 	}
 
 	public static void load(InputStream is){

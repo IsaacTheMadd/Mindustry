@@ -43,7 +43,8 @@ public abstract class InputHandler extends InputAdapter{
 	}
 	
 	public boolean cursorNear(){
-		return Vector2.dst(player.x, player.y, getBlockX() * tilesize, getBlockY() * tilesize) <= placerange;
+		return Vector2.dst(player.x, player.y, getBlockX() * tilesize, getBlockY() * tilesize) <= placerange ||
+				state.mode.infiniteResources;
 	}
 	
 	public boolean tryPlaceBlock(int x, int y, boolean sound){
@@ -115,19 +116,23 @@ public abstract class InputHandler extends InputAdapter{
 	}
 	
 	public void placeBlock(int x, int y, Block result, int rotation, boolean effects, boolean sound){
-		if(!Net.client()){
+		if(!Net.client()){ //is server or singleplayer
 			Placement.placeBlock(x, y, result, rotation, effects, sound);
-			Tile tile = world.tile(x, y);
-			if(tile != null) result.placed(tile);
 		}
 
 		if(Net.active()){
 			NetEvents.handlePlace(x, y, result, rotation);
 		}
+
+		if(!Net.client()){
+			Tile tile = world.tile(x, y);
+			if(tile != null) result.placed(tile);
+		}
 	}
 
 	public void breakBlock(int x, int y, boolean sound){
-		if(!Net.client()) Placement.breakBlock(x, y, true, sound);
+		if(!Net.client())
+			Placement.breakBlock(x, y, true, sound);
 
 		if(Net.active()){
 			NetEvents.handleBreak(x, y);

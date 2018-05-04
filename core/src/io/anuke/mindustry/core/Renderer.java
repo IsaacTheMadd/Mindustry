@@ -33,6 +33,7 @@ import io.anuke.ucore.function.Callable;
 import io.anuke.ucore.graphics.*;
 import io.anuke.ucore.modules.RendererModule;
 import io.anuke.ucore.scene.ui.layout.Unit;
+import io.anuke.ucore.scene.utils.Cursors;
 import io.anuke.ucore.util.Angles;
 import io.anuke.ucore.util.Mathf;
 import io.anuke.ucore.util.Tmp;
@@ -67,6 +68,12 @@ public class Renderer extends RendererModule{
 				}
 			}
 		});
+
+		Cursors.cursorScaling = 3;
+		Cursors.outlineColor = Color.valueOf("444444");
+		Cursors.arrow = Cursors.loadCursor("cursor");
+		Cursors.hand = Cursors.loadCursor("hand");
+		Cursors.ibeam = Cursors.loadCursor("ibar");
 
 		clearColor = Hue.lightness(0.4f);
 		clearColor.a = 1f;
@@ -408,7 +415,8 @@ public class Renderer extends RendererModule{
 		if((input.recipe != null && state.inventory.hasItems(input.recipe.requirements) && (!ui.hasMouse() || android)
 				&& control.input().drawPlace())){
 
-			input.placeMode.draw(control.input().getBlockX(), control.input().getBlockY(), control.input().getBlockEndX(), control.input().getBlockEndY());
+			input.placeMode.draw(control.input().getBlockX(), control.input().getBlockY(),
+					control.input().getBlockEndX(), control.input().getBlockEndY());
 
 			Lines.stroke(1f);
 			Draw.color(Color.SCARLET);
@@ -424,9 +432,15 @@ public class Renderer extends RendererModule{
 			if(input.breakMode == PlaceMode.holdDelete)
 				input.breakMode.draw(tilex, tiley, 0, 0);
 			
-		}else if(input.breakMode.delete && control.input().drawPlace() && input.recipe == null){
-			input.breakMode.draw(control.input().getBlockX(), control.input().getBlockY(),
-					control.input().getBlockEndX(), control.input().getBlockEndY());
+		}else if(input.breakMode.delete && control.input().drawPlace()
+				&& (input.recipe == null || !state.inventory.hasItems(input.recipe.requirements))
+				&& (input.placeMode.delete || input.breakMode.both || !android)){
+
+            if(input.breakMode == PlaceMode.holdDelete)
+                input.breakMode.draw(tilex, tiley, 0, 0);
+            else
+				input.breakMode.draw(control.input().getBlockX(), control.input().getBlockY(),
+						control.input().getBlockEndX(), control.input().getBlockEndY());
 		}
 
 		if(ui.toolfrag.confirming){
@@ -527,14 +541,14 @@ public class Renderer extends RendererModule{
 	}
 	
 	//TODO optimize!
-	public void drawBar(Color color, float x, float y, float fraction){
-		fraction = Mathf.clamp(fraction);
+	public void drawBar(Color color, float x, float y, float finion){
+		finion = Mathf.clamp(finion);
 
-		if(fraction > 0) fraction = Mathf.clamp(fraction + 0.2f, 0.24f, 1f);
+		if(finion > 0) finion = Mathf.clamp(finion + 0.2f, 0.24f, 1f);
 
 		float len = 3;
 
-		float w = (int) (len * 2 * fraction) + 0.5f;
+		float w = (int) (len * 2 * finion) + 0.5f;
 
 		x -= 0.5f;
 		y += 0.5f;

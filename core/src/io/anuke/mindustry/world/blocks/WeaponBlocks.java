@@ -34,8 +34,7 @@ public class WeaponBlocks{
 			bullet = BulletType.stone;
 			ammo = Item.stone;
 			ammoMultiplier = 14;
-			health = 55;
-			health = 45;
+			health = 50;
 		}
 		
 		@Override
