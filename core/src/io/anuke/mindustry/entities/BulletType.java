@@ -511,8 +511,8 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			Draw.color(Color.ORANGE, Color.WHITE, 0.4f);
 			Lines.poly(b.x, b.y, 3, 1.6f, b.angle());
 			Lines.stroke(1.5f);
-			Draw.color(Color.WHITE, lightOrange, b.ifract()/2f);
-			Draw.alpha(b.ifract());
+			Draw.color(Color.WHITE, lightOrange, b.fin()/2f);
+			Draw.alpha(b.fin());
 			Lines.spikes(b.x, b.y, 1.5f, 2f, 6);
 			Draw.reset();
 		}
@@ -539,8 +539,8 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			Draw.color(lightOrange, Color.WHITE, 0.4f);
 			Lines.poly(b.x, b.y, 3, 1.6f, b.angle());
 			Lines.stroke(1f);
-			Draw.color(Color.WHITE, lightOrange, b.ifract()/2f);
-			Draw.alpha(b.ifract());
+			Draw.color(Color.WHITE, lightOrange, b.fin()/2f);
+			Draw.alpha(b.fin());
 			Lines.spikes(b.x, b.y, 1.5f, 2f, 6);
 			Draw.reset();
 		}
@@ -573,8 +573,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		}
 
 		public void draw(Bullet b) {
-//			float f = b.fract()*1.5f;
-			float f = 1;
+			float f = b.fout() / 1.1f + 0.4f;
 			
 			Draw.color(beam);
 			Draw.rect("circle", b.x, b.y, 8f*f, 8f*f);
@@ -616,7 +615,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		}
 
 		public void draw(Bullet b) {
-			float f = b.fract()*0.7f;
+			float f = b.fout() / 1.1f + 0.2f;
 			
 			Draw.color(beam);
 			Draw.rect("circle", b.x, b.y, 8f*f, 8f*f);
@@ -651,10 +650,18 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		public void despawned(Bullet b){
 			hit(b);
 		}
+
+		@Override
+		public void update(Bullet b){
+			track(b);
+			if(b.timer.get(0, 4)) {
+				Effects.effect(Fx.smoke, b);
+			}
+		}
 		
 		public void hit(Bullet b, float hitx, float hity){
 			Effects.shake(1f, 1f, b);
-			
+
 			Effects.effect(Fx.shellsmoke, b);
 			Effects.effect(Fx.shockwaveSmall, b);
 			
@@ -670,25 +677,37 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 		public void draw(Bullet b){
 			float rad = 6f + Mathf.sin(Timers.time(), 5f, 2f);
 
-			Draw.color(Color.CORAL);
+			Draw.color(Color.valueOf("b261e1"));
 			Lines.circle(b.x, b.y, 6f);
 			Draw.rect("circle", b.x, b.y, rad, rad);
 			Draw.reset();
 
-			Draw.color(Color.GOLDENROD);
+			Draw.color(Color.valueOf("eb4a44"));
 			Draw.alpha(0.7f);
 			Lines.stroke(1.3f);
-			Lines.lineAngle(b.x, b.y, 3f, b.angle() + Mathf.lerp(Mathf.random(361f), Mathf.random(361f), Timers.delta() * 0.02f),7f);
-			Lines.lineAngle(b.x, b.y, 3f, b.angle() + Mathf.lerp(Mathf.random(361f), Mathf.random(361f), Timers.delta() * 0.02f),7f);
-			Lines.lineAngle(b.x, b.y, 3f, b.angle() + Mathf.lerp(Mathf.random(361f), Mathf.random(361f), Timers.delta() * 0.02f),7f);
-			Lines.lineAngle(b.x, b.y, 3f, b.angle() + Mathf.lerp(Mathf.random(361f), Mathf.random(361f), Timers.delta() * 0.02f),7f);
-			Lines.lineAngle(b.x, b.y, 3f, b.angle() + Mathf.lerp(Mathf.random(361f), Mathf.random(361f), Timers.delta() * 0.02f),7f);
+			Lines.lineAngle(b.x, b.y, 3f, b.angle() + Mathf.lerp(0f, 720f, b.fin()),7f);
+            Lines.lineAngle(b.x, b.y, 3f, b.angle() + 45f + Mathf.lerp(0f, 720f, b.fin()),7f);
+            Lines.lineAngle(b.x, b.y, 3f, b.angle() + 90f + Mathf.lerp(0f, 720f, b.fin()),7f);
+            Lines.lineAngle(b.x, b.y, 3f, b.angle() + 135f + Mathf.lerp(0f, 720f, b.fin()),7f);
+            Lines.lineAngle(b.x, b.y, 3f, b.angle() + 180f + Mathf.lerp(0f, 720f, b.fin()),7f);
+            Lines.lineAngle(b.x, b.y, 3f, b.angle() + 225f + Mathf.lerp(0f, 720f, b.fin()),7f);
+            Lines.lineAngle(b.x, b.y, 3f, b.angle() + 270f + Mathf.lerp(0f, 720f, b.fin()),7f);
+            Lines.lineAngle(b.x, b.y, 3f, b.angle() + 315f + Mathf.lerp(0f, 720f, b.fin()),7f);
 			Draw.reset();
+
+            Draw.color(Color.valueOf("b26a44"));
+            Draw.alpha(0.5f);
+            Lines.stroke(1.8f);
+            Lines.lineAngle(b.x, b.y, 5f, b.angle() + 45f + Mathf.lerp(0f, 1440f, b.fout()),2.5f);
+            Lines.lineAngle(b.x, b.y, 5f, b.angle() + 135f + Mathf.lerp(0f, 1440f, b.fout()),2.5f);
+            Lines.lineAngle(b.x, b.y, 5f, b.angle() + 225f + Mathf.lerp(0f, 1440f, b.fout()),2.5f);
+            Lines.lineAngle(b.x, b.y, 5f, b.angle() + 315f + Mathf.lerp(0f, 1440f, b.fout()),2.5f);
+            Draw.reset();
 		}
 		
 		public void update(Bullet b){
-			if(b.timer.get(0, 2)){
-				Effects.effect(Fx.pulsesparks, b.x + Mathf.range(2), b.y + Mathf.range(2));
+			if(b.timer.get(0, 4)){
+				Effects.effect(Fx.sheildspark, b.x + Mathf.range(2), b.y + Mathf.range(2));
 			}
 		}
 		
@@ -705,9 +724,7 @@ public abstract class BulletType extends BaseBulletType<Bullet>{
 			Effects.shake(3f, 3f, b);
 		}
 	};
-	
-	private String name;
-	
+
 	public BulletType(float speed, int damage){
 		this.speed = speed;
 		this.damage = damage;

@@ -142,7 +142,7 @@ public class Fx{
 		Lines.circle(e.x, e.y, e.fin()*40f);
 		Draw.reset();
 	}),
-	
+
 	empspark = new Effect(13, e -> {
 		Angles.randLenVectors(e.id, 7, 1f + e.fin()*12f, (x, y)->{
 			float len = 1f+e.fout()*6f;
@@ -477,23 +477,32 @@ public class Fx{
 	}),
 	
 	pulsesparks = new Effect(17, e -> {
-		Draw.color(beamLight, new Color(Hue.mix(beam, glowy, 0.4f)), e.ifract());
-		float size = 2f-e.ifract()*2f;
+		Draw.color(beamLight, new Color(Hue.mix(beam, glowy, 0.4f)), e.fin());
+		float size = 4f-e.fin()*4f;
 		Draw.rect("circle", e.x, e.y, size, size);
 		Draw.reset();
 	}),
 
     pulsehit = new Effect(8, e -> {
-        Draw.color(beamLight, new Color(Hue.mix(beam, beamLight, 0.3f)), e.ifract());
-        Lines.stroke(e.fract()*4f+0.5f);
-        Lines.circle(e.x, e.y, e.ifract()*8f);
-        Lines.spikes(e.x, e.y, e.ifract()*6f, 2f, 4, 45);
+        Draw.color(beamLight, new Color(Hue.mix(beam, beamLight, 0.3f)), e.fin());
+        Lines.stroke(e.fout()*4f+0.5f);
+        Lines.circle(e.x, e.y, e.fin()*8f);
+        Lines.spikes(e.x, e.y, e.fin()*6f, 2f, 4, 45);
         Draw.reset();
     }),
 
+	sheildspark = new Effect(13, e -> {
+		Angles.randLenVectors(e.id, 6, 1f + e.fin()*14f, (x, y)->{
+			float len = 1f+e.fout()*6f;
+			Draw.color(Color.valueOf("b26a44"), Color.CORAL, e.fin());
+			Lines.lineAngle(e.x + x, e.y + y, Mathf.atan2(x, y), len);
+			Draw.reset();
+		});
+	}),
+
 	flamefires = new Effect(5, e -> {
-		Draw.color(Color.YELLOW, Color.SCARLET, e.ifract());
-		float size = e.fract()*3f;
+		Draw.color(Color.YELLOW, Color.SCARLET, e.fin());
+		float size = e.fout()*3f;
 		Draw.rect("circle", e.x, e.y, size, size);
 		Draw.reset();
 	}),
@@ -521,28 +530,28 @@ public class Fx{
 			
 	movementWaves = new Effect(63, e -> {
 		Draw.color(Color.valueOf("7190e3"));
-		Draw.alpha(e.fract());
-		Lines.lineAngle(e.x, e.y, e.rotation + 135, e.ifract()*9f);
-		Lines.lineAngle(e.x, e.y, e.rotation - 136, e.ifract()*9f);
-		Lines.stroke(e.ifract()*2f);
+		Draw.alpha(e.fout());
+		Lines.lineAngle(e.x, e.y, e.rotation + 135, e.fin()*9f);
+		Lines.lineAngle(e.x, e.y, e.rotation - 136, e.fin()*9f);
+		Lines.stroke(e.fin()*2f);
 		Draw.reset();
 	}),
 			
 	lavamovementWaves = new Effect(45, e -> {
 		Draw.color(Color.ORANGE);
-		Draw.alpha(e.fract());
-		Lines.lineAngle(e.x, e.y, e.rotation + 135, e.ifract()*7f);
-		Lines.lineAngle(e.x, e.y, e.rotation - 136, e.ifract()*7f);
-		Lines.stroke(e.ifract()*1.7f);
+		Draw.alpha(e.fout());
+		Lines.lineAngle(e.x, e.y, e.rotation + 135, e.fin()*7f);
+		Lines.lineAngle(e.x, e.y, e.rotation - 136, e.fin()*7f);
+		Lines.stroke(e.fin()*1.7f);
 		Draw.reset();
 	}),
 			
 	oilmovementWaves = new Effect(28, e -> {
 		Draw.color(Color.DARK_GRAY);
-		Draw.alpha(e.fract());
-		Lines.lineAngle(e.x, e.y, e.rotation + 135, e.ifract()*4f);
-		Lines.lineAngle(e.x, e.y, e.rotation - 136, e.ifract()*4f);
-		Lines.stroke(e.ifract()*1.3f);
+		Draw.alpha(e.fout());
+		Lines.lineAngle(e.x, e.y, e.rotation + 135, e.fin()*4f);
+		Lines.lineAngle(e.x, e.y, e.rotation - 136, e.fin()*4f);
+		Lines.stroke(e.fin()*1.3f);
 		Draw.reset();
 	}),
 	
