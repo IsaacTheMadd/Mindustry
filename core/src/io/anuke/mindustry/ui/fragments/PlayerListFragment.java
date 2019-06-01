@@ -33,6 +33,7 @@ public class PlayerListFragment implements Fragment{
     public void build(){
         new table(){{
             new table("pane"){{
+                touchable(Touchable.enabled);
                 margin(14f);
                 new label(() -> Bundles.format(playerGroup.size() == 1 ? "text.players.single" :
                         "text.players", playerGroup.size()));
@@ -63,8 +64,10 @@ public class PlayerListFragment implements Fragment{
             }}.end();
 
             update(t -> {
-                if(!android){
-                    visible = Inputs.keyDown("player_list");
+                if(!mobile){
+                    if(Inputs.keyTap("player_list")){
+                        visible = !visible;
+                    }
                 }
                 if(!(Net.active() && !state.is(State.menu))){
                     visible = false;

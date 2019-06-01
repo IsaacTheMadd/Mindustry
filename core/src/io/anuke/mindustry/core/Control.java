@@ -13,7 +13,6 @@ import io.anuke.mindustry.input.AndroidInput;
 import io.anuke.mindustry.input.DefaultKeybinds;
 import io.anuke.mindustry.input.DesktopInput;
 import io.anuke.mindustry.input.InputHandler;
-import io.anuke.mindustry.io.Platform;
 import io.anuke.mindustry.io.Saves;
 import io.anuke.mindustry.net.Net;
 import io.anuke.mindustry.resource.Item;
@@ -25,7 +24,9 @@ import io.anuke.ucore.core.Inputs.DeviceType;
 import io.anuke.ucore.entities.Entities;
 import io.anuke.ucore.modules.Module;
 import io.anuke.ucore.scene.ui.layout.Unit;
-import io.anuke.ucore.util.*;
+import io.anuke.ucore.util.Atlas;
+import io.anuke.ucore.util.InputProxy;
+import io.anuke.ucore.util.Mathf;
 
 import static io.anuke.mindustry.Vars.*;
 
@@ -57,7 +58,7 @@ public class Control extends Module{
 
 		Gdx.input.setCatchBackKey(true);
 
-		if(android){
+		if(mobile){
 			input = new AndroidInput();
 		}else{
 			input = new DesktopInput();
@@ -95,14 +96,14 @@ public class Control extends Module{
 			item.init();
 		}
 
-		Sounds.load("shoot.ogg", "place.ogg", "explosion.ogg", "enemyshoot.ogg",
-				"corexplode.ogg", "break.ogg", "spawn.ogg", "flame.ogg", "die.ogg",
-				"respawn.ogg", "purchase.ogg", "flame2.ogg", "bigshot.ogg", "laser.ogg", "lasershot.ogg",
-				"ping.ogg", "tesla.ogg", "waveend.ogg", "railgun.ogg", "missile.ogg", "blast.ogg", "bang2.ogg");
+		Sounds.load("shoot.mp3", "place.mp3", "explosion.mp3", "enemyshoot.mp3",
+				"corexplode.mp3", "break.mp3", "spawn.mp3", "flame.mp3", "die.mp3",
+				"respawn.mp3", "purchase.mp3", "flame2.mp3", "bigshot.mp3", "laser.mp3", "lasershot.mp3",
+				"ping.mp3", "tesla.mp3", "waveend.mp3", "railgun.mp3", "missile.mp3", "blast.mp3", "bang2.mp3");
 
 		Sounds.setFalloff(9000f);
 
-		Musics.load("1.ogg", "2.ogg", "3.ogg", "4.ogg", "5.ogg");
+        Musics.load("1.mp3", "2.mp3", "3.mp3", "4.mp3", "5.mp3", "6.mp3");
 
         DefaultKeybinds.load();
 
@@ -115,7 +116,7 @@ public class Control extends Module{
 		Settings.defaultList(
 			"ip", "localhost",
 			"port", port+"",
-			"name", android || gwt ? "player" : UCore.getProperty("user.name"),
+			"name", mobile || gwt ? "player" : UCore.getProperty("user.name"),
 			"servers", "",
 			"color", Color.rgba8888(playerColors[8]),
 			"lastVersion", "3.2",
@@ -130,7 +131,7 @@ public class Control extends Module{
 
 		player = new Player();
 		player.name = Settings.getString("name");
-		player.isAndroid = android;
+		player.isAndroid = mobile;
 		player.color.set(Settings.getInt("color"));
 		player.isLocal = true;
 
@@ -197,6 +198,10 @@ public class Control extends Module{
 		});
 	}
 
+	public void triggerInputUpdate(){
+		Gdx.input = proxy;
+	}
+
 	public void setError(Throwable error){
 		this.error = error;
 	}
@@ -246,23 +251,6 @@ public class Control extends Module{
 		return tutorial;
 	}
 
-	private void checkOldUser(){
-		boolean hasPlayed = false;
-
-		for(Map map : world.maps().getAllMaps()){
-			if(Settings.getInt("hiscore" + map.name) != 0){
-				hasPlayed = true;
-				break;
-			}
-		}
-
-		if(hasPlayed && Settings.getString("lastVersion").equals("3.2")){
-			Timers.runTask(1f, () -> ui.showInfo("$text.changes"));
-			Settings.putString("lastVersion", "3.3");
-			Settings.save();
-		}
-	}
-
 	@Override
 	public void dispose(){
 		Platform.instance.onGameExit();
@@ -290,8 +278,6 @@ public class Control extends Module{
 		Entities.collisions().setCollider(tilesize, world::solid);
 
 		Platform.instance.updateRPC();
-
-		checkOldUser();
 	}
 
 	@Override
@@ -301,9 +287,7 @@ public class Control extends Module{
 			throw new RuntimeException(error);
 		}
 
-        if(Gdx.input != proxy){
-            Gdx.input = proxy;
-        }
+		Gdx.input = proxy;
 
         if(Inputs.keyTap("console")){
 			console = !console;
@@ -327,16 +311,21 @@ public class Control extends Module{
                 controly -= ya*baseControllerSpeed*scl;
                 controlling = true;
 
+                Gdx.input.setCursorCatched(true);
+
 				Inputs.getProcessor().touchDragged(Gdx.input.getX(), Gdx.input.getY(), 0);
             }
 
             controlx = Mathf.clamp(controlx, 0, Gdx.graphics.getWidth());
             controly = Mathf.clamp(controly, 0, Gdx.graphics.getHeight());
 
-            if(Gdx.input.getDeltaX() > 1 || Gdx.input.getDeltaY() > 1)
-                controlling = false;
+            if(Gdx.input.getDeltaX() > 1 || Gdx.input.getDeltaY() > 1) {
+				controlling = false;
+				Gdx.input.setCursorCatched(false);
+			}
         }else{
             controlling = false;
+			Gdx.input.setCursorCatched(false);
         }
 
         if(!controlling){

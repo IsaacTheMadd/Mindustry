@@ -35,7 +35,7 @@ public class PausedDialog extends FloatingDialog{
 			if(!Net.active()) state.set(State.paused);
 		});
 		
-		if(!android){
+		if(!mobile){
 			content().defaults().width(220).height(50);
 
 			content().addButton("$text.back", () -> {
@@ -59,11 +59,13 @@ public class PausedDialog extends FloatingDialog{
 
 			content().row();
 
-			if(!gwt) {
-				content().addButton("$text.hostserver", () -> {
+			content().addButton("$text.hostserver", () -> {
+				if(!gwt){
 					ui.host.show();
-				}).disabled(b -> Net.active());
-			}
+				}else{
+					ui.showInfo("$text.classic.unsupported");
+				}
+			}).disabled(b -> Net.active());
 
             content().row();
 

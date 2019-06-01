@@ -162,7 +162,7 @@ public class Packets {
         public int color;
     }
 
-    public static class ShootPacket implements Packet{
+    public static class ShootPacket implements Packet, UnimportantPacket{
         public byte weaponid;
         public float x, y, rotation;
         public int playerid;
@@ -186,7 +186,7 @@ public class Packets {
         }
     }
 
-    public static class BulletPacket implements Packet{
+    public static class BulletPacket implements Packet, UnimportantPacket{
         public int type, owner;
         public float x, y, angle;
         public short damage;
@@ -377,7 +377,7 @@ public class Packets {
     }
 
     public enum KickReason{
-        kick, invalidPassword, clientOutdated, serverOutdated, banned, gameover(true), recentKick;
+        kick, invalidPassword, clientOutdated, serverOutdated, banned, gameover(true), recentKick, fastShoot;
         public final boolean quiet;
 
         KickReason(){ quiet = false; }

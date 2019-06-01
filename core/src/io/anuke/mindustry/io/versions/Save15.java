@@ -160,7 +160,7 @@ public class Save15 extends SaveFileVersion {
         state.wave = wave;
         state.wavetime = wavetime;
 
-        if(!android && !headless)
+        if(!mobile && !headless)
             player.add();
 
         //map

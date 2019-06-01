@@ -11,7 +11,7 @@ import io.anuke.mindustry.entities.TileEntity;
 import io.anuke.mindustry.entities.effect.InverseShield;
 import io.anuke.mindustry.entities.effect.Shield;
 import io.anuke.mindustry.entities.enemies.Enemy;
-import io.anuke.mindustry.io.Platform;
+import io.anuke.mindustry.core.Platform;
 import io.anuke.mindustry.net.ClientDebug;
 import io.anuke.mindustry.net.ServerDebug;
 import io.anuke.ucore.UCore;
@@ -24,9 +24,12 @@ import java.util.Locale;
 
 public class Vars{
 
-	public static final boolean testAndroid = false;
+	public static final boolean testMobile = false;
 	//shorthand for whether or not this is running on android
-	public static final boolean android = (Gdx.app.getType() == ApplicationType.Android) || testAndroid;
+	public static final boolean mobile = (Gdx.app.getType() == ApplicationType.Android) ||
+											Gdx.app.getType() == ApplicationType.iOS || testMobile;
+	public static final boolean ios = Gdx.app.getType() == ApplicationType.iOS;
+	public static final boolean android = Gdx.app.getType() == ApplicationType.Android;
 	//shorthand for whether or not this is running on GWT
 	public static final boolean gwt = (Gdx.app.getType() == ApplicationType.WebGL);
 	//whether to send block state change events to players
@@ -36,7 +39,7 @@ public class Vars{
 	//respawn time in frames
 	public static final float respawnduration = 60*4;
 	//time between waves in frames (on normal mode)
-	public static final float wavespace = 60*60*(android ? 1 : 1);
+	public static final float wavespace = 60*60*(mobile ? 1 : 1);
 	//waves can last no longer than 3 minutes, otherwise the next one spawns
 	public static final float maxwavespace = 60*60*4f;
 	//advance time the pathfinding starts at
@@ -44,7 +47,7 @@ public class Vars{
 	//how far away from spawn points the player can't place blocks
 	public static final float enemyspawnspace = 65;
 	//discord group URL
-	public static final String discordURL = "https://discord.gg/BKADYds";
+	public static final String discordURL = "https://discord.gg/mindustry";
 
 	public static final String releasesURL = "https://api.github.com/repos/Anuken/Mindustry/releases";
 	//directory for user-created map data
@@ -93,8 +96,8 @@ public class Vars{
 	
 	public static final int tilesize = 8;
 
-	public static final Locale[] locales = {new Locale("en"), new Locale("fr", "FR"), new Locale("ru"), new Locale("uk", "UA"), new Locale("pl", "PL"),
-			new Locale("de"), new Locale("es", "LA"), new Locale("pt", "BR"), new Locale("ko"), new Locale("in", "ID")};
+	public static final Locale[] locales = {new Locale("en"), new Locale("fr"), new Locale("ru"), new Locale("uk", "UA"), new Locale("pl"),
+			new Locale("de"), new Locale("pt", "BR"), new Locale("ko"), new Locale("in", "ID"), new Locale("ita"), new Locale("es")};
 
 	public static final Color[] playerColors = {
 			Color.valueOf("82759a"),

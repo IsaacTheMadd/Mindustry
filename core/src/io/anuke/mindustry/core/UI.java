@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Colors;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.utils.Align;
 import io.anuke.mindustry.Vars;
-import io.anuke.mindustry.io.Platform;
 import io.anuke.mindustry.mapeditor.MapEditorDialog;
 import io.anuke.mindustry.ui.dialogs.*;
 import io.anuke.mindustry.ui.fragments.*;
@@ -175,6 +174,22 @@ public class UI extends SceneModule{
 		loadfrag.build();
 
 		build.end();
+
+		if(Settings.getBool("showBetaDialog", true)){
+			FloatingDialog dialog = new FloatingDialog("Notice");
+			dialog.setFillParent(false);
+			dialog.content().add("[accent]You may have noticed that there has not been an update in a long time.[]\n\n" +
+            "This is because the next (v4) update is currently in alpha.\n\n" +
+            "Join the [accent]Google Play beta program[] on Mindustry's listing if you are interested in playing it before stable release.")
+			.width(400f).wrap();
+			dialog.content().row();
+			dialog.buttons().addButton("OK", () -> {
+			    Settings.putBool("showBetaDialog", false);
+			    dialog.hide();;
+            }).margin(20).growX();
+
+			dialog.show();
+		}
 	}
 
 	@Override
