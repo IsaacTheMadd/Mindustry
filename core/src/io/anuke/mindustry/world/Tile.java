@@ -269,31 +269,48 @@ public class Tile{
 		if(!(block.width == 1 && block.height == 1)){
 			int offsetx = -(block.width-1)/2;
 			int offsety = -(block.height-1)/2;
-			for(int dx = 0; dx < block.width; dx ++){
-				for(int dy = 0; dy < block.height; dy ++){
+			for(int dy = 0; dy < block.height; dy ++){
+				for(int ix = 0; ix < 2; ix ++){
+					int dx = ix == 0 ? 0 : block.width - 1;
 					Tile test = world.tile(x + dx + offsetx, y + dy + offsety);
-					Tile testxp = world.tile(x + dx + offsetx + 1, y + dy + offsety);
-					if(testxp.getLinked() != test.getLinked()){
-						tmpArray.add(testxp);
+
+					if(dx == block.width-1) {
+						Tile testXp = world.tile(x + dx + offsetx + 1, y + dy + offsety);
+						if (testXp.getLinked() != test.getLinked()) {
+							tmpArray.add(testXp);
+						}
 					}
-					Tile testyp = world.tile(x + dx + offsetx, y + dy + offsety + 1);
-					if(testyp.getLinked() != test.getLinked()){
-						tmpArray.add(testyp);
+					if(dx == 0){
+						Tile testXn = world.tile(x + dx + offsetx - 1, y + dy + offsety);
+						if(testXn.getLinked() != test.getLinked()){
+							tmpArray.add(testXn);
+						}
 					}
-					Tile testxn = world.tile(x + dx + offsetx - 1, y + dy + offsety);
-					if(testxn.getLinked() != test.getLinked()){
-						tmpArray.add(testxn);
+				}
+			}
+			for(int dx = 0; dx < block.width; dx ++) {
+				for (int iy = 0; iy < 2; iy++) {
+					int dy = iy == 0 ? 0 : block.height - 1;
+					Tile test = world.tile(x + dx + offsetx, y + dy + offsety);
+
+					if (dy == block.height - 1) {
+						Tile testYp = world.tile(x + dx + offsetx, y + dy + offsety + 1);
+						if (testYp.getLinked() != test.getLinked()) {
+							tmpArray.add(testYp);
+						}
 					}
-					Tile testyn = world.tile(x + dx + offsetx, y + dy + offsety - 1);
-					if(testyn.getLinked() != test.getLinked()){
-						tmpArray.add(testyn);
+					if (dy == 0) {
+						Tile testYn = world.tile(x + dx + offsetx, y + dy + offsety - 1);
+						if (testYn.getLinked() != test.getLinked()) {
+							tmpArray.add(testYn);
+						}
 					}
 				}
 			}
 		}else{
 			Tile xp = world.tile(x + 1, y);
 			tmpArray.add(xp);
-			Tile yp = world.tile(x, y - 1);
+			Tile yp = world.tile(x, y + 1);
 			tmpArray.add(yp);
 			Tile xn = world.tile(x - 1, y);
 			tmpArray.add(xn);

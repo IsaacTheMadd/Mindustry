@@ -254,18 +254,23 @@ public class Block{
 		}else{
 			Array<Tile> nearby = tile.getNearbyTiles();
 
-			byte i = (byte) (tile.getDump()%nearby.size);
+			int rim = nearby.size;
+			byte i = (byte) (tile.getDump()%rim);
 		
-			for(int j = 0; j < nearby.size; j ++){
+			for(int j = 0; j < rim; j ++){
 				Tile other = nearby.get(i);
 				Tile in = tile;
-				for(int s = 0; s < 4; s ++){
-					Tile test = other.getNearby(s);
-					if(test != null && test.getLinked() == tile){
-						in = test;
-					}
+				byte rotation = 0;
+
+				if(other.y < tile.y){rotation = 1;}
+				if(other.x > tile.x){rotation = 2;}
+				if(other.y > tile.y){rotation = 3;}
+
+				Tile test = other.getNearby((rotation+2)%4);
+				if(test != null && test.getLinked() == tile || other == test){
+					in = test;
 				}
-				if(i == direction || direction == -1){
+
 					for(Item item : Item.getAllItems()){
 					
 						if(todump != null && item != todump) continue;
@@ -273,14 +278,13 @@ public class Block{
 						if(tile.entity.hasItem(item) && other != null && other.block().acceptItem(item, other, in)){
 							other.block().handleItem(item, other, in);
 							tile.entity.removeItem(item, 1);
-							tile.setDump((byte)((i+1)%nearby.size));
-							if(Net.server() && syncBlockState) NetEvents.handleTransfer(tile, (byte)i, item);
+							tile.setDump((byte)((i+1)%rim));
+							if(Net.server() && syncBlockState) NetEvents.handleTransfer(in, rotation, item);
 							return true;
 						}
 					}
-				}
 				i++;
-				i = (byte)((i + 1) % nearby.size);
+				i = (byte)((i + 1) % rim);
 				tile.setDump(i);
 			}
 			
