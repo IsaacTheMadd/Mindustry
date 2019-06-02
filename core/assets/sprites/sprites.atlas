@@ -104,7 +104,7 @@ block-3x3
   index: -1
 block-4x4
   rotate: false
-  xy: 776, 344
+  xy: 952, 419
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -1273,7 +1273,7 @@ chainbullet
   index: -1
 circle
   rotate: false
-  xy: 342, 176
+  xy: 791, 494
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
@@ -1287,7 +1287,7 @@ circle2
   index: -1
 blastenemy-t1
   rotate: false
-  xy: 141, 114
+  xy: 1008, 497
   size: 14, 14
   orig: 14, 14
   offset: 0, 0
@@ -2882,7 +2882,7 @@ icon-tier2ammo
   index: -1
 icon-railammo
   rotate: false
-  xy: 967, 263
+  xy: 967, 338
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -3001,9 +3001,9 @@ teleporter-icon
   index: -1
 teleporter-top
   rotate: false
-  xy: 625, 281
-  size: 8, 8
-  orig: 8, 8
+  xy: 875, 395
+  size: 24, 24
+  orig: 24, 24
   offset: 0, 0
   index: -1
 shieldcannon

@@ -252,24 +252,22 @@ public class Block{
 				i %= 4;
 			}
 		}else{
-			Array<Tile> nearby = tile.getNearbyTiles();
+			Array<Tile> nearby = new Array<>();
+			nearby.addAll(tile.getNearbyTiles());
 
 			int rim = nearby.size;
 			byte i = (byte) (tile.getDump()%rim);
+			Array<Tile> edge = new Array<>();
+			edge.addAll(tile.getEdgeTiles());
 		
 			for(int j = 0; j < rim; j ++){
 				Tile other = nearby.get(i);
-				Tile in = tile;
-				byte rotation = 0;
+				Tile in = edge.get(i);
+				boolean seg0 = i <= height && i >= height+width;
+				boolean seg1 = i <= height+width && i >= (height*2)+width;
+				boolean seg2 = i <= (height*2)+width && i >= (height*2)+(width*2);
+				byte rotation = seg0 ? 0 : seg1 ? (byte)1 : seg2 ? (byte)2 : 3;
 
-				if(other.y < tile.y){rotation = 1;}
-				if(other.x > tile.x){rotation = 2;}
-				if(other.y > tile.y){rotation = 3;}
-
-				Tile test = other.getNearby((rotation+2)%4);
-				if(test != null && test.getLinked() == tile || other == test){
-					in = test;
-				}
 
 					for(Item item : Item.getAllItems()){
 					
@@ -284,57 +282,11 @@ public class Block{
 						}
 					}
 				i++;
-				i = (byte)((i + 1) % rim);
+				i %= rim;
 				tile.setDump(i);
 			}
 			
 		}
-			/*{
-			Array<Tile> linked = tile.getLinkedTiles();
-			int i = tile.getDump()%4;
-			
-			for(int j = 0; j < 4; j ++){
-				
-				if(i == direction || direction == -1){
-				for(Item item : Item.getAllItems()){
-							
-					if(todump != null && item != todump) continue;
-
-					Tile source = null;
-					Tile other = null;
-					for(int itr = 0; itr < linked.size; itr++){
-						source = linked.get(itr);
-						int wh = 0;
-						
-						if(i == 0 || i == 2){
-							wh = width;
-						}
-						if(i == 1 || i == 3){
-							wh = height;
-						}
-						
-						if(other == null || (other != null && !other.block().acceptItem(item, other, source)) || Mathf.chance(1 / wh)){
-							if(source.getNearby(i).isLinked() == false || source.getNearby(i).getLinked() != source.getLinked()){
-								other = source.getNearby(i);
-							}
-						}
-						
-					}
-
-						if(tile.entity.hasItem(item) && other != null && other.block().acceptItem(item, other, source)){
-							other.block().handleItem(item, other, source);
-							tile.entity.removeItem(item, 1);
-							tile.setDump((byte)((i+1)%4));
-							if(Net.server() && syncBlockState) NetEvents.handleTransfer(tile, (byte)i, item);
-							return true;
-						}
-					}
-				}
-				i++;
-				i %= 4;
-			}
-		}*/
-		
 		return false;
 	}
 

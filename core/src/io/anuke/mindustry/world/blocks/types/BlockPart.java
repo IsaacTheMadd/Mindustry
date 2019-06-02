@@ -13,6 +13,7 @@ public class BlockPart extends Block implements PowerAcceptor, LiquidAcceptor{
 	public BlockPart() {
 		super("blockpart");
 		solid = false;
+		rotate = false;
 	}
 	
 	@Override

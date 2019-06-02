@@ -20,6 +20,8 @@ public class Tile{
 	private short blocks;
 	/**Packed data. Left is rotation, right is extra data, packed into two half-bytes: left is dump, right is extra.*/
 	private short data;
+	//Yeah, what if we didn't do that ^
+	protected byte dump;
 	/**The coordinates of the core tile this is linked to, in the form of two bytes packed into one.
 	 * This is relative to the block it is linked to; negate coords to find the link.*/
 	public byte link = 0;
@@ -27,6 +29,7 @@ public class Tile{
 	/**Whether this tile has any solid blocks near it.*/
 	public boolean occluded = false;
 	public TileEntity entity;
+
 	
 	public Tile(int x, int y){
 		this.x = (short)x;
@@ -148,9 +151,13 @@ public class Tile{
 	}
 	
 	public void setDump(byte dump){
-		data = Bits.packShort(getRotation(), Bits.packByte(dump, getExtra()));
+		this.dump = dump;
 	}
-	
+
+	public byte getDump(){
+		return this.dump;
+	}
+
 	public void setExtra(byte extra){
 		data = Bits.packShort(getRotation(), Bits.packByte(getDump(), extra));
 	}
@@ -158,11 +165,7 @@ public class Tile{
 	public byte getRotation(){
 		return Bits.getLeftByte(data);
 	}
-	
-	public byte getDump(){
-		return Bits.getLeftByte(Bits.getRightByte(data));
-	}
-	
+
 	public byte getExtra(){
 		return Bits.getRightByte(Bits.getRightByte(data));
 	}
@@ -261,52 +264,36 @@ public class Tile{
 		return temptiles;
 	}
 
-	/**If it's a mulitblock returns an array of all tiles directly next to any linked tiles if those tiles do not include itself or any linked tiles,
+	/**If it's a mulitblock returns an array of all tiles directly next to any tiles along the perimeter,
 	 * otherwise it returns an array of tiles directly next to it*/
 	public synchronized Array<Tile> getNearbyTiles(){
 		Block block = block();
 		tmpArray.clear();
-		if(!(block.width == 1 && block.height == 1)){
-			int offsetx = -(block.width-1)/2;
-			int offsety = -(block.height-1)/2;
-			for(int dy = 0; dy < block.height; dy ++){
-				for(int ix = 0; ix < 2; ix ++){
-					int dx = ix == 0 ? 0 : block.width - 1;
-					Tile test = world.tile(x + dx + offsetx, y + dy + offsety);
 
-					if(dx == block.width-1) {
-						Tile testXp = world.tile(x + dx + offsetx + 1, y + dy + offsety);
-						if (testXp.getLinked() != test.getLinked()) {
-							tmpArray.add(testXp);
-						}
-					}
-					if(dx == 0){
-						Tile testXn = world.tile(x + dx + offsetx - 1, y + dy + offsety);
-						if(testXn.getLinked() != test.getLinked()){
-							tmpArray.add(testXn);
-						}
-					}
-				}
-			}
-			for(int dx = 0; dx < block.width; dx ++) {
-				for (int iy = 0; iy < 2; iy++) {
-					int dy = iy == 0 ? 0 : block.height - 1;
-					Tile test = world.tile(x + dx + offsetx, y + dy + offsety);
+		if(block.width != 1 || block.height != 1){
+			int offsetx = block.width != 1 ? -(block.width-1)/2 : 0;
+			int offsety = block.height != 1 ? -(block.height-1)/2 : 0;
 
-					if (dy == block.height - 1) {
-						Tile testYp = world.tile(x + dx + offsetx, y + dy + offsety + 1);
-						if (testYp.getLinked() != test.getLinked()) {
-							tmpArray.add(testYp);
-						}
-					}
-					if (dy == 0) {
-						Tile testYn = world.tile(x + dx + offsetx, y + dy + offsety - 1);
-						if (testYn.getLinked() != test.getLinked()) {
-							tmpArray.add(testYn);
-						}
-					}
-				}
+			for (int iy = 0; iy < block.height; iy++) {
+				Tile test = world.tile(x + offsetx + block.width, y + iy + offsety);
+				tmpArray.add(test);
 			}
+
+			for (int ix = 0; ix < block.width; ix++) {
+				Tile test = world.tile(x + ix + offsetx, y + offsety + block.height);
+				tmpArray.add(test);
+			}
+
+			for (int iy = 0; iy < block.height; iy++) {
+				Tile test = world.tile(x + offsetx - 1, y + iy + offsety);
+				tmpArray.add(test);
+			}
+
+			for (int ix = 0; ix < block.width; ix++) {
+				Tile test = world.tile(x + ix + offsetx, y + offsety -1);
+				tmpArray.add(test);
+			}
+
 		}else{
 			Tile xp = world.tile(x + 1, y);
 			tmpArray.add(xp);
@@ -319,7 +306,47 @@ public class Tile{
 		}
 		return tmpArray;
 	}
-	
+
+	/**If it's a mulitblock returns an array of edge tiles that should link with getNearbyTiles perfectly,
+	 * otherwise it returns an array of the same tile four times*/
+	public synchronized Array<Tile> getEdgeTiles(){
+		Block block = block();
+		tmpArray.clear();
+
+		if(block.width != 1 || block.height != 1){
+			int offsetx = block.width != 1 ? -(block.width-1)/2 : 0;
+			int offsety = block.height != 1 ? -(block.height-1)/2 : 0;
+
+			for (int iy = 0; iy < block.height; iy++) {
+				Tile test = world.tile(x + offsetx + block.width - 1, y + iy + offsety);
+				tmpArray.add(test);
+			}
+
+			for (int ix = 0; ix < block.width; ix++) {
+				Tile test = world.tile(x + ix + offsetx, y + offsety + block.height - 1);
+				tmpArray.add(test);
+			}
+
+			for (int iy = 0; iy < block.height; iy++) {
+				Tile test = world.tile(x + offsetx, y + iy + offsety);
+				tmpArray.add(test);
+			}
+
+			for (int ix = 0; ix < block.width; ix++) {
+				Tile test = world.tile(x + ix + offsetx, y + offsety);
+				tmpArray.add(test);
+			}
+
+		}else{
+			Tile xy = world.tile(x, y);
+			tmpArray.add(xy);
+			tmpArray.add(xy);
+			tmpArray.add(xy);
+			tmpArray.add(xy);
+		}
+		return tmpArray;
+	}
+
 	public void updateOcclusion(){
 		occluded = false;
 		for(int dx = -1; dx <= 1; dx ++){

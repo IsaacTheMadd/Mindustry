@@ -25,7 +25,7 @@ import static io.anuke.mindustry.Vars.syncBlockState;
 
 public class Teleporter extends PowerBlock{
 	public static final Color[] colorArray = {Color.ROYAL, Color.ORANGE, Color.SCARLET, Color.FOREST,
-			Color.PURPLE, Color.GOLD, Color.WHITE, Color.BLACK};
+			Color.PURPLE, Color.GOLD, Color.WHITE, Color.BLACK, Color.GRAY, Color.CYAN, Color.CHARTREUSE, Color.PINK};
 	public static final int colors = colorArray.length;
 
 	private static ObjectSet<Tile>[] teleporters = new ObjectSet[colors];
@@ -79,10 +79,10 @@ public class Teleporter extends PowerBlock{
 		super.draw(tile);
 		
 		Draw.color(colorArray[entity.color]);
-		Draw.rect("blank", tile.worldx(), tile.worldy(), 2, 2);
+		Draw.rect("teleporter-top", tile.worldx(), tile.worldy(), 24, 24);
 		Draw.color(Color.WHITE);
 		Draw.alpha(0.45f + Mathf.absin(Timers.time(), 7f, 0.26f));
-		Draw.rect("teleporter-top", tile.worldx(), tile.worldy());
+		Draw.rect("blank", tile.worldx(), tile.worldy(), 2 ,2);
 		Draw.reset();
 	}
 	
@@ -116,7 +116,7 @@ public class Teleporter extends PowerBlock{
 
 		for(int i = 0; i < colors; i ++){
 			final int f = i;
-			ImageButton button = cont.addImageButton("white", "toggle", 24, () -> {
+			ImageButton button = cont.addImageButton("white", "toggle", 16, () -> {
 				lastColor = (byte)f;
 				setConfigure(tile, (byte)f);
 			}).size(34, 38).padBottom(-5.1f).group(group).get();
